@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lịch hẹn - Spapet Admin</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../../js/data.js"></script>
+    <script src="../admin-integration.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand">
+          <div class="sidebar__logo">SP</div>
+          <div>
+            <div class="sidebar__title">Spapet Admin</div>
+            <div class="sidebar__subtitle">Quản lý spa thú cưng</div>
+          </div>
+        </div>
+
+        <nav class="sidebar__nav">
+          <a href="../index.html" class="nav-item">
+            <span class="nav-item__icon">🏠</span>
+            <span>Tổng quan</span>
+          </a>
+          <a href="products.html" class="nav-item">
+            <span class="nav-item__icon">🐾</span>
+            <span>Sản phẩm</span>
+          </a>
+          <a href="categories.html" class="nav-item">
+            <span class="nav-item__icon">📂</span>
+            <span>Danh mục</span>
+          </a>
+          <a href="gallery.html" class="nav-item">
+            <span class="nav-item__icon">📸</span>
+            <span>Khoảnh khắc</span>
+          </a>
+          <a href="services.html" class="nav-item">
+            <span class="nav-item__icon">🧴</span>
+            <span>Dịch vụ spa</span>
+          </a>
+          <a href="orders.html" class="nav-item">
+            <span class="nav-item__icon">📦</span>
+            <span>Đơn hàng</span>
+          </a>
+          <a href="customers.html" class="nav-item">
+            <span class="nav-item__icon">👥</span>
+            <span>Khách hàng</span>
+          </a>
+          <a href="appointments.html" class="nav-item nav-item--active">
+            <span class="nav-item__icon">📅</span>
+            <span>Lịch hẹn</span>
+          </a>
+        </nav>
+
+        <div class="sidebar__footer">
+          <div class="user-mini">
+            <div class="user-mini__avatar">V</div>
+            <div>
+              <div class="user-mini__name">Admin</div>
+              <div class="user-mini__role">Quản trị viên</div>
+            </div>
+          </div>
+          <a href="../../index.html" class="nav-item" style="margin-top:8px;font-size:11px">🏠 Về trang chủ</a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar__left">
+            <button class="btn-icon mobile-toggle" id="mobile-toggle" aria-label="Mở menu">
+              ☰
+            </button>
+            <h1 class="topbar__title">Lịch hẹn</h1>
+            <p class="topbar__subtitle">
+              Sắp xếp và theo dõi lịch hẹn spa cho thú cưng theo ngày/tuần.
+            </p>
+          </div>
+          <div class="topbar__actions">
+            <div class="search">
+              <span class="search__icon">🔍</span>
+              <input type="text" class="search__input" id="appointments-search" placeholder="Tìm khách, dịch vụ, thú cưng..." />
+            </div>
+            <button class="btn btn--ghost" data-open-modal="filter-modal">Lọc theo ngày</button>
+            <button class="btn btn--primary" data-open-modal="appointment-modal">
+              + Tạo lịch hẹn
+            </button>
+          </div>
+        </header>
+
+        <section class="section grid grid--2">
+          <div class="card">
+            <div class="card__header card__header--between">
+              <div>
+                <h2 class="card__title">Lịch hẹn hôm nay</h2>
+                <p class="card__subtitle">Những lịch hẹn trong ngày theo thứ tự thời gian.</p>
+              </div>
+              <span class="badge badge--info">Demo timeline</span>
+            </div>
+            <ul class="timeline" id="appointments-today">
+              <!-- Render từ AdminData -->
+            </ul>
+          </div>
+
+          <div class="card card--table">
+            <div class="card__header card__header--between">
+              <div>
+                <h2 class="card__title">Lịch hẹn trong tuần</h2>
+                <p class="card__subtitle">Tổng hợp lịch theo ngày để bạn chủ động nhân sự.</p>
+              </div>
+              <button class="btn btn--ghost btn--sm">Xem dạng lịch tháng</button>
+            </div>
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Ngày</th>
+                    <th>Khách</th>
+                    <th>Dịch vụ</th>
+                    <th>Giờ</th>
+                    <th>Trạng thái</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="appointments-tbody">
+                  <!-- Render từ AdminData -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>© 2026 Spapet Admin – Lịch hẹn.</span>
+          <span class="footer__hint">Gợi ý: đồng bộ lịch với Google Calendar / Zalo OA.</span>
+        </footer>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+
+    <!-- Tận dụng lại modal tạo lịch hẹn giống dashboard -->
+    <div class="modal" id="appointment-modal">
+      <div class="modal__header">
+        <h2 class="modal__title">Tạo lịch hẹn mới</h2>
+        <button class="btn-icon modal__close" data-close-modal aria-label="Đóng">✕</button>
+      </div>
+      <form class="modal__body">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="quick-customer-name">Tên khách hàng</label>
+            <input id="quick-customer-name" type="text" placeholder="Ví dụ: Minh Anh" />
+          </div>
+          <div class="form-field">
+            <label for="quick-pet-type">Thú cưng</label>
+            <input id="quick-pet-type" type="text" placeholder="Poodle, Mèo ALN..." />
+          </div>
+          <div class="form-field">
+            <label for="quick-date">Ngày hẹn</label>
+            <input id="quick-date" type="date" required />
+          </div>
+          <div class="form-field">
+            <label for="quick-time">Giờ hẹn</label>
+            <input id="quick-time" type="time" required />
+          </div>
+          <div class="form-field form-field--full">
+            <label for="quick-service">Dịch vụ</label>
+            <select id="quick-service">
+              <!-- Options từ AdminData.getServices() -->
+            </select>
+          </div>
+        </div>
+        <p class="modal__hint">
+          Sau khi có backend, form này có thể lưu lịch thật và hiển thị ngay trong timeline.
+        </p>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--ghost" data-close-modal>Đóng</button>
+          <button type="submit" class="btn btn--primary">Lưu tạm</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Modal bộ lọc -->
+    <div class="modal" id="filter-modal">
+      <div class="modal__header">
+        <h2 class="modal__title">Lọc lịch hẹn</h2>
+        <button class="btn-icon modal__close" data-close-modal aria-label="Đóng">✕</button>
+      </div>
+      <form class="modal__body">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="filter-from">Từ ngày</label>
+            <input id="filter-from" type="date" />
+          </div>
+          <div class="form-field">
+            <label for="filter-to">Đến ngày</label>
+            <input id="filter-to" type="date" />
+          </div>
+          <div class="form-field">
+            <label for="filter-status">Trạng thái</label>
+            <select id="filter-status">
+              <option value="">Tất cả</option>
+              <option value="pending">Đang chờ</option>
+              <option value="confirmed">Đã xác nhận</option>
+              <option value="completed">Hoàn thành</option>
+              <option value="cancelled">Đã hủy</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--ghost" data-close-modal>Đóng</button>
+          <button type="submit" class="btn btn--primary">Áp dụng</button>
+        </div>
+      </form>
+    </div>
+
+    <script src="../scripts.js"></script>
+    <script>
+    (function(){
+      if(!window.AdminData)return;
+      var statusCls={pending:'pill--info',confirmed:'pill--success',completed:'pill--success',cancelled:'pill--danger'};
+      var statusTxt={pending:'Đang chờ',confirmed:'Đã xác nhận',completed:'Hoàn thành',cancelled:'Đã hủy'};
+      var filterFrom='',filterTo='',filterStatus='',searchTerm='';
+
+      function getTodayLocal(){
+        var d=new Date();
+        return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+      }
+      function renderAppointments(){
+        var bookings=AdminData.getBookings().slice().reverse();
+        var today=getTodayLocal();
+        var todayList=bookings.filter(function(b){return (b.date||'')===today;}).sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
+        var apptEl=document.getElementById('appointments-today');
+        if(apptEl)apptEl.innerHTML=todayList.length?todayList.map(function(b,i){
+          var s=b.status||'pending';
+          return '<li class="timeline__item'+(i===0?' timeline__item--active':'')+'"><div class="timeline__time">'+(b.time||'--:--')+'</div><div class="timeline__content"><div class="timeline__title">'+(b.serviceName||'Dịch vụ')+'</div><div class="timeline__meta">Khách: <strong>'+(b.ownerName||'-')+'</strong> · '+(b.petName||'Thú cưng')+'</div></div><span class="pill '+(statusCls[s]||'pill--default')+'">'+(statusTxt[s]||s)+'</span></li>';
+        }).join(''):'<li class="timeline__item"><div class="timeline__time">—</div><div class="timeline__content"><div class="timeline__title">Chưa có lịch hôm nay</div><a href="../../booking.html">Đặt lịch</a></div></li>';
+
+        var filtered=bookings.filter(function(b){
+          if(filterFrom&&b.date<filterFrom)return false;
+          if(filterTo&&b.date>filterTo)return false;
+          if(filterStatus&&b.status!==filterStatus)return false;
+          if(searchTerm){var t=(b.ownerName||'')+(b.serviceName||'')+(b.petName||'');return t.toLowerCase().indexOf(searchTerm)>=0;}
+          return true;
+        });
+        var tbody=document.getElementById('appointments-tbody');
+        if(tbody)tbody.innerHTML=filtered.length?filtered.slice(0,50).map(function(b){
+          var s=b.status||'pending';
+          var date=b.date?new Date(b.date).toLocaleDateString('vi-VN'):'-';
+          var acts='';
+          if(s==='pending'||s==='confirmed')acts+='<button class="btn-icon btn-confirm-appt" data-id="'+(b.id||'')+'" title="Xác nhận">✓</button>';
+          if(s==='confirmed')acts+='<button class="btn-icon btn-complete-appt" data-id="'+(b.id||'')+'" title="Hoàn thành">✔</button>';
+          if(s==='pending'||s==='confirmed')acts+='<button class="btn-icon btn-icon--danger btn-cancel-appt" data-id="'+(b.id||'')+'" title="Hủy">✕</button>';
+          return '<tr><td>'+date+'</td><td>'+(b.ownerName||'-')+'</td><td>'+(b.serviceName||'-')+'</td><td>'+(b.time||'-')+'</td><td><span class="pill '+(statusCls[s]||'')+'">'+(statusTxt[s]||s)+'</span></td><td class="table__actions">'+acts+'</td></tr>';
+        }).join(''):'<tr><td colspan="6">Chưa có lịch hẹn.</td></tr>';
+        tbody.querySelectorAll('.btn-confirm-appt').forEach(function(btn){
+          btn.onclick=function(){var id=this.dataset.id;if(!id)return;var list=AdminData.getBookings().map(function(b){return b.id===id?Object.assign({},b,{status:'confirmed'}):b;});AdminData.setBookings(list);renderAppointments();};
+        });
+        tbody.querySelectorAll('.btn-complete-appt').forEach(function(btn){
+          btn.onclick=function(){var id=this.dataset.id;if(!id)return;var list=AdminData.getBookings().map(function(b){return b.id===id?Object.assign({},b,{status:'completed'}):b;});AdminData.setBookings(list);renderAppointments();};
+        });
+        tbody.querySelectorAll('.btn-cancel-appt').forEach(function(btn){
+          btn.onclick=function(){var id=this.dataset.id;if(!id||!confirm('Hủy lịch này?'))return;var list=AdminData.getBookings().map(function(b){return b.id===id?Object.assign({},b,{status:'cancelled'}):b;});AdminData.setBookings(list);renderAppointments();};
+        });
+      }
+
+      var services=AdminData.getServices()||[];
+      var servSel=document.getElementById('quick-service');
+      if(servSel)servSel.innerHTML=services.length?services.map(function(s){return '<option value="'+(s.name||s.id)+'">'+(s.name||s.id)+' - '+(AdminData.formatPrice(s.price||0)+'').replace(/\s/g,' ')+'</option>';}).join(''):'<option value="Dịch vụ spa">Dịch vụ spa</option>';
+      var dateInput=document.getElementById('quick-date');
+      if(dateInput)dateInput.value=new Date().toISOString().split('T')[0];
+
+      document.getElementById('filter-modal').querySelector('form').onsubmit=function(e){e.preventDefault();filterFrom=document.getElementById('filter-from').value||'';filterTo=document.getElementById('filter-to').value||'';filterStatus=document.getElementById('filter-status').value||'';document.querySelectorAll('.modal').forEach(function(m){m.style.display='none';});document.getElementById('modal-backdrop').style.display='none';renderAppointments();};
+
+      var searchEl=document.getElementById('appointments-search');
+      if(searchEl)searchEl.oninput=function(){searchTerm=this.value.toLowerCase().trim();renderAppointments();};
+
+      renderAppointments();
+      window.adminRenderAppointments = renderAppointments;
+    })();
+    </script>
+  </body>
+</html>
+

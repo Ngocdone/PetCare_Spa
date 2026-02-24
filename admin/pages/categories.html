@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý danh mục - Spapet Admin</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../../js/data.js"></script>
+    <script src="../admin-integration.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand">
+          <div class="sidebar__logo">SP</div>
+          <div>
+            <div class="sidebar__title">Spapet Admin</div>
+            <div class="sidebar__subtitle">Quản lý spa thú cưng</div>
+          </div>
+        </div>
+
+        <nav class="sidebar__nav">
+          <a href="../index.html" class="nav-item">
+            <span class="nav-item__icon">🏠</span>
+            <span>Tổng quan</span>
+          </a>
+          <a href="products.html" class="nav-item">
+            <span class="nav-item__icon">🐾</span>
+            <span>Sản phẩm</span>
+          </a>
+          <a href="categories.html" class="nav-item nav-item--active">
+            <span class="nav-item__icon">📂</span>
+            <span>Danh mục</span>
+          </a>
+          <a href="gallery.html" class="nav-item">
+            <span class="nav-item__icon">📸</span>
+            <span>Khoảnh khắc</span>
+          </a>
+          <a href="services.html" class="nav-item">
+            <span class="nav-item__icon">🧴</span>
+            <span>Dịch vụ spa</span>
+          </a>
+          <a href="orders.html" class="nav-item">
+            <span class="nav-item__icon">📦</span>
+            <span>Đơn hàng</span>
+          </a>
+          <a href="customers.html" class="nav-item">
+            <span class="nav-item__icon">👥</span>
+            <span>Khách hàng</span>
+          </a>
+          <a href="appointments.html" class="nav-item">
+            <span class="nav-item__icon">📅</span>
+            <span>Lịch hẹn</span>
+          </a>
+        </nav>
+
+        <div class="sidebar__footer">
+          <div class="user-mini">
+            <div class="user-mini__avatar">V</div>
+            <div>
+              <div class="user-mini__name">Admin</div>
+              <div class="user-mini__role">Quản trị viên</div>
+            </div>
+          </div>
+          <a href="../../index.html" class="nav-item" style="margin-top:8px;font-size:11px">🏠 Về trang chủ</a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar__left">
+            <button class="btn-icon mobile-toggle" id="mobile-toggle" aria-label="Mở menu">
+              ☰
+            </button>
+            <h1 class="topbar__title">Quản lý danh mục</h1>
+            <p class="topbar__subtitle">
+              Thêm, sửa và xoá danh mục sản phẩm. Danh mục dùng để phân loại sản phẩm trên cửa hàng.
+            </p>
+          </div>
+          <div class="topbar__actions">
+            <div class="search">
+              <span class="search__icon">🔍</span>
+              <input
+                type="text"
+                class="search__input"
+                id="category-search"
+                placeholder="Tìm kiếm theo tên, slug..."
+              />
+            </div>
+            <button class="btn btn--primary" data-open-modal="category-modal">
+              + Thêm danh mục
+            </button>
+          </div>
+        </header>
+
+        <section class="section">
+          <div class="card card--table">
+            <div class="card__header card__header--between">
+              <div>
+                <h2 class="card__title">Danh sách danh mục</h2>
+                <p class="card__subtitle">Đồng bộ với trang sản phẩm – dữ liệu lưu localStorage</p>
+              </div>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="table" id="categories-table">
+                <thead>
+                  <tr>
+                    <th>Mã</th>
+                    <th>Tên danh mục</th>
+                    <th>Slug</th>
+                    <th>Thứ tự</th>
+                    <th>Số sản phẩm</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="categories-tbody">
+                  <!-- Render từ localStorage -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>© 2026 Spapet Admin – Quản lý danh mục.</span>
+        </footer>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+
+    <div class="modal" id="category-modal" hidden>
+      <div class="modal__header">
+        <h2 class="modal__title" id="category-modal-title">Thêm danh mục mới</h2>
+        <button class="btn-icon modal__close" data-close-modal aria-label="Đóng">✕</button>
+      </div>
+      <form class="modal__body" id="category-form">
+        <input type="hidden" id="category-id" value="" />
+        <div class="form-grid">
+          <div class="form-field form-field--full">
+            <label for="category-name">Tên danh mục <span class="required">*</span></label>
+            <input type="text" id="category-name" placeholder="Ví dụ: Thức ăn" required />
+          </div>
+          <div class="form-field">
+            <label for="category-slug">Slug (mã URL)</label>
+            <input type="text" id="category-slug" placeholder="thuc-an" />
+            <small class="form-hint">Tự tạo từ tên nếu để trống. Dùng ký tự a-z, 0-9, dấu gạch ngang.</small>
+          </div>
+          <div class="form-field">
+            <label for="category-order">Thứ tự hiển thị</label>
+            <input type="number" id="category-order" placeholder="1" min="1" value="1" />
+          </div>
+        </div>
+        <p class="modal__hint">Slug dùng làm giá trị khi chọn danh mục cho sản phẩm. Không nên đổi slug nếu đã có sản phẩm thuộc danh mục.</p>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--ghost" data-close-modal>Huỷ</button>
+          <button type="submit" class="btn btn--primary" id="category-submit-btn">Thêm danh mục</button>
+        </div>
+      </form>
+    </div>
+
+    <script src="../scripts.js"></script>
+    <script>
+    (function(){
+      if(!window.AdminData) return;
+
+      var searchTerm = '';
+
+      function slugify(str) {
+        return String(str || '').toLowerCase().trim()
+          .replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a')
+          .replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, 'e')
+          .replace(/ì|í|ị|ỉ|ĩ/g, 'i')
+          .replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, 'o')
+          .replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, 'u')
+          .replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y')
+          .replace(/đ/g, 'd')
+          .replace(/\s+/g, '-')
+          .replace(/[^a-z0-9\-]/g, '')
+          .replace(/-+/g, '-')
+          .replace(/^-|-$/g, '');
+      }
+
+      function getProductCountByCategory(catId) {
+        var products = AdminData.getProducts();
+        return products.filter(function(p){ return p.category === catId; }).length;
+      }
+
+      function renderCategories(){
+        var categories = AdminData.getCategories();
+        var filtered = categories.filter(function(c){
+          if(!searchTerm) return true;
+          var t = (c.name||'') + (c.slug||'') + (c.id||'');
+          return t.toLowerCase().indexOf(searchTerm) >= 0;
+        });
+        filtered.sort(function(a,b){ return (a.order||0) - (b.order||0); });
+        var tbody = document.getElementById('categories-tbody');
+        if(!tbody) return;
+        tbody.innerHTML = filtered.length ? filtered.map(function(c){
+          var count = getProductCountByCategory(c.id);
+          return '<tr data-category-id="'+c.id+'"><td><code>'+c.id+'</code></td><td><strong>'+(c.name||'')+'</strong></td><td><code>'+(c.slug||c.id)+'</code></td><td>'+(c.order||'—')+'</td><td><span class="pill pill--info">'+count+' sản phẩm</span></td><td class="table__actions"><button type="button" class="btn-icon btn-edit-category" data-edit-id="'+c.id+'" title="Sửa">✏️</button><button type="button" class="btn-icon btn-icon--danger btn-delete-category" data-delete-id="'+c.id+'" title="Xóa">🗑️</button></td></tr>';
+        }).join('') : '<tr><td colspan="6">Không có danh mục nào.</td></tr>';
+
+        tbody.querySelectorAll('[data-delete-id]').forEach(function(btn){
+          btn.onclick = function(){
+            var id = this.getAttribute('data-delete-id');
+            var count = getProductCountByCategory(id);
+            if(count > 0 && !confirm('Danh mục này đang có '+count+' sản phẩm. Bạn có chắc muốn xóa? Sản phẩm sẽ mất danh mục.')) return;
+            if(!id || !confirm('Xóa danh mục này?')) return;
+            var list = AdminData.getCategories().filter(function(x){ return x.id !== id; });
+            AdminData.setCategories(list);
+            renderCategories();
+          };
+        });
+        tbody.querySelectorAll('.btn-edit-category').forEach(function(btn){
+          btn.onclick = function(){ openEditModal(this.getAttribute('data-edit-id')); };
+        });
+      }
+
+      function openEditModal(id){
+        var c = AdminData.getCategories().find(function(x){ return x.id === id; });
+        if(!c) return;
+        document.getElementById('category-id').value = c.id||'';
+        document.getElementById('category-name').value = c.name||'';
+        document.getElementById('category-slug').value = c.slug||c.id||'';
+        document.getElementById('category-order').value = c.order||1;
+        document.getElementById('category-modal-title').textContent = 'Sửa danh mục';
+        document.getElementById('category-submit-btn').textContent = 'Cập nhật';
+        document.getElementById('category-modal').style.display = 'flex';
+        document.getElementById('modal-backdrop').style.display = 'block';
+        document.getElementById('category-modal').setAttribute('data-open', 'true');
+      }
+
+      function closeModal(){
+        var m = document.getElementById('category-modal');
+        var b = document.getElementById('modal-backdrop');
+        if(m){ m.style.display = 'none'; m.removeAttribute('data-open'); }
+        if(b){ b.style.display = 'none'; }
+      }
+
+      document.getElementById('category-search').oninput = function(){
+        searchTerm = this.value.toLowerCase().trim();
+        renderCategories();
+      };
+
+      document.getElementById('category-name').oninput = function(){
+        var slugEl = document.getElementById('category-slug');
+        if(!document.getElementById('category-id').value || slugEl.getAttribute('data-editing')==='1') return;
+        slugEl.value = slugify(this.value);
+      };
+
+      document.getElementById('category-form').onsubmit = function(e){
+        e.preventDefault();
+        var idEl = document.getElementById('category-id');
+        var nameEl = document.getElementById('category-name');
+        var slugEl = document.getElementById('category-slug');
+        var orderEl = document.getElementById('category-order');
+        var name = nameEl.value.trim();
+        var slug = slugify(slugEl.value || name);
+        var order = parseInt(orderEl.value, 10) || 1;
+        if(!name){ alert('Vui lòng nhập tên danh mục.'); return; }
+        if(!/^[a-z0-9\-]+$/.test(slug)){ alert('Slug chỉ được chứa chữ thường, số và dấu gạch ngang.'); return; }
+
+        var list = AdminData.getCategories();
+        var editId = idEl.value;
+
+        if(editId){
+          var idx = list.findIndex(function(x){ return x.id === editId; });
+          if(idx >= 0){
+            var oldId = list[idx].id;
+            var newId = slug;
+            if(oldId !== newId){
+              var products = AdminData.getProducts();
+              products.forEach(function(p){
+                if(p.category === oldId) p.category = newId;
+              });
+              AdminData.setProducts(products);
+            }
+            list[idx] = { id: newId, name: name, slug: slug, order: order };
+            AdminData.setCategories(list);
+          }
+        } else {
+          if(list.some(function(x){ return x.id === slug; })){
+            alert('Slug đã tồn tại. Vui lòng chọn slug khác.');
+            return;
+          }
+          list.push({ id: slug, name: name, slug: slug, order: order });
+          list.sort(function(a,b){ return (a.order||0) - (b.order||0); });
+          AdminData.setCategories(list);
+        }
+
+        idEl.value = '';
+        document.getElementById('category-form').reset();
+        document.getElementById('category-order').value = '1';
+        document.getElementById('category-modal-title').textContent = 'Thêm danh mục mới';
+        document.getElementById('category-submit-btn').textContent = 'Thêm danh mục';
+        closeModal();
+        renderCategories();
+      };
+
+      document.querySelectorAll('[data-open-modal="category-modal"]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          document.getElementById('category-id').value = '';
+          document.getElementById('category-form').reset();
+          document.getElementById('category-order').value = '1';
+          document.getElementById('category-modal-title').textContent = 'Thêm danh mục mới';
+          document.getElementById('category-submit-btn').textContent = 'Thêm danh mục';
+        });
+      });
+
+      renderCategories();
+    })();
+    </script>
+  </body>
+</html>

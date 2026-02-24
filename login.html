@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Đăng nhập / Đăng ký - Pet Spa & Shop">
+  <title>Đăng nhập - Pet Spa & Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/auth.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">
+        <span class="header__logo-icon"><i class="fas fa-paw"></i></span>
+        PETCARE SPA
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link" data-page="index.html">Trang chủ</a></li>
+          <li><a href="services.html" class="nav__link" data-page="services.html">Dịch vụ</a></li>
+          <li><a href="shop.html" class="nav__link" data-page="shop.html">Cửa hàng</a></li>
+          <li><a href="booking.html" class="nav__link" data-page="booking.html">Đặt lịch</a></li>
+          <li><a href="about.html" class="nav__link" data-page="about.html">Về chúng tôi</a></li>
+          <li><a href="contact.html" class="nav__link" data-page="contact.html">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <div class="header__user-wrap">
+          <button type="button" class="header__icon-btn header__user-btn" aria-expanded="false" aria-haspopup="true" title="Tài khoản">
+            <i class="fas fa-user"></i>
+          </button>
+          <div class="header__user-dropdown" id="userDropdown" aria-hidden="true"></div>
+        </div>
+        <a href="cart.html" class="header__icon-btn header__cart-wrap">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="header__cart-badge cart-count" style="display:none">0</span>
+        </a>
+        <button type="button" class="header__menu-toggle" aria-label="Mở menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" aria-hidden="true"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__title">Menu</span>
+      <button type="button" class="mobile-menu__close" aria-label="Đóng menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link"><i class="fas fa-home"></i><span>Trang chủ</span></a>
+      <a href="services.html" class="mobile-menu__link"><i class="fas fa-spa"></i><span>Dịch vụ</span></a>
+      <a href="shop.html" class="mobile-menu__link"><i class="fas fa-shopping-bag"></i><span>Cửa hàng</span></a>
+      <a href="booking.html" class="mobile-menu__link"><i class="fas fa-calendar-check"></i><span>Đặt lịch</span></a>
+      <a href="about.html" class="mobile-menu__link"><i class="fas fa-paw"></i><span>Về chúng tôi</span></a>
+      <a href="contact.html" class="mobile-menu__link"><i class="fas fa-envelope"></i><span>Liên hệ</span></a>
+    </nav>
+  </div>
+
+  <main class="page-main page-main--auth">
+    <div class="auth-layout">
+      <!-- Left: Brand panel -->
+      <div class="auth-brand">
+        <div class="auth-brand__bg">
+          <div class="auth-brand__gradient"></div>
+          <div class="auth-brand__pattern"></div>
+          <img class="auth-brand__img" src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800" alt="">
+        </div>
+        <div class="auth-brand__content">
+          <a href="index.html" class="auth-brand__logo"><i class="fas fa-paw"></i> Pet Spa & Shop</a>
+          <h1 class="auth-brand__title">Chăm sóc thú cưng<br><span>từ trái tim</span></h1>
+          <p class="auth-brand__desc">Đăng nhập để đặt lịch spa, mua sắm và quản lý đơn hàng một cách dễ dàng.</p>
+          <div class="auth-brand__features">
+            <span><i class="fas fa-check-circle"></i> Đặt lịch nhanh chóng</span>
+            <span><i class="fas fa-check-circle"></i> Theo dõi đơn hàng</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form panel -->
+      <div class="auth-form-panel">
+        <div class="auth-form-wrap">
+          <nav class="auth-breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html"><i class="fas fa-arrow-left"></i> Trang chủ</a>
+          </nav>
+
+          <div class="auth-tabs" data-active="login">
+            <button type="button" class="auth-tab active" data-tab="login">Đăng nhập</button>
+            <button type="button" class="auth-tab" data-tab="register">Đăng ký</button>
+            <span class="auth-tabs__indicator"></span>
+          </div>
+
+          <!-- Login -->
+          <div class="auth-panel active" id="panelLogin">
+            <h2 class="auth-panel__title">Chào mừng trở lại</h2>
+            <p class="auth-panel__desc">Nhập thông tin để tiếp tục</p>
+            <form class="auth-form" id="loginForm">
+              <div class="auth-field">
+                <div class="auth-field__inner">
+                  <i class="fas fa-envelope auth-field__icon"></i>
+                  <input type="email" id="loginEmail" name="email" required placeholder=" " autocomplete="email">
+                  <label for="loginEmail">Email</label>
+                </div>
+                <span class="auth-field__error" id="errorLoginEmail"></span>
+              </div>
+              <div class="auth-field auth-field--password">
+                <div class="auth-field__inner">
+                  <i class="fas fa-lock auth-field__icon"></i>
+                  <input type="password" id="loginPassword" name="password" required placeholder=" " autocomplete="current-password">
+                  <label for="loginPassword">Mật khẩu</label>
+                  <button type="button" class="auth-field__toggle" aria-label="Hiện/ẩn mật khẩu" data-target="loginPassword" tabindex="-1">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+                <span class="auth-field__error" id="errorLoginPassword"></span>
+              </div>
+              <button type="submit" class="auth-btn auth-form__submit">
+                <span>Đăng nhập</span>
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </form>
+            <p class="auth-hint">Admin: admin@petspa.vn / admin123</p>
+            <p class="auth-switch">Chưa có tài khoản? <button type="button" class="auth-switch__link" data-tab="register">Đăng ký</button></p>
+          </div>
+
+          <!-- Register -->
+          <div class="auth-panel" id="panelRegister">
+            <h2 class="auth-panel__title">Tạo tài khoản</h2>
+            <p class="auth-panel__desc">Điền thông tin bên dưới để đăng ký</p>
+            <form class="auth-form" id="registerForm">
+              <div class="auth-field">
+                <div class="auth-field__inner">
+                  <i class="fas fa-user auth-field__icon"></i>
+                  <input type="text" id="regName" name="name" required placeholder=" " autocomplete="name">
+                  <label for="regName">Họ tên</label>
+                </div>
+                <span class="auth-field__error" id="errorRegName"></span>
+              </div>
+              <div class="auth-field">
+                <div class="auth-field__inner">
+                  <i class="fas fa-envelope auth-field__icon"></i>
+                  <input type="email" id="regEmail" name="email" required placeholder=" " autocomplete="email">
+                  <label for="regEmail">Email</label>
+                </div>
+                <span class="auth-field__error" id="errorRegEmail"></span>
+              </div>
+              <div class="auth-field">
+                <div class="auth-field__inner">
+                  <i class="fas fa-phone auth-field__icon"></i>
+                  <input type="tel" id="regPhone" name="phone" placeholder=" " autocomplete="tel">
+                  <label for="regPhone">Số điện thoại</label>
+                </div>
+              </div>
+              <div class="auth-field auth-field--password">
+                <div class="auth-field__inner">
+                  <i class="fas fa-lock auth-field__icon"></i>
+                  <input type="password" id="regPassword" name="password" required placeholder=" " minlength="6" autocomplete="new-password">
+                  <label for="regPassword">Mật khẩu (tối thiểu 6 ký tự)</label>
+                  <button type="button" class="auth-field__toggle" aria-label="Hiện/ẩn mật khẩu" data-target="regPassword" tabindex="-1">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+                <span class="auth-field__error" id="errorRegPassword"></span>
+              </div>
+              <div class="auth-field auth-field--password">
+                <div class="auth-field__inner">
+                  <i class="fas fa-lock auth-field__icon"></i>
+                  <input type="password" id="regPasswordConfirm" name="passwordConfirm" required placeholder=" " autocomplete="new-password">
+                  <label for="regPasswordConfirm">Xác nhận mật khẩu</label>
+                  <button type="button" class="auth-field__toggle" aria-label="Hiện/ẩn mật khẩu" data-target="regPasswordConfirm" tabindex="-1">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+                <span class="auth-field__error" id="errorRegPasswordConfirm"></span>
+              </div>
+              <button type="submit" class="auth-btn auth-form__submit">
+                <span>Đăng ký</span>
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </form>
+            <p class="auth-switch">Đã có tài khoản? <button type="button" class="auth-switch__link" data-tab="login">Đăng nhập</button></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Pet Spa & Shop</div>
+          <p class="footer__text">Spa thú cưng chuyên nghiệp, cửa hàng phụ kiện và thức ăn chất lượng. Cam kết mang lại sự hài lòng cho bạn và thú cưng.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Zalo"><i class="fas fa-phone"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên kết</h4>
+          <ul class="footer__links">
+            <li><a href="services.html" class="footer__link">Dịch vụ</a></li>
+            <li><a href="shop.html" class="footer__link">Cửa hàng</a></li>
+            <li><a href="booking.html" class="footer__link">Đặt lịch</a></li>
+            <li><a href="about.html" class="footer__link">Về chúng tôi</a></li>
+            <li><a href="contact.html" class="footer__link">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên hệ</h4>
+          <ul class="footer__links">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</li>
+            <li><i class="fas fa-phone"></i> 0900 123 456</li>
+            <li><i class="fas fa-envelope"></i> hello@petspa.vn</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Đăng ký nhận tin</h4>
+          <form class="footer__newsletter" id="newsletterForm">
+            <div class="footer__input-wrap">
+              <input type="email" class="footer__input" name="email" placeholder="Email của bạn" required>
+              <button type="submit" class="btn btn--primary">Gửi</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Pet Spa & Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dịch vụ spa - Spapet Admin</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../../js/data.js"></script>
+    <script src="../admin-integration.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand">
+          <div class="sidebar__logo">SP</div>
+          <div>
+            <div class="sidebar__title">Spapet Admin</div>
+            <div class="sidebar__subtitle">Quản lý spa thú cưng</div>
+          </div>
+        </div>
+
+        <nav class="sidebar__nav">
+          <a href="../index.html" class="nav-item">
+            <span class="nav-item__icon">🏠</span>
+            <span>Tổng quan</span>
+          </a>
+          <a href="products.html" class="nav-item">
+            <span class="nav-item__icon">🐾</span>
+            <span>Sản phẩm</span>
+          </a>
+          <a href="categories.html" class="nav-item">
+            <span class="nav-item__icon">📂</span>
+            <span>Danh mục</span>
+          </a>
+          <a href="gallery.html" class="nav-item">
+            <span class="nav-item__icon">📸</span>
+            <span>Khoảnh khắc</span>
+          </a>
+          <a href="services.html" class="nav-item nav-item--active">
+            <span class="nav-item__icon">🧴</span>
+            <span>Dịch vụ spa</span>
+          </a>
+          <a href="orders.html" class="nav-item">
+            <span class="nav-item__icon">📦</span>
+            <span>Đơn hàng</span>
+          </a>
+          <a href="customers.html" class="nav-item">
+            <span class="nav-item__icon">👥</span>
+            <span>Khách hàng</span>
+          </a>
+          <a href="appointments.html" class="nav-item">
+            <span class="nav-item__icon">📅</span>
+            <span>Lịch hẹn</span>
+          </a>
+        </nav>
+
+        <div class="sidebar__footer">
+          <div class="user-mini">
+            <div class="user-mini__avatar">V</div>
+            <div>
+              <div class="user-mini__name">Admin</div>
+              <div class="user-mini__role">Quản trị viên</div>
+            </div>
+          </div>
+          <a href="../../index.html" class="nav-item" style="margin-top:8px;font-size:11px">🏠 Về trang chủ</a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar__left">
+            <button class="btn-icon mobile-toggle" id="mobile-toggle" aria-label="Mở menu">
+              ☰
+            </button>
+            <h1 class="topbar__title">Dịch vụ spa</h1>
+            <p class="topbar__subtitle">
+              Quản lý các gói dịch vụ tắm, cắt tỉa, grooming cho thú cưng.
+            </p>
+          </div>
+          <div class="topbar__actions">
+            <div class="search">
+              <span class="search__icon">🔍</span>
+              <input
+                type="text"
+                class="search__input"
+                id="services-search"
+                placeholder="Tìm theo tên dịch vụ, thời lượng..."
+              />
+            </div>
+            <button class="btn btn--primary" data-open-modal="service-modal">
+              + Thêm dịch vụ
+            </button>
+          </div>
+        </header>
+
+        <section class="section">
+          <div class="section__header">
+            <h2 class="section__title">Tổng quan dịch vụ</h2>
+            <span class="section__hint">Thống kê theo danh sách hiện có</span>
+          </div>
+          <div class="grid grid--stats">
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Tổng dịch vụ</span>
+                <span class="badge badge--info" id="services-count">0 gói</span>
+              </div>
+              <div class="card__value" id="services-total">0 gói</div>
+              <div class="card__meta">Đang áp dụng trên hệ thống</div>
+            </div>
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Dịch vụ nổi bật</span>
+                <span class="badge badge--success" id="services-featured">0</span>
+              </div>
+              <div class="card__value">Featured</div>
+              <div class="card__meta">Đang hiển thị trang chủ</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="card card--table">
+            <div class="card__header card__header--between">
+              <div>
+                <h2 class="card__title">Danh sách dịch vụ spa</h2>
+                <p class="card__subtitle">
+                  Demo tĩnh – sau này có thể gắn giá dynamic, phân loại theo chi nhánh.
+                </p>
+              </div>
+              <button class="btn btn--ghost btn--sm" id="btn-export-services">Xuất CSV</button>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Tên dịch vụ</th>
+                    <th>Danh mục</th>
+                    <th>Thời lượng</th>
+                    <th>Giá</th>
+                    <th>Trạng thái</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="services-tbody">
+                  <!-- Render từ DATA.services -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>© 2026 Spapet Admin – Dịch vụ spa.</span>
+          <span class="footer__hint">Gợi ý: thêm cấu hình theo ca làm, nhân viên thực hiện.</span>
+        </footer>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+    <div class="modal" id="service-modal" hidden>
+      <div class="modal__header">
+        <h2 class="modal__title" id="service-modal-title">Thêm dịch vụ spa</h2>
+        <button class="btn-icon modal__close" data-close-modal aria-label="Đóng">✕</button>
+      </div>
+      <form class="modal__body" id="service-form">
+        <input type="hidden" id="service-id" value="" />
+        <div class="form-grid">
+          <div class="form-field form-field--full">
+            <label for="service-name">Tên dịch vụ <span class="required">*</span></label>
+            <input id="service-name" type="text" placeholder="Ví dụ: Tắm & sấy tạo kiểu" required />
+          </div>
+          <div class="form-field">
+            <label for="service-category">Danh mục</label>
+            <select id="service-category">
+              <option value="grooming">Grooming</option>
+              <option value="bath">Tắm & vệ sinh</option>
+              <option value="spa">Spa</option>
+              <option value="hotel">Khách sạn</option>
+              <option value="care">Chăm sóc</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="service-duration">Thời lượng (phút)</label>
+            <input id="service-duration" type="number" placeholder="60" min="0" value="60" />
+          </div>
+          <div class="form-field">
+            <label for="service-price">Giá (₫) <span class="required">*</span></label>
+            <input id="service-price" type="number" placeholder="250000" min="0" required />
+          </div>
+          <div class="form-field form-field--full">
+            <label for="service-image">Hình ảnh (URL)</label>
+            <input id="service-image" type="url" placeholder="https://example.com/image.jpg" />
+            <small class="form-hint">Dán link ảnh từ Unsplash, Imgur hoặc nguồn công khai</small>
+          </div>
+          <div class="form-field form-field--full">
+            <label for="service-desc">Mô tả</label>
+            <textarea id="service-desc" rows="2" placeholder="Mô tả ngắn gọn..."></textarea>
+          </div>
+          <div class="form-field">
+            <label><input type="checkbox" id="service-featured" /> Nổi bật</label>
+          </div>
+        </div>
+        <p class="modal__hint">Dịch vụ lưu vào localStorage và hiển thị trên trang Đặt lịch.</p>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--ghost" data-close-modal>Huỷ</button>
+          <button type="submit" class="btn btn--primary" id="service-submit-btn">Thêm dịch vụ</button>
+        </div>
+      </form>
+    </div>
+
+    <script src="../scripts.js"></script>
+    <script>
+    (function(){
+      if(!window.AdminData)return;
+      var fmt=AdminData.formatPrice;
+      var catLbl={grooming:'Grooming',bath:'Tắm & vệ sinh',spa:'Spa',hotel:'Khách sạn',care:'Chăm sóc'};
+      var searchTerm='';
+
+      function closeModal(){var m=document.getElementById('service-modal');var b=document.getElementById('modal-backdrop');if(m){m.style.display='none';m.removeAttribute('data-open');}if(b){b.style.display='none';}}
+
+      function openEditModal(id){
+        var s=AdminData.getServices().find(function(x){return x.id===id;});
+        if(!s)return;
+        document.getElementById('service-id').value=s.id||'';
+        document.getElementById('service-name').value=s.name||'';
+        document.getElementById('service-category').value=s.category||'grooming';
+        document.getElementById('service-duration').value=s.duration||60;
+        document.getElementById('service-price').value=s.price||0;
+        document.getElementById('service-image').value=s.image||'';
+        document.getElementById('service-desc').value=s.description||'';
+        document.getElementById('service-featured').checked=!!s.featured;
+        document.getElementById('service-modal-title').textContent='Sửa dịch vụ';
+        document.getElementById('service-submit-btn').textContent='Cập nhật';
+        document.getElementById('service-modal').style.display='flex';document.getElementById('modal-backdrop').style.display='block';document.getElementById('service-modal').setAttribute('data-open','true');
+      }
+
+      function renderServices(){
+        var services=AdminData.getServices();
+        var filtered=services.filter(function(s){
+          if(!searchTerm)return true;
+          var t=(s.name||'')+(s.description||'')+(s.category||'');
+          return t.toLowerCase().indexOf(searchTerm)>=0;
+        });
+        document.getElementById('services-count').textContent=services.length+' gói';
+        document.getElementById('services-total').textContent=services.length+' gói';
+        document.getElementById('services-featured').textContent=services.filter(function(s){return s.featured;}).length;
+        var tbody=document.getElementById('services-tbody');
+        if(!tbody)return;
+        tbody.innerHTML=filtered.length?filtered.map(function(s){
+          var img=s.image?'<img src="'+s.image+'" alt="" class="service-table__thumb" onerror="this.style.display=\'none\'">':'<span class="service-table__noimg">—</span>';
+          return '<tr><td><div class="service-table__name-cell">'+img+'<strong>'+(s.name||'-')+'</strong></div></td><td>'+(catLbl[s.category]||s.category||'-')+'</td><td>'+(s.duration||0)+' phút</td><td>'+fmt(s.price||0)+'</td><td><span class="pill '+(s.featured?'pill--success':'pill--default')+'">'+(s.featured?'Nổi bật':'Đang áp dụng')+'</span></td><td class="table__actions"><button class="btn-icon btn-edit-service" data-id="'+(s.id||'')+'" title="Sửa">✏️</button><button class="btn-icon btn-icon--danger btn-delete-service" data-id="'+(s.id||'')+'" title="Xóa">🗑️</button></td></tr>';
+        }).join(''):'<tr><td colspan="6">Chưa có dịch vụ.</td></tr>';
+        tbody.querySelectorAll('.btn-edit-service').forEach(function(b){b.onclick=function(){openEditModal(b.dataset.id);};});
+        tbody.querySelectorAll('.btn-delete-service').forEach(function(b){b.onclick=function(){var id=b.dataset.id;if(!id||!confirm('Xóa dịch vụ này?'))return;var list=AdminData.getServices().filter(function(x){return x.id!==id;});AdminData.setServices(list);renderServices();};});
+      }
+
+      document.getElementById('service-form').onsubmit=function(e){
+        e.preventDefault();
+        var idEl=document.getElementById('service-id');
+        var nameEl=document.getElementById('service-name');
+        var priceEl=document.getElementById('service-price');
+        var name=nameEl.value.trim();
+        var price=parseInt(priceEl.value,10)||0;
+        if(!name){alert('Vui lòng nhập tên dịch vụ.');return;}
+        var list=AdminData.getServices();
+        var editId=idEl.value;
+        var cat=document.getElementById('service-category').value||'grooming';
+        var dur=parseInt(document.getElementById('service-duration').value,10)||60;
+        var img=document.getElementById('service-image').value.trim();
+        var desc=document.getElementById('service-desc').value.trim();
+        var feat=document.getElementById('service-featured').checked;
+        var defaultImg='https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600';
+        var imageUrl=img||(list[0]&&list[0].image?list[0].image:defaultImg);
+        if(editId){
+          var idx=list.findIndex(function(x){return x.id===editId;});
+          if(idx>=0){list[idx]={...list[idx],name,price,duration:dur,category:cat,description:desc,featured:feat,image:imageUrl};AdminData.setServices(list);}
+        }else{
+          var newId='s'+(Date.now());
+          list.push({id:newId,name,slug:(name||'').toLowerCase().replace(/\s+/g,'-'),price,duration:dur,category:cat,description:desc,featured:feat,image:imageUrl});AdminData.setServices(list);
+        }
+        idEl.value='';document.getElementById('service-form').reset();document.getElementById('service-duration').value='60';
+        document.getElementById('service-modal-title').textContent='Thêm dịch vụ spa';document.getElementById('service-submit-btn').textContent='Thêm dịch vụ';
+        closeModal();renderServices();
+      };
+
+      document.querySelectorAll('[data-open-modal="service-modal"]').forEach(function(b){b.addEventListener('click',function(){document.getElementById('service-id').value='';document.getElementById('service-form').reset();document.getElementById('service-duration').value='60';document.getElementById('service-image').value='';document.getElementById('service-modal-title').textContent='Thêm dịch vụ spa';document.getElementById('service-submit-btn').textContent='Thêm dịch vụ';});});
+
+      document.getElementById('services-search').oninput=function(){searchTerm=this.value.toLowerCase().trim();renderServices();};
+      document.getElementById('btn-export-services').onclick=function(){
+        var services=AdminData.getServices();if(!services.length){alert('Chưa có dịch vụ để xuất.');return;}
+        var headers=['ID','Tên','Danh mục','Thời lượng','Giá','Mô tả'];var rows=services.map(function(s){return[(s.id||''),(s.name||''),(catLbl[s.category]||s.category),(s.duration||''),(s.price||0),(s.description||'').replace(/,/g,';')];});
+        var csv=[headers.join(','),rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n')].join('\n');
+        var a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent('\uFEFF'+csv);a.download='dich-vu-'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+      };
+      renderServices();
+    })();
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spapet Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="../js/data.js"></script>
+    <script src="admin-integration.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand">
+          <div class="sidebar__logo">SP</div>
+          <div>
+            <div class="sidebar__title">Spapet Admin</div>
+            <div class="sidebar__subtitle">Quản lý spa thú cưng</div>
+          </div>
+        </div>
+
+        <nav class="sidebar__nav">
+          <a href="index.html" class="nav-item nav-item--active">
+            <span class="nav-item__icon">🏠</span>
+            <span>Tổng quan</span>
+          </a>
+          <a href="pages/products.html" class="nav-item">
+            <span class="nav-item__icon">🐾</span>
+            <span>Sản phẩm</span>
+          </a>
+          <a href="pages/categories.html" class="nav-item">
+            <span class="nav-item__icon">📂</span>
+            <span>Danh mục</span>
+          </a>
+          <a href="pages/gallery.html" class="nav-item">
+            <span class="nav-item__icon">📸</span>
+            <span>Khoảnh khắc</span>
+          </a>
+          <a href="pages/services.html" class="nav-item">
+            <span class="nav-item__icon">🧴</span>
+            <span>Dịch vụ spa</span>
+          </a>
+          <a href="pages/orders.html" class="nav-item">
+            <span class="nav-item__icon">📦</span>
+            <span>Đơn hàng</span>
+          </a>
+          <a href="pages/customers.html" class="nav-item">
+            <span class="nav-item__icon">👥</span>
+            <span>Khách hàng</span>
+          </a>
+          <a href="pages/appointments.html" class="nav-item">
+            <span class="nav-item__icon">📅</span>
+            <span>Lịch hẹn</span>
+          </a>
+        </nav>
+
+        <div class="sidebar__footer">
+          <div class="user-mini">
+            <div class="user-mini__avatar" id="adminUserAvatar">V</div>
+            <div>
+              <div class="user-mini__name" id="adminUserName">Admin</div>
+              <div class="user-mini__role">Quản trị viên</div>
+            </div>
+          </div>
+          <a href="../index.html" class="nav-item" style="margin-top:8px;font-size:11px">🏠 Về trang chủ</a>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <main class="main">
+        <!-- Top bar -->
+        <header class="topbar">
+          <div class="topbar__left">
+            <button class="btn-icon mobile-toggle" id="mobile-toggle" aria-label="Mở menu">
+              ☰
+            </button>
+            <h1 class="topbar__title">Tổng quan</h1>
+            <p class="topbar__subtitle">
+              Thống kê hoạt động hôm nay của Spapet. Dùng menu bên trái để chuyển trang
+              quản lý chi tiết.
+            </p>
+          </div>
+          <div class="topbar__actions">
+            <div class="search">
+              <span class="search__icon">🔍</span>
+              <input
+                type="text"
+                class="search__input"
+                id="global-search"
+                placeholder="Tìm kiếm → Enter để chuyển trang"
+              />
+            </div>
+            <button class="btn btn--ghost" data-open-modal="appointment-modal">
+              + Thêm lịch hẹn
+            </button>
+            <button class="btn btn--primary" data-open-modal="product-modal">
+              + Thêm sản phẩm
+            </button>
+          </div>
+        </header>
+
+        <!-- Stats cards -->
+        <section class="section">
+          <div class="section__header">
+            <h2 class="section__title">Chỉ số nhanh</h2>
+            <span class="section__hint">Cập nhật theo thời gian thực</span>
+          </div>
+          <div class="grid grid--stats">
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Doanh thu hôm nay</span>
+                <span class="badge badge--success" id="stat-trend">+0%</span>
+              </div>
+              <div class="card__value" id="stat-revenue">0 ₫</div>
+              <div class="card__meta" id="stat-revenue-detail">Từ 0 đơn hàng</div>
+              <div class="progress">
+                <div class="progress__bar" id="stat-revenue-bar" style="width: 50%"></div>
+              </div>
+            </div>
+
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Lịch hẹn hôm nay</span>
+                <span class="badge badge--info" id="stat-bookings-new">+0 mới</span>
+              </div>
+              <div class="card__value" id="stat-bookings">0 lịch hẹn</div>
+              <div class="card__meta" id="stat-bookings-detail">Đang thực hiện: 0</div>
+              <div class="avatars">
+                <span class="avatar avatar--small">🐶</span>
+                <span class="avatar avatar--small">🐱</span>
+                <span class="avatar avatar--small">🐰</span>
+                <span class="avatar avatar--small avatar--more">+5</span>
+              </div>
+            </div>
+
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Kho sản phẩm</span>
+                <span class="badge badge--warning" id="stat-stock-badge">Cần nhập</span>
+              </div>
+              <div class="card__value" id="stat-products">0 mặt hàng</div>
+              <div class="card__meta" id="stat-products-detail">Thiếu hàng: 0</div>
+              <div class="tags">
+                <span class="tag">Thức ăn</span>
+                <span class="tag">Sữa tắm</span>
+                <span class="tag">Phụ kiện</span>
+              </div>
+            </div>
+
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Khách hàng thân thiết</span>
+                <span class="badge badge--purple">VIP</span>
+              </div>
+              <div class="card__value" id="stat-customers">0 khách</div>
+              <div class="card__meta" id="stat-points">Điểm thưởng: 0</div>
+              <div class="progress progress--secondary">
+                <div class="progress__bar" style="width: 54%"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chart -->
+        <section class="section">
+          <div class="card">
+            <div class="card__header card__header--between">
+              <div>
+                <h2 class="card__title">Biểu đồ doanh thu 7 ngày gần nhất</h2>
+                <p class="card__subtitle">
+                  Doanh thu và số đơn hàng 7 ngày qua (đơn chưa hủy).
+                </p>
+              </div>
+              <div class="chart-legend">
+                <span class="chart-legend__item">
+                  <span class="chart-legend__dot chart-legend__dot--revenue"></span> Doanh
+                  thu
+                </span>
+                <span class="chart-legend__item">
+                  <span class="chart-legend__dot chart-legend__dot--orders"></span> Đơn
+                  hàng
+                </span>
+              </div>
+            </div>
+
+            <div class="chart">
+              <div class="chart__grid" id="chart-y-grid">
+                <div class="chart__y-label" id="chart-y-max">0</div>
+                <div class="chart__y-line"></div>
+                <div class="chart__y-label" id="chart-y-mid">0</div>
+                <div class="chart__y-line chart__y-line--dashed"></div>
+                <div class="chart__y-label">0</div>
+              </div>
+
+              <div class="chart__bars" id="chart-revenue-bars">
+                <!-- Rendered by script từ dữ liệu 7 ngày -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tables & charts -->
+        <section class="section grid grid--2">
+          <!-- Products table -->
+          <div class="card card--table">
+            <div class="card__header card__header--between">
+              <div>
+                <h2 class="card__title">Sản phẩm bán chạy</h2>
+                <p class="card__subtitle">Top sản phẩm trong 7 ngày gần đây</p>
+              </div>
+              <a href="pages/products.html" class="btn btn--ghost btn--sm">Xem tất cả</a>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Sản phẩm</th>
+                    <th>Danh mục</th>
+                    <th>Giá</th>
+                    <th>Đã bán</th>
+                    <th>Kho</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="dashboard-products-tbody">
+                  <!-- Render từ AdminData -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Right column: Schedule + recent orders -->
+          <div class="stack">
+            <!-- Schedule -->
+            <div class="card">
+              <div class="card__header card__header--between">
+                <div>
+                  <h2 class="card__title">Lịch hẹn hôm nay</h2>
+                  <p class="card__subtitle">3 lịch hẹn sắp diễn ra</p>
+                </div>
+                <a href="../booking.html" class="btn btn--ghost btn--sm">Tạo lịch</a>
+              </div>
+
+              <ul class="timeline" id="dashboard-appointments">
+                <!-- Render từ AdminData -->
+              </ul>
+            </div>
+
+            <!-- Recent orders -->
+            <div class="card">
+              <div class="card__header card__header--between">
+                <div>
+                  <h2 class="card__title">Đơn hàng gần đây</h2>
+                  <p class="card__subtitle">4 đơn gần nhất</p>
+                </div>
+                <a href="pages/orders.html" class="btn btn--ghost btn--sm">Xuất báo cáo</a>
+              </div>
+
+              <div class="list" id="dashboard-orders">
+                <!-- Render từ AdminData -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+          <span>© 2026 Spapet Admin Dashboard.</span>
+          <span class="footer__hint"
+            >Gợi ý: có thể kết nối backend (PHP, Node, Laravel...) để dữ liệu động.</span
+          >
+        </footer>
+      </main>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+
+    <div class="modal" id="product-modal" hidden>
+      <div class="modal__header">
+        <h2 class="modal__title">Thêm sản phẩm nhanh</h2>
+        <button class="btn-icon modal__close" data-close-modal aria-label="Đóng">✕</button>
+      </div>
+      <form class="modal__body" id="quick-product-form">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="quick-product-name">Tên sản phẩm</label>
+            <input
+              type="text"
+              id="quick-product-name"
+              placeholder="Ví dụ: Sữa tắm dịu nhẹ cho chó"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label for="quick-product-price">Giá bán (₫)</label>
+            <input
+              type="number"
+              id="quick-product-price"
+              placeholder="180000"
+              min="0"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label for="quick-product-stock">Tồn kho</label>
+            <input
+              type="number"
+              id="quick-product-stock"
+              placeholder="0"
+              min="0"
+              value="0"
+            />
+          </div>
+          <div class="form-field">
+            <label for="quick-product-category">Danh mục</label>
+            <select id="quick-product-category">
+              <!-- Options render động từ AdminData.getCategories() -->
+            </select>
+          </div>
+        </div>
+        <p class="modal__hint">Sản phẩm lưu vào localStorage và hiển thị trên cửa hàng.</p>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--ghost" data-close-modal>Huỷ</button>
+          <button type="submit" class="btn btn--primary">Thêm sản phẩm</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal" id="appointment-modal" hidden>
+      <div class="modal__header">
+        <h2 class="modal__title">Tạo lịch hẹn nhanh</h2>
+        <button class="btn-icon modal__close" data-close-modal aria-label="Đóng">✕</button>
+      </div>
+      <form class="modal__body">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="quick-customer-name">Tên khách hàng</label>
+            <input
+              type="text"
+              id="quick-customer-name"
+              placeholder="Ví dụ: Minh Anh"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label for="quick-pet-type">Thú cưng</label>
+            <input
+              type="text"
+              id="quick-pet-type"
+              placeholder="Poodle, Mèo Anh lông ngắn..."
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label for="quick-time">Giờ hẹn</label>
+            <input type="time" id="quick-time" required />
+          </div>
+          <div class="form-field">
+            <label for="quick-service">Dịch vụ</label>
+            <select id="quick-service">
+              <option>Tắm & sấy tạo kiểu</option>
+              <option>Cắt tỉa lông toàn thân</option>
+              <option>Tắm + vệ sinh tai</option>
+            </select>
+          </div>
+        </div>
+        <p class="modal__hint">
+          Sau khi có backend, form này có thể gửi dữ liệu lên server để lưu lịch hẹn thật.
+        </p>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--ghost" data-close-modal>Đóng</button>
+          <button type="submit" class="btn btn--primary">Lưu tạm</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+  (function(){var u=JSON.parse(localStorage.getItem('petspa_current_user')||'null');if(u){var a=document.getElementById('adminUserAvatar');var n=document.getElementById('adminUserName');if(a)a.textContent=(u.name||'A').charAt(0).toUpperCase();if(n)n.textContent=u.name||'Admin';}})();
+  (function(){var sel=document.getElementById('quick-product-category');if(sel&&window.AdminData){var cats=AdminData.getCategories().sort(function(a,b){return(a.order||0)-(b.order||0);});sel.innerHTML=cats.map(function(c){return'<option value="'+c.id+'">'+(c.name||c.id)+'</option>';}).join('');}})();
+</script>
+    <script src="scripts.js"></script>
+    <script>
+    document.getElementById('global-search')&&document.getElementById('global-search').addEventListener('keydown',function(e){
+      if(e.key==='Enter'){var t=this.value.trim().toLowerCase();if(!t)return;if(t.indexOf('đơn')>=0||t.indexOf('order')>=0){location.href='pages/orders.html';}else if(t.indexOf('sản phẩm')>=0||t.indexOf('product')>=0){location.href='pages/products.html';}else if(t.indexOf('danh mục')>=0||t.indexOf('category')>=0||t.indexOf('categor')>=0){location.href='pages/categories.html';}else if(t.indexOf('khoảnh khắc')>=0||t.indexOf('gallery')>=0){location.href='pages/gallery.html';}else if(t.indexOf('lịch')>=0||t.indexOf('booking')>=0){location.href='pages/appointments.html';}else if(t.indexOf('khách')>=0||t.indexOf('customer')>=0){location.href='pages/customers.html';}else if(t.indexOf('dịch vụ')>=0||t.indexOf('service')>=0){location.href='pages/services.html';}else{location.href='pages/products.html?q='+encodeURIComponent(this.value);}}
+    });
+    </script>
+    <script>
+    (function(){
+      if(!window.AdminData)return;
+      var fmt=AdminData.formatPrice,getP=AdminData.getProducts,getO=AdminData.getOrders,getB=AdminData.getBookings,getU=AdminData.getUsers;
+      var today=new Date().toISOString().split('T')[0];
+      var orders=getO(),bookings=getB(),products=getP(),users=getU();
+      var ordersToday=orders.filter(function(o){return o.createdAt&&o.createdAt.indexOf(today)===0;});
+      var rev=ordersToday.reduce(function(s,o){return s+(o.total||0);},0);
+      var bookingsToday=bookings.filter(function(b){return b.date===today;});
+      var confirmed=bookingsToday.filter(function(b){return b.status==='confirmed';}).length;
+      var getCatLabel=function(){var m={};(AdminData.getCategories()||[]).forEach(function(c){m[c.id]=c.name;});return m;};
+      var catLbl=getCatLabel();
+      var defaultImg='https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=100';
+      var thumbHtml=function(p){var src=(p.image||'').trim()||defaultImg;return'<div class="table-product__thumb"><img src="'+src+'" alt="" onerror="this.src=\''+defaultImg+'\'" /></div>';};
+      function el(id,v){var e=document.getElementById(id);if(e&&v!==undefined)e.textContent=v;}
+      el('stat-revenue',fmt(rev));el('stat-revenue-detail','Từ '+ordersToday.length+' đơn hàng');
+      el('stat-trend','+'+(ordersToday.length>0?Math.min(50,ordersToday.length*5):0)+'%');
+      document.getElementById('stat-revenue-bar')&&(document.getElementById('stat-revenue-bar').style.width=(ordersToday.length>0?Math.min(90,50+ordersToday.length*5):50)+'%');
+      el('stat-bookings',bookingsToday.length+' lịch hẹn');el('stat-bookings-detail','Đang thực hiện: '+confirmed);
+      el('stat-bookings-new','+'+(bookingsToday.length>5?5:bookingsToday.length)+' mới');
+      el('stat-products',products.length+' mặt hàng');el('stat-products-detail','Thiếu hàng: 0');
+      el('stat-customers',users.length+' khách');el('stat-points','Điểm thưởng: '+(users.length*500).toLocaleString('vi-VN'));
+      var tbody=document.getElementById('dashboard-products-tbody');
+      if(tbody){var top=products.slice(0,5);tbody.innerHTML=top.length?top.map(function(p){return'<tr><td><div class="table-product">'+thumbHtml(p)+'<div><div class="table-product__name">'+(p.name||'')+'</div><div class="table-product__meta">'+(p.description||'').substring(0,25)+'</div></div></div></td><td>'+(catLbl[p.category]||p.category)+'</td><td>'+fmt(p.price||0)+'</td><td>—</td><td><span class="pill pill--success">Còn hàng</span></td><td class="table__actions"><a href="pages/products.html" class="btn-icon">✏️</a><a href="pages/products.html" class="btn-icon btn-icon--danger">🗑️</a></td></tr>';}).join(''):'<tr><td colspan="6">Chưa có sản phẩm. <a href="pages/products.html">Thêm sản phẩm</a></td></tr>';}
+      var apptEl=document.getElementById('dashboard-appointments');
+      if(apptEl){var items=bookingsToday.slice(0,5);var statusCls={pending:'pill--info',confirmed:'pill--success',completed:'pill--success',cancelled:'pill--danger'};var statusTxt={pending:'Đang chờ',confirmed:'Đã xác nhận',completed:'Hoàn thành',cancelled:'Đã hủy'};apptEl.innerHTML=items.length?items.map(function(b,i){var s=b.status||'pending';return'<li class="timeline__item'+(i===0?' timeline__item--active':'')+'"><div class="timeline__time">'+(b.time||'--:--')+'</div><div class="timeline__content"><div class="timeline__title">'+(b.serviceName||'Dịch vụ')+'</div><div class="timeline__meta">Khách: <strong>'+(b.ownerName||'-')+'</strong> · '+(b.petName||'Thú cưng')+'</div></div><span class="pill '+(statusCls[s]||'pill--default')+'">'+(statusTxt[s]||s)+'</span></li>';}).join(''):'<li class="timeline__item"><div class="timeline__time">—</div><div class="timeline__content"><div class="timeline__title">Chưa có lịch hôm nay</div><a href="../booking.html">Tạo lịch</a></div></li>';}
+      var ordEl=document.getElementById('dashboard-orders');
+      if(ordEl){var recent=orders.slice().reverse().slice(0,6);var ordCls={pending:'pill--warning',confirmed:'pill--info',shipping:'pill--info',completed:'pill--success',cancelled:'pill--danger'};var ordTxt={pending:'Chờ xử lý',confirmed:'Đã xác nhận',shipping:'Đang giao',completed:'Hoàn thành',cancelled:'Đã hủy'};ordEl.innerHTML=recent.length?recent.map(function(o){var s=o.status||'pending';var d=o.createdAt?new Date(o.createdAt).toLocaleString('vi-VN',{dateStyle:'short',timeStyle:'short'}):'-';return'<div class="list-item"><div><div class="list-item__title">'+(o.id||'-')+'</div><div class="list-item__meta">Khách: <strong>'+(o.name||'-')+'</strong></div></div><div class="list-item__right"><div class="list-item__amount">'+fmt(o.total||0)+'</div><span class="pill '+(ordCls[s]||'pill--default')+'">'+(ordTxt[s]||s)+'</span></div></div>';}).join(''):'<div class="list-item"><div><div class="list-item__title">Chưa có đơn hàng</div></div></div>';}
+
+      function shortFmt(n){if(!n)return'0';if(n>=1e9)return(Math.round(n/1e8)/10)+'B';if(n>=1e6)return(Math.round(n/1e5)/10)+'M';if(n>=1e3)return(Math.round(n/1e2)/10)+'K';return String(Math.round(n));}
+      function toDateStr(d){var y=d.getFullYear(),m=d.getMonth()+1,day=d.getDate();return y+'-'+(m<10?'0':'')+m+'-'+(day<10?'0':'')+day;}
+      var validOrders=orders.filter(function(o){return o.status!=='cancelled';});
+      var daysData=[];
+      for(var i=6;i>=0;i--){var d=new Date();d.setDate(d.getDate()-i);var dateStr=toDateStr(d);var dayOrders=validOrders.filter(function(o){var od=o.createdAt?toDateStr(new Date(o.createdAt)):'';return od===dateStr;});var rev=dayOrders.reduce(function(s,o){return s+(o.total||0);},0);var cnt=dayOrders.length;var label=d.getDate()+'/'+(d.getMonth()+1);daysData.push({label:label,dayName:['CN','T2','T3','T4','T5','T6','T7'][d.getDay()],revenue:rev,orders:cnt});}
+      var maxRevVal=Math.max.apply(null,daysData.map(function(x){return x.revenue;}))||0;
+      var maxRev=Math.max(1,maxRevVal);
+      var maxOrd=Math.max(1,Math.max.apply(null,daysData.map(function(x){return x.orders;})));
+      var barsEl=document.getElementById('chart-revenue-bars');
+      if(barsEl){barsEl.innerHTML=daysData.map(function(d){var revH=d.revenue>0?Math.round((d.revenue/maxRev)*90)+5:0;var ordH=d.orders>0?Math.round((d.orders/maxOrd)*90)+5:0;return'<div class="chart-bar"><div class="chart-bar__col"><div class="chart-bar__value chart-bar__value--revenue" style="height:'+revH+'%"><span class="chart-bar__tooltip">'+shortFmt(d.revenue)+'</span></div><div class="chart-bar__value chart-bar__value--orders" style="height:'+ordH+'%"><span class="chart-bar__tooltip chart-bar__tooltip--orders">'+d.orders+'</span></div></div><span class="chart-bar__label">'+d.label+'</span></div>';}).join('');}
+      var yMaxEl=document.getElementById('chart-y-max'),yMidEl=document.getElementById('chart-y-mid');
+      if(yMaxEl)yMaxEl.textContent=shortFmt(maxRevVal);
+      if(yMidEl)yMidEl.textContent=shortFmt(Math.round(maxRevVal/2));
+    })();
+    </script>
+  </body>
+</html>
+

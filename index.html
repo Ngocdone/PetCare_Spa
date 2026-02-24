@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pet Spa & Shop - Dịch vụ spa thú cưng chuyên nghiệp, cửa hàng phụ kiện và thức ăn cho chó mèo.">
+  <title>Pet Spa & Shop - Spa & Cửa hàng thú cưng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/home.css">
+  <link rel="stylesheet" href="css/pages/home-modern.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">
+        <span class="header__logo-icon"><i class="fas fa-paw"></i></span>
+        PETCARE SPA
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="index.html" class="nav__link nav__link--active" data-page="index.html">Trang chủ</a>
+          </li>
+          <li class="nav__item">
+            <a href="services.html" class="nav__link" data-page="services.html">Dịch vụ</a>
+          </li>
+          <li class="nav__item">
+            <a href="shop.html" class="nav__link" data-page="shop.html">Cửa hàng</a>
+          </li>
+          <li class="nav__item">
+            <a href="booking.html" class="nav__link" data-page="booking.html">Đặt lịch</a>
+          </li>
+          <li class="nav__item">
+            <a href="about.html" class="nav__link" data-page="about.html">Về chúng tôi</a>
+          </li>
+          <li class="nav__item">
+            <a href="contact.html" class="nav__link" data-page="contact.html">Liên hệ</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <div class="header__user-wrap">
+          <button type="button" class="header__icon-btn header__user-btn" aria-expanded="false" aria-haspopup="true" title="Tài khoản">
+            <i class="fas fa-user"></i>
+          </button>
+          <div class="header__user-dropdown" id="userDropdown" aria-hidden="true"></div>
+        </div>
+        <a href="cart.html" class="header__icon-btn header__cart-wrap" title="Giỏ hàng">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="header__cart-badge cart-count" style="display:none">0</span>
+        </a>
+        <button type="button" class="header__menu-toggle" aria-label="Mở menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" aria-hidden="true"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__title">Menu</span>
+      <button type="button" class="mobile-menu__close" aria-label="Đóng menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link"><i class="fas fa-home"></i><span>Trang chủ</span></a>
+      <a href="services.html" class="mobile-menu__link"><i class="fas fa-spa"></i><span>Dịch vụ</span></a>
+      <a href="shop.html" class="mobile-menu__link"><i class="fas fa-shopping-bag"></i><span>Cửa hàng</span></a>
+      <a href="booking.html" class="mobile-menu__link"><i class="fas fa-calendar-check"></i><span>Đặt lịch</span></a>
+      <a href="about.html" class="mobile-menu__link"><i class="fas fa-paw"></i><span>Về chúng tôi</span></a>
+      <a href="contact.html" class="mobile-menu__link"><i class="fas fa-envelope"></i><span>Liên hệ</span></a>
+    </nav>
+  </div>
+
+  <main>
+    <!-- Hero Modern -->
+    <section class="hero-modern">
+      <div class="hero-modern__slider">
+        <div class="hero-modern__slide active" style="background-image: url('https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=1920&q=80')">
+          <div class="hero-modern__overlay"></div>
+        </div>
+        <div class="hero-modern__slide" style="background-image: url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1920&q=80')">
+          <div class="hero-modern__overlay"></div>
+        </div>
+        <div class="hero-modern__slide" style="background-image: url('https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=1920&q=80')">
+          <div class="hero-modern__overlay"></div>
+        </div>
+      </div>
+      <div class="hero-modern__content">
+        <div class="container">
+          <div class="hero-modern__text">
+            <h1 class="hero-modern__title" data-aos="fade-up">
+              Spa & Chăm Sóc<br>
+              <span class="hero-modern__title-highlight">Thú Cưng Chuyên Nghiệp</span>
+            </h1>
+            <p class="hero-modern__subtitle" data-aos="fade-up" data-aos-delay="100">
+              Dịch vụ spa cao cấp, sản phẩm organic an toàn, đội ngũ giàu kinh nghiệm.<br>
+              Thú cưng của bạn xứng đáng được chăm sóc tốt nhất!
+            </p>
+            <div class="hero-modern__cta" data-aos="fade-up" data-aos-delay="200">
+              <a href="booking.html" class="btn-modern btn-modern--primary">
+                <i class="fas fa-calendar-check"></i>
+                <span>Đặt lịch ngay</span>
+              </a>
+              <a href="shop.html" class="btn-modern btn-modern--outline">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Xem cửa hàng</span>
+              </a>
+            </div>
+            <div class="hero-modern__stats" data-aos="fade-up" data-aos-delay="300">
+              <div class="hero-stat">
+                <span class="hero-stat__number">5000+</span>
+                <span class="hero-stat__label">Khách hàng</span>
+              </div>
+              <div class="hero-stat">
+                <span class="hero-stat__number">4.9★</span>
+                <span class="hero-stat__label">Đánh giá</span>
+              </div>
+              <div class="hero-stat">
+                <span class="hero-stat__number">10+</span>
+                <span class="hero-stat__label">Năm kinh nghiệm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-modern__controls">
+        <button class="hero-modern__arrow hero-modern__arrow--prev" aria-label="Trước">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="hero-modern__arrow hero-modern__arrow--next" aria-label="Sau">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="hero-modern__dots">
+        <button class="hero-modern__dot active" data-slide="0"></button>
+        <button class="hero-modern__dot" data-slide="1"></button>
+        <button class="hero-modern__dot" data-slide="2"></button>
+      </div>
+    </section>
+
+    <!-- About Modern + Before/After -->
+    <section class="section section--about-modern" id="about">
+      <div class="container">
+        <div class="about-modern">
+          <div class="about-modern__content" data-aos="fade-right">
+            <span class="about-modern__badge">Về chúng tôi</span>
+            <h2 class="about-modern__title">Chuyên Gia Chăm Sóc<br>Thú Cưng Hàng Đầu</h2>
+            <p class="about-modern__text">
+              Pet Spa & Shop tự hào là đơn vị tiên phong trong lĩnh vực chăm sóc thú cưng tại Việt Nam. 
+              Với hơn 10 năm kinh nghiệm, chúng tôi cam kết mang đến dịch vụ spa cao cấp, sản phẩm organic 
+              an toàn và đội ngũ chuyên gia giàu kinh nghiệm.
+            </p>
+            <div class="about-modern__features">
+              <div class="about-feature">
+                <div class="about-feature__icon">
+                  <i class="fas fa-award"></i>
+                </div>
+                <div class="about-feature__content">
+                  <h4>Chứng nhận quốc tế</h4>
+                  <p>Đội ngũ groomer được đào tạo bài bản</p>
+                </div>
+              </div>
+              <div class="about-feature">
+                <div class="about-feature__icon">
+                  <i class="fas fa-leaf"></i>
+                </div>
+                <div class="about-feature__content">
+                  <h4>100% Organic</h4>
+                  <p>Sản phẩm an toàn, thân thiện môi trường</p>
+                </div>
+              </div>
+              <div class="about-feature">
+                <div class="about-feature__icon">
+                  <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="about-feature__content">
+                  <h4>Bảo hiểm toàn diện</h4>
+                  <p>An tâm tuyệt đối cho thú cưng</p>
+                </div>
+              </div>
+            </div>
+            <a href="about.html" class="btn-modern btn-modern--primary">Tìm hiểu thêm</a>
+          </div>
+          <div class="about-modern__media" data-aos="fade-left">
+            <div class="before-after-slider">
+              <div class="before-after-slider__container">
+                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80" alt="Sau spa" class="before-after-slider__after">
+                <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=800&q=80" alt="Trước spa" class="before-after-slider__before">
+                <input type="range" min="0" max="100" value="50" class="before-after-slider__range" id="beforeAfterRange">
+                <div class="before-after-slider__divider" id="beforeAfterDivider">
+                  <div class="before-after-slider__handle"></div>
+                </div>
+              </div>
+              <div class="before-after-slider__labels">
+                <span class="before-after-slider__label before-after-slider__label--before">Trước</span>
+                <span class="before-after-slider__label before-after-slider__label--after">Sau</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us Modern -->
+    <section class="section section--why-modern">
+      <div class="container">
+        <div class="section-header-modern" data-aos="fade-up">
+          <h2 class="section-title-modern">Tại Sao Chọn Pet Spa & Shop?</h2>
+          <p class="section-subtitle-modern">Chúng tôi cam kết mang đến trải nghiệm chăm sóc thú cưng tốt nhất với những giá trị cốt lõi</p>
+        </div>
+        <div class="why-grid-modern">
+          <div class="why-card-modern" data-aos="fade-up" data-aos-delay="0">
+            <div class="why-card-modern__image">
+              <img src="https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4?w=600&q=80" alt="Sản phẩm Organic">
+              <div class="why-card-modern__overlay"></div>
+            </div>
+            <div class="why-card-modern__content">
+              <div class="why-card-modern__icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <h3 class="why-card-modern__title">100% Organic</h3>
+              <p class="why-card-modern__desc">Sản phẩm chăm sóc từ thiên nhiên, không hóa chất độc hại, an toàn tuyệt đối cho da lông thú cưng.</p>
+            </div>
+          </div>
+          <div class="why-card-modern" data-aos="fade-up" data-aos-delay="100">
+            <div class="why-card-modern__image">
+              <img src="https://images.unsplash.com/photo-1581888227599-779811939961?w=600&q=80" alt="Chuyên gia">
+              <div class="why-card-modern__overlay"></div>
+            </div>
+            <div class="why-card-modern__content">
+              <div class="why-card-modern__icon">
+                <i class="fas fa-user-md"></i>
+              </div>
+              <h3 class="why-card-modern__title">Chuyên Gia Lành Nghề</h3>
+              <p class="why-card-modern__desc">Đội ngũ Groomer được đào tạo chuyên nghiệp, chứng chỉ quốc tế, hơn 10 năm kinh nghiệm.</p>
+            </div>
+          </div>
+          <div class="why-card-modern" data-aos="fade-up" data-aos-delay="200">
+            <div class="why-card-modern__image">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Camera giám sát">
+              <div class="why-card-modern__overlay"></div>
+            </div>
+            <div class="why-card-modern__content">
+              <div class="why-card-modern__icon">
+                <i class="fas fa-video"></i>
+              </div>
+              <h3 class="why-card-modern__title">Giám Sát 24/7</h3>
+              <p class="why-card-modern__desc">Hệ thống camera HD, theo dõi trực tiếp qua app, yên tâm tuyệt đối cho thú cưng của bạn.</p>
+            </div>
+          </div>
+          <div class="why-card-modern" data-aos="fade-up" data-aos-delay="300">
+            <div class="why-card-modern__image">
+              <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80" alt="Đưa đón">
+              <div class="why-card-modern__overlay"></div>
+            </div>
+            <div class="why-card-modern__content">
+              <div class="why-card-modern__icon">
+                <i class="fas fa-car"></i>
+              </div>
+              <h3 class="why-card-modern__title">Đưa Đón Miễn Phí</h3>
+              <p class="why-card-modern__desc">Dịch vụ đưa đón tận nơi trong bán kính 5km, tiện lợi và tiết kiệm thời gian cho bạn.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Services Carousel -->
+    <section class="section section--services">
+      <div class="container">
+        <h2 class="section__title">Dịch vụ nổi bật</h2>
+        <p class="section__subtitle">Cắt tỉa, Tắm, Spa toàn diện, Khách sạn thú cưng.</p>
+        <div class="carousel carousel--services" data-carousel>
+          <div class="carousel__track" id="servicesTrack">
+            <!-- Filled by JS from DATA.services -->
+          </div>
+          <button type="button" class="carousel__arrow carousel__arrow--prev" aria-label="Trước"><i class="fas fa-chevron-left"></i></button>
+          <button type="button" class="carousel__arrow carousel__arrow--next" aria-label="Sau"><i class="fas fa-chevron-right"></i></button>
+          <div class="carousel__nav" id="servicesNav"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section section--process">
+      <div class="container">
+        <h2 class="section__title">Quy trình đơn giản</h2>
+        <p class="section__subtitle">4 bước từ đặt lịch đến bàn giao thú cưng.</p>
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="process-step__num">1</div>
+            <h3 class="process-step__title">Đặt lịch</h3>
+            <p class="process-step__desc">Chọn dịch vụ và ngày giờ phù hợp trên website hoặc hotline.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-step__num">2</div>
+            <h3 class="process-step__title">Đưa đón</h3>
+            <p class="process-step__desc">Chúng tôi đón thú cưng tại nhà hoặc bạn đưa đến spa.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-step__num">3</div>
+            <h3 class="process-step__title">Spa</h3>
+            <p class="process-step__desc">Tắm, cắt tỉa, chăm sóc theo gói đã chọn. Bạn xem camera trực tiếp.</p>
+          </div>
+          <div class="process-step">
+            <div class="process-step__num">4</div>
+            <h3 class="process-step__title">Bàn giao</h3>
+            <p class="process-step__desc">Giao thú cưng tận nhà hoặc đón tại spa, thanh toán.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Promo Banner + Countdown -->
+    <section class="section section--promo">
+      <div class="container">
+        <div class="promo-banner">
+          <div class="promo-banner__content">
+            <h2 class="promo-banner__title">Giảm 20% gói Spa toàn diện</h2>
+            <p class="promo-banner__subtitle">Áp dụng đến hết tháng. Đặt lịch ngay!</p>
+            <div class="countdown" id="countdown">
+              <div class="countdown__item">
+                <span class="countdown__value" id="cdDays">00</span>
+                <span class="countdown__label">Ngày</span>
+              </div>
+              <div class="countdown__item">
+                <span class="countdown__value" id="cdHours">00</span>
+                <span class="countdown__label">Giờ</span>
+              </div>
+              <div class="countdown__item">
+                <span class="countdown__value" id="cdMins">00</span>
+                <span class="countdown__label">Phút</span>
+              </div>
+              <div class="countdown__item">
+                <span class="countdown__value" id="cdSecs">00</span>
+                <span class="countdown__label">Giây</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Best Sellers -->
+    <section class="section section--products">
+      <div class="container">
+        <h2 class="section__title">Sản phẩm bán chạy</h2>
+        <p class="section__subtitle">Thức ăn, phụ kiện, đồ chơi chất lượng cao.</p>
+        <div class="products-grid" id="bestSellersGrid">
+          <!-- Filled by JS -->
+        </div>
+        <div class="text-center" style="margin-top: 1.5rem;">
+          <a href="shop.html" class="btn btn--primary">Xem tất cả sản phẩm</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Modern -->
+    <section class="section section--gallery-modern">
+      <div class="container">
+        <div class="section-header-modern" data-aos="fade-up">
+          <h2 class="section-title-modern">Khoảnh Khắc Đáng Yêu</h2>
+          <p class="section-subtitle-modern">Những hình ảnh chân thật về thú cưng sau khi được chăm sóc tại Pet Spa & Shop</p>
+        </div>
+        <div class="gallery-modern" id="galleryModern">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet The Team -->
+    <section class="section section--team">
+      <div class="container">
+        <h2 class="section__title">Đội ngũ Groomer</h2>
+        <p class="section__subtitle">Chuyên nghiệp, tận tâm với từng bé.</p>
+        <div class="team-grid" id="teamGrid">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Modern -->
+    <section class="section section--testimonials-modern">
+      <div class="container">
+        <div class="section-header-modern section-header-modern--compact" data-aos="fade-up">
+          <h2 class="section-title-modern">Khách Hàng Nói Gì Về Chúng Tôi</h2>
+        </div>
+        <div class="testimonials-modern" data-aos="fade-up" data-aos-delay="100">
+          <div class="testimonials-modern__track" id="testimonialsModernTrack"></div>
+          <div class="testimonials-modern__nav">
+            <button class="testimonials-modern__arrow testimonials-modern__arrow--prev">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="testimonials-modern__arrow testimonials-modern__arrow--next">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="section section--faq">
+      <div class="container">
+        <h2 class="section__title">Câu hỏi thường gặp</h2>
+        <div class="accordion" id="faqAccordion">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Brands Marquee -->
+    <section class="section section--brands">
+      <div class="brands">
+        <div class="brands__track" id="brandsTrack">
+          <!-- Filled by JS, duplicated for infinite scroll -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Pet Spa & Shop</div>
+          <p class="footer__text">Spa thú cưng chuyên nghiệp, cửa hàng phụ kiện và thức ăn chất lượng. Cam kết mang lại sự hài lòng cho bạn và thú cưng.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Zalo"><i class="fas fa-phone"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên kết</h4>
+          <ul class="footer__links">
+            <li><a href="services.html" class="footer__link">Dịch vụ</a></li>
+            <li><a href="shop.html" class="footer__link">Cửa hàng</a></li>
+            <li><a href="booking.html" class="footer__link">Đặt lịch</a></li>
+            <li><a href="about.html" class="footer__link">Về chúng tôi</a></li>
+            <li><a href="contact.html" class="footer__link">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên hệ</h4>
+          <ul class="footer__links">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</li>
+            <li><i class="fas fa-phone"></i> 0900 123 456</li>
+            <li><i class="fas fa-envelope"></i> hello@petspa.vn</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Đăng ký nhận tin</h4>
+          <form class="footer__newsletter" id="newsletterForm">
+            <div class="footer__input-wrap">
+              <input type="email" class="footer__input" name="email" placeholder="Email của bạn" required>
+              <button type="submit" class="btn btn--primary">Gửi</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Pet Spa & Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js?v=2"></script>
+  <script src="js/common.js?v=2"></script>
+  <script src="js/home.js?v=2"></script>
+</body>
+</html>

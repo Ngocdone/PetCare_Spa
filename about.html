@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Về chúng tôi & Quy trình - Pet Spa & Shop - Câu chuyện, sứ mệnh, quy trình dịch vụ spa và mua sắm.">
+  <title>Về chúng tôi & Quy trình - Pet Spa & Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/about.css">
+  <link rel="stylesheet" href="css/pages/process.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">
+        <span class="header__logo-icon"><i class="fas fa-paw"></i></span>
+      PETCARE SPA
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link" data-page="index.html">Trang chủ</a></li>
+          <li><a href="services.html" class="nav__link" data-page="services.html">Dịch vụ</a></li>
+          <li><a href="shop.html" class="nav__link" data-page="shop.html">Cửa hàng</a></li>
+          <li><a href="booking.html" class="nav__link" data-page="booking.html">Đặt lịch</a></li>
+          <li><a href="about.html" class="nav__link nav__link--active" data-page="about.html">Về chúng tôi</a></li>
+          <li><a href="contact.html" class="nav__link" data-page="contact.html">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <div class="header__user-wrap">
+        <button type="button" class="header__icon-btn header__user-btn" aria-expanded="false" aria-haspopup="true" title="Tài khoản">
+          <i class="fas fa-user"></i>
+        </button>
+        <div class="header__user-dropdown" id="userDropdown" aria-hidden="true"></div>
+      </div>
+        <a href="cart.html" class="header__icon-btn header__cart-wrap">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="header__cart-badge cart-count" style="display:none">0</span>
+        </a>
+        <button type="button" class="header__menu-toggle" aria-label="Mở menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" aria-hidden="true"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__title">Menu</span>
+      <button type="button" class="mobile-menu__close" aria-label="Đóng menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link"><i class="fas fa-home"></i><span>Trang chủ</span></a>
+      <a href="services.html" class="mobile-menu__link"><i class="fas fa-spa"></i><span>Dịch vụ</span></a>
+      <a href="shop.html" class="mobile-menu__link"><i class="fas fa-shopping-bag"></i><span>Cửa hàng</span></a>
+      <a href="booking.html" class="mobile-menu__link"><i class="fas fa-calendar-check"></i><span>Đặt lịch</span></a>
+      <a href="about.html" class="mobile-menu__link"><i class="fas fa-paw"></i><span>Về chúng tôi</span></a>
+      <a href="contact.html" class="mobile-menu__link"><i class="fas fa-envelope"></i><span>Liên hệ</span></a>
+    </nav>
+  </div>
+
+  <main class="page-main page-main--about">
+    <!-- Hero -->
+    <section class="about-hero">
+      <div class="about-hero__bg"></div>
+      <div class="container about-hero__inner">
+        <h1 class="about-hero__title">Về chúng tôi & Quy trình</h1>
+        <p class="about-hero__subtitle">Hơn 5 năm đồng hành cùng hàng nghìn chủ nuôi. Tìm hiểu câu chuyện, sứ mệnh của chúng tôi và quy trình dịch vụ spa, mua sắm minh bạch, chuyên nghiệp.</p>
+        <a href="#quy-trinh" class="btn btn--outline btn--light" style="margin-top:1rem;color:#fff;border-color:rgba(255,255,255,0.8)"><i class="fas fa-route"></i> Xem quy trình</a>
+      </div>
+    </section>
+
+    <!-- Câu chuyện -->
+    <section class="section about-story">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item"><a href="index.html" class="breadcrumb__link">Trang chủ</a></li>
+            <li class="breadcrumb__item"><span class="breadcrumb__current">Về chúng tôi</span></li>
+          </ol>
+        </nav>
+        <div class="about-story__grid">
+          <div class="about-story__media">
+            <div class="about-story__image-wrap">
+              <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&q=85" alt="Pet Spa - Chăm sóc thú cưng">
+            </div>
+          </div>
+          <div class="about-story__content">
+            <span class="about-badge">Câu chuyện của chúng tôi</span>
+            <h2 class="about-section__title">Từ tình yêu thú cưng đến Pet Spa & Shop</h2>
+            <p class="about-section__lead">Pet Spa & Shop được thành lập từ niềm đam mê và tình yêu dành cho động vật. Người sáng lập — một chủ nuôi nhiều năm gắn bó với chó và mèo — nhận ra rằng thị trường thiếu những địa chỉ spa thú cưng vừa chuyên nghiệp, vừa minh bạch và thực sự đặt sức khỏe, sự thoải mái của thú cưng lên hàng đầu.</p>
+            <p>Chúng tôi bắt đầu với không gian 80m² tại Quận 1, TP.HCM, 3 dịch vụ cơ bản và đội ngũ 3 người — tất cả đều là chủ nuôi, hiểu rõ nỗi lo khi gửi thú cưng. Qua từng năm, chúng tôi mở rộng dịch vụ: từ tắm rửa, cắt tỉa lông đến spa toàn diện, khách sạn thú cưng và cửa hàng phụ kiện, thức ăn cao cấp. Mỗi bước đi đều hướng tới mục tiêu: trở thành điểm đến tin cậy nhất cho các “bố mẹ pet” khi cần chăm sóc và làm đẹp cho thành viên nhỏ của gia đình.</p>
+            <p>Đến nay, Pet Spa & Shop đã phục vụ hơn 5.000 khách hàng thân thiết, trên 98% đánh giá 5 sao, nhận được sự tin tưởng và phản hồi tích cực. Chúng tôi tin rằng thành công lớn nhất không phải là con số, mà là niềm vui và sự hài lòng của từng bé cưng và chủ nuôi khi bước chân vào không gian của chúng tôi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Người sáng lập -->
+    <section class="section about-founder">
+      <div class="container">
+        <div class="about-section__header">
+          <span class="about-badge"><i class="fas fa-user-tie"></i> Người sáng lập</span>
+          <h2 class="about-section__title">Trái tim đằng sau Pet Spa & Shop</h2>
+        </div>
+        <div class="about-founder__box">
+          <div class="about-founder__image">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=85" alt="Người sáng lập Pet Spa">
+          </div>
+          <div class="about-founder__content">
+            <h3 class="about-founder__name">Nguyễn Minh Tuấn</h3>
+            <p class="about-founder__role">Founder &amp; Senior Groomer — 8 năm kinh nghiệm</p>
+            <p>Anh Tuấn là chủ nuôi của 3 chú chó Poodle và 1 mèo Anh lông ngắn. Trải qua nhiều lần thất vọng với các spa thú cưng thiếu minh bạch, anh quyết định xây dựng một không gian nơi mọi chủ nuôi đều có thể yên tâm. Tốt nghiệp chuyên ngành Thú y, anh kết hợp kiến thức khoa học với tình yêu động vật để tạo nên quy trình chăm sóc chuẩn mực. &quot;Thú cưng không biết nói — chúng ta phải là tiếng nói cho chúng,&quot; đó là triết lý anh đặt làm nền tảng cho Pet Spa &amp; Shop.</p>
+            <p>Bên cạnh công việc điều hành, anh vẫn trực tiếp thực hiện dịch vụ cắt tỉa và tư vấn cho khách hàng mới. Anh tin rằng chỉ khi đứng ở vị trí người làm dịch vụ, mình mới thấu hiểu và cải tiến liên tục.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sứ mệnh & Tầm nhìn -->
+    <section class="section about-mission">
+      <div class="container">
+        <div class="about-section__header">
+          <span class="about-badge">Sứ mệnh & Tầm nhìn</span>
+          <h2 class="about-section__title">Vì sao chúng tôi làm điều này</h2>
+        </div>
+        <div class="about-mission__grid">
+          <div class="about-mission__card">
+            <div class="about-mission__icon"><i class="fas fa-bullseye"></i></div>
+            <h3 class="about-mission__title">Sứ mệnh</h3>
+            <p>Chúng tôi cam kết mang lại trải nghiệm chăm sóc thú cưng chuyên nghiệp, an toàn và đầy yêu thương. Mỗi bé cưng đều được đối xử như thành viên gia đình: sử dụng sản phẩm organic phù hợp da lông, bàn tay lành nghề và quy trình chuẩn để đảm bảo sức khỏe và sự thoải mái. Chúng tôi không chỉ làm đẹp bên ngoài mà còn góp phần nâng cao chất lượng cuộc sống cho thú cưng và sự an tâm cho chủ nuôi. Mọi quyết định — từ lựa chọn sản phẩm đến đào tạo nhân viên — đều hướng tới một mục tiêu: thú cưng khỏe mạnh, chủ nuôi yên tâm.</p>
+          </div>
+          <div class="about-mission__card">
+            <div class="about-mission__icon"><i class="fas fa-eye"></i></div>
+            <h3 class="about-mission__title">Tầm nhìn</h3>
+            <p>Pet Spa &amp; Shop hướng tới trở thành thương hiệu spa và chăm sóc thú cưng hàng đầu tại Việt Nam, được công nhận bởi chất lượng dịch vụ, sự minh bạch và đạo đức nghề nghiệp. Đến năm 2027, chúng tôi dự kiến mở 3 chi nhánh tại TP.HCM và Hà Nội. Chúng tôi mong muốn mở rộng mạng lưới để ngày càng nhiều chủ nuôi có thể tiếp cận dịch vụ chăm sóc cao cấp với giá phải chăng, đồng thời góp phần nâng cao ý thức cộng đồng trong việc nuôi dưỡng, bảo vệ và tôn trọng thú cưng.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Giá trị cốt lõi -->
+    <section class="section about-values">
+      <div class="container">
+        <div class="about-section__header">
+          <span class="about-badge">Giá trị cốt lõi</span>
+          <h2 class="about-section__title">Những điều chúng tôi đặt lên hàng đầu</h2>
+          <p class="about-section__sub">Mọi quyết định và hành động của chúng tôi đều dựa trên bốn giá trị nền tảng sau.</p>
+        </div>
+        <div class="about-values__grid">
+          <div class="about-value-card">
+            <div class="about-value-card__icon"><i class="fas fa-leaf"></i></div>
+            <h3 class="about-value-card__title">An toàn & Organic</h3>
+            <p>Chúng tôi ưu tiên sản phẩm organic, không gây kích ứng da lông. Mọi hóa chất (dầu gội, sữa tắm, thuốc) đều được kiểm định nguồn gốc và phù hợp với từng loại da — chó lông dài, mèo nhạy cảm, thú cưng dị ứng. Sức khỏe của bé luôn đặt lên hàng đầu.</p>
+          </div>
+          <div class="about-value-card">
+            <div class="about-value-card__icon"><i class="fas fa-user-graduate"></i></div>
+            <h3 class="about-value-card__title">Chuyên nghiệp</h3>
+            <p>Đội ngũ Groomer được đào tạo bài bản, có chứng chỉ quốc tế (IPG, NDGAG) và 5–8 năm kinh nghiệm. Chúng tôi cập nhật xu hướng, kỹ thuật cắt tỉa mới hàng năm và tuân thủ quy trình vệ sinh, khử khuẩn dụng cụ nghiêm ngặt theo tiêu chuẩn thú y.</p>
+          </div>
+          <div class="about-value-card">
+            <div class="about-value-card__icon"><i class="fas fa-video"></i></div>
+            <h3 class="about-value-card__title">Minh bạch</h3>
+            <p>Camera 24/7 tại khu vực chăm sóc giúp chủ nuôi theo dõi trực tiếp qua app. Bảng giá rõ ràng trên website, không phát sinh ẩn, không ép mua thêm. Mọi chi phí đều được báo trước. Chúng tôi tin sự minh bạch là nền tảng của niềm tin.</p>
+          </div>
+          <div class="about-value-card">
+            <div class="about-value-card__icon"><i class="fas fa-heart"></i></div>
+            <h3 class="about-value-card__title">Tận tâm & Yêu thương</h3>
+            <p>Mỗi bé cưng đều được coi như thành viên gia đình. Chúng tôi ghi nhận tính cách (nhát, hung dữ, dị ứng), thói quen và nhu cầu đặc biệt trong phiếu chăm sóc. Điều chỉnh cách tiếp cận — nhẹ nhàng hơn với mèo, kiên nhẫn hơn với chó già — để mang lại trải nghiệm thoải mái nhất.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Đội ngũ chuyên gia -->
+    <section class="section about-team">
+      <div class="container">
+        <div class="about-section__header">
+          <span class="about-badge"><i class="fas fa-users"></i> Đội ngũ</span>
+          <h2 class="about-section__title">Chuyên gia chăm sóc thú cưng</h2>
+          <p class="about-section__sub">15+ chuyên viên được đào tạo bài bản, có chứng chỉ và kinh nghiệm thực tế với đa dạng giống chó mèo.</p>
+        </div>
+        <div class="about-team__grid">
+          <div class="about-team__card">
+            <div class="about-team__photo"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&q=85" alt="Nguyễn Minh Tuấn"></div>
+            <h3 class="about-team__name">Nguyễn Minh Tuấn</h3>
+            <p class="about-team__role">Senior Groomer</p>
+            <p class="about-team__exp">8 năm kinh nghiệm — Chuyên Poodle, Corgi, mèo lông dài</p>
+          </div>
+          <div class="about-team__card">
+            <div class="about-team__photo"><img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=300&q=85" alt="Trần Thị Hương"></div>
+            <h3 class="about-team__name">Trần Thị Hương</h3>
+            <p class="about-team__role">Spa Specialist</p>
+            <p class="about-team__exp">6 năm kinh nghiệm — Chuyên spa toàn diện, massage</p>
+          </div>
+          <div class="about-team__card">
+            <div class="about-team__photo"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=85" alt="Lê Văn Đức"></div>
+            <h3 class="about-team__name">Lê Văn Đức</h3>
+            <p class="about-team__role">Pet Stylist</p>
+            <p class="about-team__exp">5 năm kinh nghiệm — Chuyên tạo kiểu, cắt tỉa nghệ thuật</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Con số ấn tượng -->
+    <section class="section about-stats">
+      <div class="container">
+        <div class="about-stats__grid">
+          <div class="about-stat">
+            <span class="about-stat__number" data-count="5000">0</span>
+            <span class="about-stat__suffix">+</span>
+            <span class="about-stat__label">Khách hàng tin tưởng</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat__number" data-count="5">0</span>
+            <span class="about-stat__suffix">+</span>
+            <span class="about-stat__label">Năm kinh nghiệm</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat__number" data-count="15">0</span>
+            <span class="about-stat__suffix">+</span>
+            <span class="about-stat__label">Chuyên viên lành nghề</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat__number" data-count="98">0</span>
+            <span class="about-stat__suffix">%</span>
+            <span class="about-stat__label">Hài lòng & quay lại</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hành trình -->
+    <section class="section about-journey">
+      <div class="container">
+        <div class="about-section__header">
+          <span class="about-badge">Hành trình phát triển</span>
+          <h2 class="about-section__title">Những cột mốc đáng nhớ</h2>
+        </div>
+        <div class="about-journey__timeline">
+          <div class="about-journey__item">
+            <div class="about-journey__year">2020</div>
+            <div class="about-journey__content">
+              <h3>Khởi đầu</h3>
+              <p>Ra mắt Pet Spa & Shop với dịch vụ tắm, cắt tỉa cơ bản tại một cơ sở nhỏ. Đội ngũ 3 người, đặt nền móng cho văn hóa phục vụ tận tâm và minh bạch.</p>
+            </div>
+          </div>
+          <div class="about-journey__item">
+            <div class="about-journey__year">2021</div>
+            <div class="about-journey__content">
+              <h3>Mở rộng dịch vụ</h3>
+              <p>Bổ sung spa toàn diện (massage, đắp mặt nạ), vệ sinh răng miệng và lắp đặt camera 24/7. Khách hàng tăng gấp đôi. Nhận được nhiều feedback tích cực về chất lượng và sự yên tâm khi gửi thú cưng. Đội ngũ mở rộng lên 8 người.</p>
+            </div>
+          </div>
+          <div class="about-journey__item">
+            <div class="about-journey__year">2022</div>
+            <div class="about-journey__content">
+              <h3>Công nhận &amp; chứng chỉ</h3>
+              <p>Đội ngũ Groomer được cấp chứng chỉ quốc tế. Ra mắt kênh đặt lịch online qua website. Triển khai chương trình khách hàng thân thiết với ưu đãi tích điểm. Đạt mốc 2.000 khách hàng.</p>
+            </div>
+          </div>
+          <div class="about-journey__item">
+            <div class="about-journey__year">2023</div>
+            <div class="about-journey__content">
+              <h3>Khách sạn thú cưng & Shop</h3>
+              <p>Ra mắt dịch vụ lưu trú (pet hotel) và cửa hàng phụ kiện, thức ăn cao cấp. Trở thành điểm đến “all-in-one” cho chủ nuôi bận rộn.</p>
+            </div>
+          </div>
+          <div class="about-journey__item">
+            <div class="about-journey__year">2025</div>
+            <div class="about-journey__content">
+              <h3>Hôm nay & tương lai</h3>
+              <p>Nâng cấp cơ sở vật chất, đào tạo đội ngũ 15+ chuyên viên. Hệ thống đặt lịch trực tuyến hoàn thiện, tích hợp thanh toán online. Đang lên kế hoạch mở chi nhánh 2 tại Quận 7 và chi nhánh tại Hà Nội trong năm tới.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quy trình dịch vụ -->
+    <section class="section process-section" id="quy-trinh">
+      <div class="container">
+        <div class="about-section__header">
+          <span class="about-badge"><i class="fas fa-route"></i> Quy trình</span>
+          <h2 class="about-section__title">Quy trình dịch vụ & mua sắm</h2>
+          <p class="about-section__sub">Từ đặt lịch đến nhận thú cưng, mua sắm online và tại cửa hàng — minh bạch, chuyên nghiệp, dễ dàng.</p>
+        </div>
+
+        <!-- Quy trình Spa -->
+        <div class="process-block">
+          <div class="process-block__header">
+            <span class="process-badge"><i class="fas fa-spa"></i> Dịch vụ Spa</span>
+            <h2 class="process-block__title">Quy trình sử dụng dịch vụ spa & chăm sóc thú cưng</h2>
+            <p class="process-block__lead">Từ lúc đặt lịch đến khi đón bé cưng về nhà — mọi bước đều được chúng tôi hỗ trợ tận tâm.</p>
+          </div>
+
+          <div class="process-timeline">
+            <div class="process-step">
+              <div class="process-step__num">1</div>
+              <div class="process-step__content">
+                <h3 class="process-step__title">Đặt lịch hẹn</h3>
+                <p class="process-step__desc">Chọn dịch vụ phù hợp trên website hoặc gọi hotline. Cung cấp thông tin thú cưng (giống, cân nặng, tình trạng da lông) để nhân viên tư vấn và đặt slot thích hợp.</p>
+                <a href="booking.html" class="process-step__link">Đặt lịch ngay <i class="fas fa-arrow-right"></i></a>
+              </div>
+              <div class="process-step__media">
+                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=85" alt="Đặt lịch spa">
+              </div>
+            </div>
+
+            <div class="process-step process-step--reverse">
+              <div class="process-step__num">2</div>
+              <div class="process-step__content">
+                <h3 class="process-step__title">Đến cửa hàng & gửi thú cưng</h3>
+                <p class="process-step__desc">Mang bé cưng đến đúng giờ hẹn. Nhân viên tiếp đón, kiểm tra sổ khám bệnh (nếu có) và trao đổi nhanh về mong muốn của bạn (kiểu tóc, mức độ cắt tỉa, v.v.).</p>
+              </div>
+              <div class="process-step__media">
+                <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&q=85" alt="Gửi thú cưng">
+              </div>
+            </div>
+
+            <div class="process-step">
+              <div class="process-step__num">3</div>
+              <div class="process-step__content">
+                <h3 class="process-step__title">Tư vấn & kiểm tra sức khỏe</h3>
+                <p class="process-step__desc">Chuyên viên kiểm tra da, lông, tai, móng. Tư vấn dịch vụ và sản phẩm phù hợp. Xác nhận lại với bạn trước khi bắt đầu thực hiện.</p>
+              </div>
+              <div class="process-step__media">
+                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&q=85" alt="Tư vấn kiểm tra">
+              </div>
+            </div>
+
+            <div class="process-step process-step--reverse">
+              <div class="process-step__num">4</div>
+              <div class="process-step__content">
+                <h3 class="process-step__title">Thực hiện dịch vụ</h3>
+                <p class="process-step__desc">Bé cưng được chăm sóc trong khu vực riêng với sản phẩm an toàn, dụng cụ vệ sinh. Bạn có thể chờ tại phòng chờ hoặc quay lại đúng giờ hẹn.</p>
+              </div>
+              <div class="process-step__media">
+                <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=400&q=85" alt="Thực hiện dịch vụ">
+              </div>
+            </div>
+
+            <div class="process-step">
+              <div class="process-step__num">5</div>
+              <div class="process-step__content">
+                <h3 class="process-step__title">Thanh toán & nhận thú cưng</h3>
+                <p class="process-step__desc">Hoàn tất thanh toán tại quầy. Nhân viên giao bé cưng kèm phiếu chăm sóc (gợi ý bảo dưỡng lông, sản phẩm nên dùng). Hẹn gặp lại lần sau!</p>
+              </div>
+              <div class="process-step__media">
+                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=85" alt="Nhận thú cưng">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quy trình mua sắm -->
+        <div class="process-block process-block--alt">
+          <div class="process-block__header">
+            <span class="process-badge"><i class="fas fa-shopping-bag"></i> Cửa hàng</span>
+            <h2 class="process-block__title">Quy trình mua sắm tại shop</h2>
+            <p class="process-block__lead">Mua online hoặc trực tiếp tại cửa hàng — đều thuận tiện và nhanh chóng.</p>
+          </div>
+
+          <div class="process-cards">
+            <div class="process-card">
+              <div class="process-card__icon"><i class="fas fa-search"></i></div>
+              <h3 class="process-card__title">1. Xem & chọn sản phẩm</h3>
+              <p class="process-card__desc">Duyệt cửa hàng online hoặc đến trực tiếp. Lọc theo danh mục, loại thú cưng, giá.</p>
+              <a href="shop.html" class="process-card__link">Mua sắm ngay</a>
+            </div>
+            <div class="process-card">
+              <div class="process-card__icon"><i class="fas fa-cart-plus"></i></div>
+              <h3 class="process-card__title">2. Thêm vào giỏ hàng</h3>
+              <p class="process-card__desc">Chọn số lượng, thêm vào giỏ. Kiểm tra giỏ hàng, áp dụng mã giảm giá nếu có.</p>
+              <a href="cart.html" class="process-card__link">Xem giỏ hàng</a>
+            </div>
+            <div class="process-card">
+              <div class="process-card__icon"><i class="fas fa-credit-card"></i></div>
+              <h3 class="process-card__title">3. Thanh toán</h3>
+              <p class="process-card__desc">Điền thông tin giao hàng, chọn phương thức thanh toán (COD, chuyển khoản).</p>
+              <a href="checkout.html" class="process-card__link">Thanh toán</a>
+            </div>
+            <div class="process-card">
+              <div class="process-card__icon"><i class="fas fa-box-open"></i></div>
+              <h3 class="process-card__title">4. Nhận hàng</h3>
+              <p class="process-card__desc">Giao tận nhà trong 1–3 ngày (nội thành) hoặc nhận tại cửa hàng.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="process-cta">
+          <div class="process-cta__inner">
+            <h2 class="process-cta__title">Sẵn sàng trải nghiệm?</h2>
+            <p class="process-cta__text">Đặt lịch spa ngay hôm nay hoặc khám phá cửa hàng để mua sắm phụ kiện và thức ăn cho thú cưng.</p>
+            <div class="process-cta__btns">
+              <a href="booking.html" class="btn btn--primary"><i class="fas fa-calendar-check"></i> Đặt lịch spa</a>
+              <a href="shop.html" class="btn btn--outline"><i class="fas fa-shopping-bag"></i> Xem cửa hàng</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cơ sở vật chất -->
+    <section class="section about-facilities">
+      <div class="container">
+        <div class="about-section__header">
+          <span class="about-badge"><i class="fas fa-building"></i> Cơ sở vật chất</span>
+          <h2 class="about-section__title">Không gian chăm sóc chuẩn mực</h2>
+          <p class="about-section__sub">Đầu tư trang thiết bị hiện đại, vệ sinh và an toàn cho mọi thú cưng.</p>
+        </div>
+        <div class="about-facilities__grid">
+          <div class="about-facility">
+            <i class="fas fa-bath about-facility__icon"></i>
+            <h3>Khu tắm &amp; sấy</h3>
+            <p>Bồn tắm chuyên dụng theo kích cỡ, máy sấy công suất cao, không gây stress. Nước ấm điều chỉnh nhiệt độ phù hợp từng loại da lông.</p>
+          </div>
+          <div class="about-facility">
+            <i class="fas fa-cut about-facility__icon"></i>
+            <h3>Khu cắt tỉa</h3>
+            <p>Bàn grooming chuyên nghiệp, kéo và dụng cụ Nhật/Hàn. Ánh sáng đầy đủ, thoáng mát. Mỗi bàn có ổ cắm riêng cho máy cạo.</p>
+          </div>
+          <div class="about-facility">
+            <i class="fas fa-video about-facility__icon"></i>
+            <h3>Camera 24/7</h3>
+            <p>Hệ thống camera HD tại khu chăm sóc. Chủ nuôi xem trực tiếp qua app khi bé đang làm dịch vụ. Lưu trữ 30 ngày để tra cứu nếu cần.</p>
+          </div>
+          <div class="about-facility">
+            <i class="fas fa-bed about-facility__icon"></i>
+            <h3>Khu lưu trú</h3>
+            <p>Phòng riêng cho chó/mèo, có điều hòa, chuồng sạch sẽ. Nhân viên túc trực 24/7, có camera theo dõi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Đánh giá khách hàng -->
+    <section class="section about-testimonials">
+      <div class="container">
+        <div class="about-section__header">
+          <span class="about-badge"><i class="fas fa-quote-right"></i> Đánh giá</span>
+          <h2 class="about-section__title">Khách hàng nói gì về chúng tôi</h2>
+        </div>
+        <div class="about-testimonials__grid">
+          <div class="about-testimonial">
+            <div class="about-testimonial__stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p class="about-testimonial__text">&quot;Spa xong bé nhà mình thơm, lông mượt. Nhân viên rất nhiệt tình! Cảm ơn anh Tuấn và team. Mình sẽ giới thiệu cho bạn bè.&quot;</p>
+            <div class="about-testimonial__author">
+              <strong>Chị Mai Anh</strong> — Bé Cún
+            </div>
+          </div>
+          <div class="about-testimonial">
+            <div class="about-testimonial__stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p class="about-testimonial__text">&quot;Lần đầu đưa Tôm đi spa, bé hợp tác lắm vì nhân viên biết cách xử lý mèo nhát. Sẽ quay lại định kỳ.&quot;</p>
+            <div class="about-testimonial__author">
+              <strong>Anh Hoàng</strong> — Mèo Tôm
+            </div>
+          </div>
+          <div class="about-testimonial">
+            <div class="about-testimonial__stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p class="about-testimonial__text">&quot;Gói spa toàn diện đáng đồng tiền. Milu về nhà vui lắm, mình xem camera thấy bé được chăm sóc rất cẩn thận.&quot;</p>
+            <div class="about-testimonial__author">
+              <strong>Chị Linh</strong> — Milu
+            </div>
+          </div>
+          <div class="about-testimonial">
+            <div class="about-testimonial__stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p class="about-testimonial__text">&quot;Dịch vụ đưa đón tiện lợi, mình bận đi làm không có thời gian đưa đón. Gửi bé ở khách sạn 3 ngày cũng yên tâm.&quot;</p>
+            <div class="about-testimonial__author">
+              <strong>Anh Nam</strong> — Luna
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Đối tác & Thương hiệu -->
+    <section class="section about-partners">
+      <div class="container">
+        <div class="about-section__header">
+          <span class="about-badge"><i class="fas fa-handshake"></i> Đối tác</span>
+          <h2 class="about-section__title">Thương hiệu uy tín chúng tôi hợp tác</h2>
+          <p class="about-section__sub">Sản phẩm từ Royal Canin, Pedigree, Whiskas, Hills, Organic Pet, PetSafe — cam kết chính hãng.</p>
+        </div>
+        <div class="about-partners__list">
+          <span class="about-partner">Royal Canin</span>
+          <span class="about-partner">Pedigree</span>
+          <span class="about-partner">Whiskas</span>
+          <span class="about-partner">Hills</span>
+          <span class="about-partner">Organic Pet</span>
+          <span class="about-partner">PetSafe</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section about-faq">
+      <div class="container">
+        <div class="about-section__header">
+          <span class="about-badge"><i class="fas fa-question-circle"></i> FAQ</span>
+          <h2 class="about-section__title">Câu hỏi thường gặp</h2>
+        </div>
+        <div class="about-faq__list">
+          <div class="about-faq__item">
+            <h4>Đặt lịch có cần đặt cọc không?</h4>
+            <p>Không. Bạn chỉ thanh toán khi hoàn thành dịch vụ. Đặt lịch qua website hoặc hotline đều miễn phí.</p>
+          </div>
+          <div class="about-faq__item">
+            <h4>Có đưa đón thú cưng không?</h4>
+            <p>Có. Chúng tôi hỗ trợ đưa đón trong bán kính 5km với phí 30.000đ/lượt. Trên 5km tính theo km.</p>
+          </div>
+          <div class="about-faq__item">
+            <h4>Chủ nuôi có thể xem camera khi bé đang làm dịch vụ không?</h4>
+            <p>Có. Bạn nhận link xem trực tiếp qua app/Zalo khi đưa bé. Camera HD 24/7, lưu trữ 30 ngày.</p>
+          </div>
+          <div class="about-faq__item">
+            <h4>Có dịch vụ cho mèo không?</h4>
+            <p>Có. Chúng tôi có gói riêng cho mèo với không gian yên tĩnh, nhân viên được đào tạo xử lý mèo nhát/stress.</p>
+          </div>
+          <div class="about-faq__item">
+            <h4>Giờ làm việc của Pet Spa &amp; Shop?</h4>
+            <p>8:00 – 18:00 hàng ngày, kể cả cuối tuần. Khách sạn thú cưng và camera giám sát hoạt động 24/7.</p>
+          </div>
+          <div class="about-faq__item">
+            <h4>Chính sách đổi trả sản phẩm tại cửa hàng?</h4>
+            <p>Sản phẩm chưa mở seal, đổi trả trong 7 ngày. Sản phẩm đã mở dùng, hỗ trợ đổi nếu lỗi từ nhà sản xuất.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Thông tin liên hệ & Giờ làm việc -->
+    <section class="section about-contact-info">
+      <div class="container">
+        <div class="about-section__header">
+          <span class="about-badge"><i class="fas fa-info-circle"></i> Thông tin</span>
+          <h2 class="about-section__title">Liên hệ &amp; Giờ làm việc</h2>
+        </div>
+        <div class="about-contact-info__grid">
+          <div class="about-contact-info__card">
+            <i class="fas fa-map-marker-alt"></i>
+            <h4>Địa chỉ</h4>
+            <p>123 Đường ABC, Quận 1, TP. Hồ Chí Minh</p>
+            <p class="about-contact-info__note">Gần bến xe buýt, có chỗ để xe máy ô tô</p>
+          </div>
+          <div class="about-contact-info__card">
+            <i class="fas fa-clock"></i>
+            <h4>Giờ làm việc</h4>
+            <p>8:00 – 18:00 hàng ngày</p>
+            <p class="about-contact-info__note">Kể cả thứ 7, Chủ nhật và ngày lễ</p>
+          </div>
+          <div class="about-contact-info__card">
+            <i class="fas fa-phone"></i>
+            <h4>Hotline</h4>
+            <p>0900 123 456</p>
+            <p class="about-contact-info__note">Hỗ trợ đặt lịch, tư vấn 24/7</p>
+          </div>
+          <div class="about-contact-info__card">
+            <i class="fas fa-envelope"></i>
+            <h4>Email</h4>
+            <p>hello@petspa.vn</p>
+            <p class="about-contact-info__note">Phản hồi trong 24 giờ</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tại sao chọn chúng tôi -->
+    <section class="section about-why">
+      <div class="container">
+        <div class="about-section__header">
+          <span class="about-badge">Lý do chọn chúng tôi</span>
+          <h2 class="about-section__title">Tại sao hàng nghìn chủ nuôi tin tưởng Pet Spa & Shop</h2>
+        </div>
+        <div class="about-why__grid">
+          <div class="about-why__item">
+            <i class="fas fa-shield-alt about-why__icon"></i>
+            <h3>An toàn tuyệt đối</h3>
+            <p>Quy trình vệ sinh, khử khuẩn nghiêm ngặt. Sản phẩm được lựa chọn kỹ theo từng loại da lông. Thú cưng được kiểm tra sơ bộ trước khi chăm sóc để tránh rủi ro.</p>
+          </div>
+          <div class="about-why__item">
+            <i class="fas fa-clock about-why__icon"></i>
+            <h3>Đặt lịch linh hoạt</h3>
+            <p>Đặt lịch online nhanh chóng, chọn ngày giờ phù hợp. Làm việc từ 8h–18h hàng ngày, hỗ trợ đặt trước để không phải chờ đợi.</p>
+          </div>
+          <div class="about-why__item">
+            <i class="fas fa-hand-holding-heart about-why__icon"></i>
+            <h3>Chăm sóc cá nhân hóa</h3>
+            <p>Mỗi bé có nhu cầu và tính cách khác nhau. Chúng tôi ghi nhận ghi chú từ chủ nuôi và điều chỉnh cách tiếp cận để thú cưng thoải mái nhất.</p>
+          </div>
+          <div class="about-why__item">
+            <i class="fas fa-award about-why__icon"></i>
+            <h3>Bảo hành hài lòng</h3>
+            <p>Nếu bạn hoặc bé cưng chưa hài lòng với kết quả, chúng tôi sẵn sàng điều chỉnh hoặc bù trừ trong khuôn khổ chính sách. Sự hài lòng của bạn là thước đo thành công của chúng tôi.</p>
+          </div>
+          <div class="about-why__item">
+            <i class="fas fa-tags about-why__icon"></i>
+            <h3>Giá minh bạch</h3>
+            <p>Bảng giá công khai trên website. Không phát sinh ẩn, không ép mua thêm. Tư vấn dịch vụ phù hợp với nhu cầu và túi tiền của bạn.</p>
+          </div>
+          <div class="about-why__item">
+            <i class="fas fa-certificate about-why__icon"></i>
+            <h3>Chứng chỉ &amp; đào tạo</h3>
+            <p>Đội ngũ có chứng chỉ Grooming quốc tế, được đào tạo định kỳ về kỹ thuật mới, vệ sinh và ứng xử với thú cưng.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cam kết -->
+    <section class="section about-commitment">
+      <div class="container">
+        <div class="about-commitment__box">
+          <div class="about-commitment__content">
+            <h2 class="about-commitment__title">Cam kết của chúng tôi với bạn</h2>
+            <p>Chúng tôi cam kết mang đến dịch vụ chất lượng cao, giá cả minh bạch và thái độ phục vụ tận tâm. Mỗi bé cưng đến với Pet Spa &amp; Shop đều được đối xử bằng sự tôn trọng và yêu thương. Chúng tôi không sử dụng sản phẩm kém chất lượng, không ép khách mua thêm, và luôn sẵn sàng lắng nghe phản hồi. Nếu bạn hoặc bé cưng chưa hài lòng, chúng tôi cam kết điều chỉnh hoặc bù trừ trong 7 ngày. Chúng tôi không ngừng học hỏi, cải tiến để xứng đáng với niềm tin bạn đã trao. Cảm ơn bạn đã đồng hành cùng chúng tôi trên hành trình chăm sóc thú cưng.</p>
+            <a href="contact.html" class="btn-modern btn-modern--primary"><i class="fas fa-paper-plane"></i> Liên hệ với chúng tôi</a>
+          </div>
+          <div class="about-commitment__image">
+            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=85" alt="Pet Spa - Đội ngũ chuyên nghiệp">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Pet Spa & Shop</div>
+          <p class="footer__text">Spa thú cưng chuyên nghiệp, cửa hàng phụ kiện và thức ăn chất lượng. Cam kết mang lại sự hài lòng cho bạn và thú cưng.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Zalo"><i class="fas fa-phone"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên kết</h4>
+          <ul class="footer__links">
+            <li><a href="services.html" class="footer__link">Dịch vụ</a></li>
+            <li><a href="shop.html" class="footer__link">Cửa hàng</a></li>
+            <li><a href="booking.html" class="footer__link">Đặt lịch</a></li>
+            <li><a href="about.html" class="footer__link">Về chúng tôi</a></li>
+            <li><a href="contact.html" class="footer__link">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên hệ</h4>
+          <ul class="footer__links">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</li>
+            <li><i class="fas fa-phone"></i> 0900 123 456</li>
+            <li><i class="fas fa-envelope"></i> hello@petspa.vn</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Đăng ký nhận tin</h4>
+          <form class="footer__newsletter" id="newsletterForm">
+            <div class="footer__input-wrap">
+              <input type="email" class="footer__input" name="email" placeholder="Email của bạn" required>
+              <button type="submit" class="btn btn--primary">Gửi</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Pet Spa & Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/about.js"></script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Đặt lịch spa thú cưng - Pet Spa & Shop">
+  <title>Đặt lịch - Pet Spa & Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/booking.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">
+        <span class="header__logo-icon"><i class="fas fa-paw"></i></span>
+        PETCARE SPA
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link" data-page="index.html">Trang chủ</a></li>
+          <li><a href="services.html" class="nav__link" data-page="services.html">Dịch vụ</a></li>
+          <li><a href="shop.html" class="nav__link" data-page="shop.html">Cửa hàng</a></li>
+          <li><a href="booking.html" class="nav__link nav__link--active" data-page="booking.html">Đặt lịch</a></li>
+          <li><a href="about.html" class="nav__link" data-page="about.html">Về chúng tôi</a></li>
+          <li><a href="contact.html" class="nav__link" data-page="contact.html">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <div class="header__user-wrap">
+          <button type="button" class="header__icon-btn header__user-btn" aria-expanded="false" aria-haspopup="true" title="Tài khoản">
+            <i class="fas fa-user"></i>
+          </button>
+          <div class="header__user-dropdown" id="userDropdown" aria-hidden="true"></div>
+        </div>
+        <a href="cart.html" class="header__icon-btn header__cart-wrap">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="header__cart-badge cart-count" style="display:none">0</span>
+        </a>
+        <button type="button" class="header__menu-toggle" aria-label="Mở menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" aria-hidden="true"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__title">Menu</span>
+      <button type="button" class="mobile-menu__close" aria-label="Đóng menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link"><i class="fas fa-home"></i><span>Trang chủ</span></a>
+      <a href="services.html" class="mobile-menu__link"><i class="fas fa-spa"></i><span>Dịch vụ</span></a>
+      <a href="shop.html" class="mobile-menu__link"><i class="fas fa-shopping-bag"></i><span>Cửa hàng</span></a>
+      <a href="booking.html" class="mobile-menu__link"><i class="fas fa-calendar-check"></i><span>Đặt lịch</span></a>
+      <a href="about.html" class="mobile-menu__link"><i class="fas fa-paw"></i><span>Về chúng tôi</span></a>
+      <a href="contact.html" class="mobile-menu__link"><i class="fas fa-envelope"></i><span>Liên hệ</span></a>
+    </nav>
+  </div>
+
+  <main class="page-main page-main--booking">
+    <section class="booking-hero">
+      <div class="booking-hero__bg"></div>
+      <div class="container booking-hero__inner">
+        <h1 class="booking-hero__title">Đặt lịch Spa</h1>
+        <p class="booking-hero__subtitle">Chọn dịch vụ, ngày giờ và điền thông tin. Chúng tôi sẽ xác nhận qua điện thoại trong vòng 24h.</p>
+      </div>
+    </section>
+
+    <section class="section section--booking">
+      <div class="container container--booking">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item"><a href="index.html" class="breadcrumb__link">Trang chủ</a></li>
+            <li class="breadcrumb__item"><span class="breadcrumb__current">Đặt lịch</span></li>
+          </ol>
+        </nav>
+        <!-- Stepper -->
+        <div class="booking-stepper" id="bookingSteps">
+          <div class="booking-stepper__line" aria-hidden="true"></div>
+          <div class="booking-step active" data-step="1">
+            <span class="booking-step__circle"><span class="booking-step__num">1</span></span>
+            <span class="booking-step__label"><i class="fas fa-spa booking-step__icon"></i> Dịch vụ & Thú cưng</span>
+          </div>
+          <div class="booking-step" data-step="2">
+            <span class="booking-step__circle"><span class="booking-step__num">2</span></span>
+            <span class="booking-step__label"><i class="fas fa-calendar-alt booking-step__icon"></i> Ngày & Giờ</span>
+          </div>
+          <div class="booking-step" data-step="3">
+            <span class="booking-step__circle"><span class="booking-step__num">3</span></span>
+            <span class="booking-step__label"><i class="fas fa-user booking-step__icon"></i> Thông tin</span>
+          </div>
+          <div class="booking-step" data-step="4">
+            <span class="booking-step__circle"><span class="booking-step__num">4</span></span>
+            <span class="booking-step__label"><i class="fas fa-check-circle booking-step__icon"></i> Xác nhận</span>
+          </div>
+        </div>
+
+        <form class="booking-form" id="bookingForm" novalidate>
+          <!-- Step 1: Service & Pet -->
+          <div class="booking-panel active" data-panel="1">
+            <div class="booking-panel__head">
+              <h2 class="booking-panel__title">Chọn dịch vụ và thú cưng</h2>
+              <p class="booking-panel__desc">Chọn gói dịch vụ phù hợp và thông tin cơ bản của thú cưng để chúng tôi chuẩn bị tốt nhất.</p>
+            </div>
+            <div class="booking-panel__body booking-panel__grid">
+              <div class="form-group form-group--full">
+                <label for="bookingService"><i class="fas fa-spa form-label-icon"></i> Dịch vụ <span class="required">*</span></label>
+                <select id="bookingService" name="service" required>
+                  <option value="">-- Chọn dịch vụ --</option>
+                </select>
+                <span class="form-error" id="errorService"></span>
+              </div>
+              <div class="form-group form-group--full">
+                <label><i class="fas fa-paw form-label-icon"></i> Loại thú cưng <span class="required">*</span></label>
+                <div class="form-radio-group form-radio-group--cards">
+                  <label class="form-radio form-radio--card">
+                    <input type="radio" name="petType" value="dog" required>
+                    <span class="form-radio__content"><i class="fas fa-dog"></i> Chó</span>
+                  </label>
+                  <label class="form-radio form-radio--card">
+                    <input type="radio" name="petType" value="cat">
+                    <span class="form-radio__content"><i class="fas fa-cat"></i> Mèo</span>
+                  </label>
+                </div>
+                <span class="form-error" id="errorPetType"></span>
+              </div>
+              <div class="form-group">
+                <label for="petWeight"><i class="fas fa-weight form-label-icon"></i> Cân nặng (kg) <span class="required">*</span></label>
+                <input type="number" id="petWeight" name="petWeight" min="0.5" max="100" step="0.5" placeholder="VD: 5" required>
+                <span class="form-hint-inline">Từ 0.5 – 100 kg</span>
+                <span class="form-error" id="errorPetWeight"></span>
+              </div>
+              <div class="form-group">
+                <label for="petName"><i class="fas fa-heart form-label-icon"></i> Tên thú cưng <span class="required">*</span></label>
+                <input type="text" id="petName" name="petName" placeholder="VD: Cún, Miu..." required>
+                <span class="form-error" id="errorPetName"></span>
+              </div>
+            </div>
+            <div class="booking-panel__actions">
+              <button type="button" class="btn-modern btn-modern--primary" data-next="2">Tiếp theo <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Step 2: Date & Time -->
+          <div class="booking-panel" data-panel="2">
+            <div class="booking-panel__head">
+              <h2 class="booking-panel__title">Chọn ngày và giờ</h2>
+              <p class="booking-panel__desc">Chọn khung giờ phù hợp. Giờ làm việc: 8:00 – 18:00, mỗi slot 30 phút.</p>
+            </div>
+            <div class="booking-panel__body booking-panel__grid booking-panel__grid--date">
+              <div class="form-group">
+                <label for="bookingDate"><i class="fas fa-calendar-day form-label-icon"></i> Ngày <span class="required">*</span></label>
+                <input type="date" id="bookingDate" name="date" required>
+                <span class="form-error" id="errorDate"></span>
+              </div>
+              <div class="form-group">
+                <label for="bookingTime"><i class="fas fa-clock form-label-icon"></i> Giờ <span class="required">*</span></label>
+                <select id="bookingTime" name="time" required>
+                  <option value="">-- Chọn giờ --</option>
+                </select>
+                <span class="form-error" id="errorTime"></span>
+              </div>
+            </div>
+            <p class="form-hint"><i class="fas fa-info-circle"></i> Chúng tôi sẽ kiểm tra trùng lịch và gọi xác nhận qua điện thoại.</p>
+            <div class="booking-panel__actions">
+              <button type="button" class="btn-modern btn-modern--secondary" data-prev="1"><i class="fas fa-arrow-left"></i> Quay lại</button>
+              <button type="button" class="btn-modern btn-modern--primary" data-next="3">Tiếp theo <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Step 3: Owner info -->
+          <div class="booking-panel" data-panel="3">
+            <div class="booking-panel__head">
+              <h2 class="booking-panel__title">Thông tin chủ nuôi</h2>
+              <p class="booking-panel__desc">Để chúng tôi liên hệ xác nhận và hỗ trợ đưa đón nếu cần.</p>
+            </div>
+            <div class="booking-panel__body booking-panel__grid">
+              <div class="form-group">
+                <label for="ownerName"><i class="fas fa-user form-label-icon"></i> Họ tên <span class="required">*</span></label>
+                <input type="text" id="ownerName" name="ownerName" placeholder="Họ và tên" required>
+                <span class="form-error" id="errorOwnerName"></span>
+              </div>
+              <div class="form-group">
+                <label for="ownerPhone"><i class="fas fa-phone form-label-icon"></i> Số điện thoại <span class="required">*</span></label>
+                <input type="tel" id="ownerPhone" name="ownerPhone" placeholder="0900 123 456" required>
+                <span class="form-error" id="errorOwnerPhone"></span>
+              </div>
+              <div class="form-group form-group--full">
+                <label for="ownerEmail"><i class="fas fa-envelope form-label-icon"></i> Email <span class="required">*</span></label>
+                <input type="email" id="ownerEmail" name="ownerEmail" placeholder="email@example.com" required>
+                <span class="form-error" id="errorOwnerEmail"></span>
+              </div>
+              <div class="form-group form-group--full">
+                <label for="ownerAddress"><i class="fas fa-map-marker-alt form-label-icon"></i> Địa chỉ <span class="required">*</span></label>
+                <textarea id="ownerAddress" name="ownerAddress" rows="2" placeholder="Địa chỉ giao nhận / đưa đón" required></textarea>
+                <span class="form-error" id="errorOwnerAddress"></span>
+              </div>
+              <div class="form-group form-group--full">
+                <label for="note"><i class="fas fa-sticky-note form-label-icon"></i> Ghi chú</label>
+                <textarea id="note" name="note" rows="2" placeholder="Ghi chú đặc biệt (dị ứng, tính cách thú cưng, yêu cầu riêng...)"></textarea>
+              </div>
+            </div>
+            <div class="booking-panel__actions">
+              <button type="button" class="btn-modern btn-modern--secondary" data-prev="2"><i class="fas fa-arrow-left"></i> Quay lại</button>
+              <button type="button" class="btn-modern btn-modern--primary" data-next="4">Tiếp theo <i class="fas fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Step 4: Confirm -->
+          <div class="booking-panel" data-panel="4">
+            <div class="booking-panel__head">
+              <h2 class="booking-panel__title">Xác nhận đặt lịch</h2>
+              <p class="booking-panel__desc">Kiểm tra thông tin và nhấn xác nhận để hoàn tất.</p>
+            </div>
+            <div class="booking-summary" id="bookingSummary">
+              <!-- Filled by JS -->
+            </div>
+            <div class="booking-panel__actions">
+              <button type="button" class="btn-modern btn-modern--secondary" data-prev="3"><i class="fas fa-arrow-left"></i> Quay lại</button>
+              <button type="submit" class="btn-modern btn-modern--primary btn-modern--lg"><i class="fas fa-check"></i> Xác nhận đặt lịch</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Pet Spa & Shop</div>
+          <p class="footer__text">Spa thú cưng chuyên nghiệp, cửa hàng phụ kiện và thức ăn chất lượng. Cam kết mang lại sự hài lòng cho bạn và thú cưng.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Zalo"><i class="fas fa-phone"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên kết</h4>
+          <ul class="footer__links">
+            <li><a href="services.html" class="footer__link">Dịch vụ</a></li>
+            <li><a href="shop.html" class="footer__link">Cửa hàng</a></li>
+            <li><a href="booking.html" class="footer__link">Đặt lịch</a></li>
+            <li><a href="about.html" class="footer__link">Về chúng tôi</a></li>
+            <li><a href="contact.html" class="footer__link">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên hệ</h4>
+          <ul class="footer__links">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</li>
+            <li><i class="fas fa-phone"></i> 0900 123 456</li>
+            <li><i class="fas fa-envelope"></i> hello@petspa.vn</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Đăng ký nhận tin</h4>
+          <form class="footer__newsletter" id="newsletterForm">
+            <div class="footer__input-wrap">
+              <input type="email" class="footer__input" name="email" placeholder="Email của bạn" required>
+              <button type="submit" class="btn btn--primary">Gửi</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Pet Spa & Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

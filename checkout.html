@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thanh toán - Pet Spa & Shop">
+  <title>Thanh toán - Pet Spa & Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/checkout.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">
+        <span class="header__logo-icon"><i class="fas fa-paw"></i></span>
+        PETCARE SPA
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link" data-page="index.html">Trang chủ</a></li>
+          <li><a href="services.html" class="nav__link" data-page="services.html">Dịch vụ</a></li>
+          <li><a href="shop.html" class="nav__link" data-page="shop.html">Cửa hàng</a></li>
+          <li><a href="booking.html" class="nav__link" data-page="booking.html">Đặt lịch</a></li>
+          <li><a href="about.html" class="nav__link" data-page="about.html">Về chúng tôi</a></li>
+          <li><a href="contact.html" class="nav__link" data-page="contact.html">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <div class="header__user-wrap">
+        <button type="button" class="header__icon-btn header__user-btn" aria-expanded="false" aria-haspopup="true" title="Tài khoản">
+          <i class="fas fa-user"></i>
+        </button>
+        <div class="header__user-dropdown" id="userDropdown" aria-hidden="true"></div>
+      </div>
+        <a href="cart.html" class="header__icon-btn header__cart-wrap">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="header__cart-badge cart-count" style="display:none">0</span>
+        </a>
+        <button type="button" class="header__menu-toggle" aria-label="Mở menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" aria-hidden="true"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__title">Menu</span>
+      <button type="button" class="mobile-menu__close" aria-label="Đóng menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link"><i class="fas fa-home"></i><span>Trang chủ</span></a>
+      <a href="services.html" class="mobile-menu__link"><i class="fas fa-spa"></i><span>Dịch vụ</span></a>
+      <a href="shop.html" class="mobile-menu__link"><i class="fas fa-shopping-bag"></i><span>Cửa hàng</span></a>
+      <a href="booking.html" class="mobile-menu__link"><i class="fas fa-calendar-check"></i><span>Đặt lịch</span></a>
+      <a href="about.html" class="mobile-menu__link"><i class="fas fa-paw"></i><span>Về chúng tôi</span></a>
+      <a href="contact.html" class="mobile-menu__link"><i class="fas fa-envelope"></i><span>Liên hệ</span></a>
+    </nav>
+  </div>
+
+  <main class="page-main checkout-page">
+    <div class="checkout-layout">
+      <header class="checkout-header">
+        <a href="cart.html" class="checkout-header__back"><i class="fas fa-arrow-left"></i> Giỏ hàng</a>
+        <h1 class="checkout-header__title">Thanh toán</h1>
+        <div class="checkout-progress">
+          <span class="checkout-progress__dot checkout-progress__dot--done"></span>
+          <span class="checkout-progress__line checkout-progress__line--active"></span>
+          <span class="checkout-progress__dot checkout-progress__dot--active"></span>
+          <span class="checkout-progress__line"></span>
+          <span class="checkout-progress__dot"></span>
+        </div>
+      </header>
+
+      <div class="checkout-body">
+        <div class="container checkout-container">
+          <div id="checkoutEmpty" class="checkout-empty" style="display: none;">
+            <div class="checkout-empty__visual">
+              <i class="fas fa-shopping-basket"></i>
+            </div>
+            <h2 class="checkout-empty__title">Giỏ hàng trống</h2>
+            <p class="checkout-empty__text">Chưa có sản phẩm nào. Khám phá cửa hàng để chọn đồ cho thú cưng nhé!</p>
+            <a href="shop.html" class="checkout-empty__btn"><i class="fas fa-paw"></i> Mua sắm ngay</a>
+          </div>
+
+          <div class="checkout-grid" id="checkoutWrap">
+            <form class="checkout-form" id="checkoutForm">
+              <section class="checkout-block checkout-block--shipping">
+                <h2 class="checkout-block__title">Thông tin giao hàng</h2>
+                <div class="checkout-block__body">
+                  <div class="checkout-field">
+                    <label for="checkoutName">Họ tên <span class="required">*</span></label>
+                    <input type="text" id="checkoutName" name="name" required placeholder="Nguyễn Văn A">
+                    <span class="form-error" id="errorName"></span>
+                  </div>
+                  <div class="checkout-field checkout-field--half">
+                    <label for="checkoutPhone">Số điện thoại <span class="required">*</span></label>
+                    <input type="tel" id="checkoutPhone" name="phone" required placeholder="0900 123 456">
+                    <span class="form-error" id="errorPhone"></span>
+                  </div>
+                  <div class="checkout-field checkout-field--half">
+                    <label for="checkoutEmail">Email <span class="required">*</span></label>
+                    <input type="email" id="checkoutEmail" name="email" required placeholder="email@example.com">
+                    <span class="form-error" id="errorEmail"></span>
+                  </div>
+                  <div class="checkout-field">
+                    <label for="checkoutAddress">Địa chỉ <span class="required">*</span></label>
+                    <textarea id="checkoutAddress" name="address" rows="2" required placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành"></textarea>
+                    <span class="form-error" id="errorAddress"></span>
+                  </div>
+                </div>
+              </section>
+
+              <section class="checkout-block">
+                <h2 class="checkout-block__title">Phương thức thanh toán</h2>
+                <div class="checkout-block__body">
+                  <div class="checkout-payment__group">
+                    <label class="checkout-payment-opt">
+                      <input type="radio" name="payment" value="cod" id="paymentCod" checked>
+                      <span class="checkout-payment-opt__box">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span class="checkout-payment-opt__name">COD</span>
+                        <span class="checkout-payment-opt__hint">Thanh toán khi nhận</span>
+                      </span>
+                    </label>
+                    <label class="checkout-payment-opt">
+                      <input type="radio" name="payment" value="transfer" id="paymentTransfer">
+                      <span class="checkout-payment-opt__box">
+                        <i class="fas fa-university"></i>
+                        <span class="checkout-payment-opt__name">Chuyển khoản</span>
+                        <span class="checkout-payment-opt__hint">Thanh toán qua ngân hàng</span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="checkout-payment-online-wrap" id="checkoutPaymentOnlineWrap" aria-hidden="true">
+                    <p class="checkout-payment-online-title">Ví điện tử & Thẻ</p>
+                    <div class="checkout-payment-grid">
+                      <label class="checkout-payment-card checkout-payment-card--vnpay">
+                        <input type="radio" name="payment" value="vnpay">
+                        <span class="checkout-payment-card__inner"><i class="fas fa-credit-card"></i> VNPay</span>
+                      </label>
+                      <label class="checkout-payment-card checkout-payment-card--momo">
+                        <input type="radio" name="payment" value="momo">
+                        <span class="checkout-payment-card__inner"><i class="fas fa-mobile-alt"></i> MoMo</span>
+                      </label>
+                      <label class="checkout-payment-card checkout-payment-card--zalopay">
+                        <input type="radio" name="payment" value="zalopay">
+                        <span class="checkout-payment-card__inner"><i class="fas fa-wallet"></i> ZaloPay</span>
+                      </label>
+                      <label class="checkout-payment-card checkout-payment-card--card">
+                        <input type="radio" name="payment" value="card">
+                        <span class="checkout-payment-card__inner"><i class="fas fa-credit-card"></i> Thẻ</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="checkout-bank-info" id="checkoutBankInfo" aria-hidden="true">
+                    <div class="checkout-bank-info__card">
+                      <p class="checkout-bank-info__title"><i class="fas fa-university"></i> Vietcombank</p>
+                      <div class="checkout-bank-info__row">
+                        <span>STK</span>
+                        <strong class="checkout-bank-info__copy" data-copy="1234567890">1234567890 <i class="fas fa-copy"></i></strong>
+                      </div>
+                      <div class="checkout-bank-info__row">
+                        <span>Chủ TK</span>
+                        <strong>PETCARE SPA</strong>
+                      </div>
+                      <p class="checkout-bank-info__note">Nội dung: Mã đơn - Tên người đặt</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <div class="checkout-form__actions">
+                <a href="cart.html" class="checkout-btn checkout-btn--ghost"><i class="fas fa-arrow-left"></i> Quay lại</a>
+                <button type="submit" class="checkout-btn checkout-btn--primary">
+                  <i class="fas fa-lock"></i> Xác nhận đặt hàng
+                </button>
+              </div>
+            </form>
+
+            <aside class="checkout-order" id="checkoutOrderSummary">
+              <div class="checkout-order__header">
+                <h3>Đơn hàng</h3>
+                <span class="checkout-order__count" id="checkoutItemCount">0 sp</span>
+              </div>
+              <div class="checkout-order__list" id="checkoutOrderList"></div>
+              <div class="checkout-order__promo" id="checkoutPromoWrap">
+                <div class="checkout-order__promo-row">
+                  <input type="text" id="checkoutPromoCode" placeholder="Mã giảm giá" class="checkout-order__promo-input">
+                  <button type="button" id="checkoutPromoApply" class="checkout-order__promo-btn">Áp dụng</button>
+                </div>
+                <span class="checkout-order__promo-msg" id="checkoutPromoMsg"></span>
+                <p class="checkout-order__promo-hint" id="checkoutPromoHint"></p>
+              </div>
+              <div class="checkout-order__totals">
+                <div class="checkout-order__row checkout-order__row--sub">
+                  <span>Tạm tính</span>
+                  <span id="checkoutSubtotal">0đ</span>
+                </div>
+                <div class="checkout-order__row checkout-order__row--discount" id="checkoutTierRow" style="display:none">
+                  <span><i class="fas fa-star"></i> Khách quen</span>
+                  <span id="checkoutTierDiscount">-0đ</span>
+                </div>
+                <div class="checkout-order__row checkout-order__row--discount" id="checkoutPromoRow" style="display:none">
+                  <span><i class="fas fa-tag"></i> Mã giảm</span>
+                  <span id="checkoutPromoDiscount">-0đ</span>
+                </div>
+              </div>
+              <div class="checkout-order__total">
+                <span>Tổng thanh toán</span>
+                <span id="checkoutTotal">0đ</span>
+              </div>
+              <p class="checkout-order__secure"><i class="fas fa-shield-alt"></i> Thanh toán an toàn</p>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="payment-modal-overlay" id="paymentModalOverlay" aria-hidden="true">
+    <div class="payment-modal" role="dialog" aria-labelledby="paymentModalTitle">
+      <div class="payment-modal__body">
+        <div class="payment-modal__spinner" id="paymentModalSpinner">
+          <i class="fas fa-spinner fa-spin"></i>
+        </div>
+        <div class="payment-modal__success" id="paymentModalSuccess" aria-hidden="true">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h3 class="payment-modal__title" id="paymentModalTitle">Đang chuyển đến cổng thanh toán...</h3>
+        <p class="payment-modal__msg" id="paymentModalMsg">Vui lòng đợi trong giây lát.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Pet Spa & Shop</div>
+          <p class="footer__text">Spa thú cưng chuyên nghiệp, cửa hàng phụ kiện và thức ăn chất lượng. Cam kết mang lại sự hài lòng cho bạn và thú cưng.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Zalo"><i class="fas fa-phone"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên kết</h4>
+          <ul class="footer__links">
+            <li><a href="services.html" class="footer__link">Dịch vụ</a></li>
+            <li><a href="shop.html" class="footer__link">Cửa hàng</a></li>
+            <li><a href="booking.html" class="footer__link">Đặt lịch</a></li>
+            <li><a href="about.html" class="footer__link">Về chúng tôi</a></li>
+            <li><a href="contact.html" class="footer__link">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên hệ</h4>
+          <ul class="footer__links">
+            <li><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</li>
+            <li><i class="fas fa-phone"></i> 0900 123 456</li>
+            <li><i class="fas fa-envelope"></i> hello@petspa.vn</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Đăng ký nhận tin</h4>
+          <form class="footer__newsletter" id="newsletterForm">
+            <div class="footer__input-wrap">
+              <input type="email" class="footer__input" name="email" placeholder="Email của bạn" required>
+              <button type="submit" class="btn btn--primary">Gửi</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Pet Spa & Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>
