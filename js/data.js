@@ -14,7 +14,7 @@ const DATA = {
       priceDog: 150000,
       priceCat: 120000,
       duration: 60,
-      image: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600',
+      image: 'img/cat-tia-long.jpg',
       featured: true,
       category: 'grooming',
       petType: 'both'
@@ -27,7 +27,7 @@ const DATA = {
       priceDog: 120000,
       priceCat: 100000,
       duration: 45,
-      image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600',
+      image: 'img/tam-ve-sinh.jpg',
       featured: true,
       category: 'bath',
       petType: 'both'
@@ -40,7 +40,7 @@ const DATA = {
       priceDog: 350000,
       priceCat: 280000,
       duration: 120,
-      image: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600',
+      image: 'img/spa-toan-dien.jpg',
       featured: true,
       category: 'spa',
       petType: 'both'
@@ -54,7 +54,7 @@ const DATA = {
       priceCat: 180000,
       duration: 24,
       unit: 'ngày',
-      image: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=600',
+      image: 'img/khach-san-thu-cung.jpg',
       featured: true,
       category: 'hotel',
       petType: 'both'
@@ -67,7 +67,7 @@ const DATA = {
       priceDog: 180000,
       priceCat: 150000,
       duration: 30,
-      image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600',
+      image: 'img/ve-sinh-rang-mieng.jpg',
       featured: false,
       category: 'care',
       petType: 'both'
@@ -84,7 +84,7 @@ const DATA = {
       oldPrice: 120000,
       category: 'cham-soc',
       petType: 'both',
-      image: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400',
+      image: 'img/sua-tam-organic.jpg',
       rating: 4.8,
       bestSeller: true,
       description: 'Sữa tắm organic dịu nhẹ, không gây kích ứng da.'
@@ -96,7 +96,7 @@ const DATA = {
       price: 250000,
       category: 'thuc-an',
       petType: 'cho',
-      image: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400',
+      image: 'img/thuc-an-hat-premium-cho.jpg',
       rating: 4.9,
       bestSeller: true,
       description: 'Cân bằng dinh dưỡng, da lông bóng mượt.'
@@ -108,7 +108,7 @@ const DATA = {
       price: 150000,
       category: 'phu-kien',
       petType: 'cho',
-      image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400',
+      image: 'img/day-dat-da-cao-cap.jpg',
       rating: 4.7,
       bestSeller: true,
       description: 'Da thật, bền đẹp, nhiều màu.'
@@ -120,7 +120,7 @@ const DATA = {
       price: 65000,
       category: 'do-choi',
       petType: 'cho',
-      image: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400',
+      image: 'img/do-choi-gam-xuong.jpg',
       rating: 4.6,
       bestSeller: true,
       description: 'An toàn, giúp vệ sinh răng.'
@@ -132,7 +132,7 @@ const DATA = {
       price: 45000,
       category: 'cham-soc',
       petType: 'both',
-      image: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400',
+      image: 'img/ban-chai-long-mem.jpg',
       rating: 4.5,
       bestSeller: false,
       description: 'Chải lông mượt, không đau da.'
@@ -144,7 +144,7 @@ const DATA = {
       price: 180000,
       category: 'thuc-an',
       petType: 'meo',
-      image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400',
+      image: 'img/thuc-an-hat-cho-meo.jpg',
       rating: 4.8,
       bestSeller: true,
       description: 'Công thức cho mèo trưởng thành.'
@@ -156,7 +156,7 @@ const DATA = {
       price: 55000,
       category: 'phu-kien',
       petType: 'both',
-      image: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=400',
+      image: 'img/vong-co-deo-chuong.jpg',
       rating: 4.4,
       bestSeller: false,
       description: 'Nhẹ, đẹp, chuông inox.'
@@ -168,7 +168,7 @@ const DATA = {
       price: 35000,
       category: 'do-choi',
       petType: 'meo',
-      image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400',
+      image: 'img/cau-long-catnip.jpg',
       rating: 4.7,
       bestSeller: true,
       description: 'Mèo mê tít với catnip.'
@@ -181,7 +181,7 @@ const DATA = {
       oldPrice: 380000,
       category: 'phu-kien',
       petType: 'both',
-      image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400',
+      image: 'img/tui-van-chuyen-thu-cung.jpg',
       rating: 4.8,
       bestSeller: true,
       description: 'Túi thoáng khí, an toàn khi di chuyển.'
@@ -193,7 +193,7 @@ const DATA = {
       price: 28000,
       category: 'thuc-an',
       petType: 'meo',
-      image: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400',
+      image: 'img/pate-thit-ga-cho-meo.jpg',
       rating: 4.9,
       bestSeller: true,
       description: 'Pate mềm, giàu đạm, mèo thích mê.'
@@ -205,7 +205,7 @@ const DATA = {
       price: 75000,
       category: 'phu-kien',
       petType: 'both',
-      image: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400',
+      image: 'img/bat-an-inox-chong-truot.jpg',
       rating: 4.7,
       bestSeller: false,
       description: 'Bát inox bền, đáy cao su chống trượt.'
@@ -218,7 +218,7 @@ const DATA = {
       oldPrice: 65000,
       category: 'thuc-an',
       petType: 'cho',
-      image: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400',
+      image: 'img/snack-say-kho-cho-cho.jpg',
       rating: 4.8,
       bestSeller: true,
       description: 'Snack thịt bò sấy, thơm ngon.'
@@ -230,7 +230,7 @@ const DATA = {
       price: 42000,
       category: 'cham-soc',
       petType: 'meo',
-      image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400',
+      image: 'img/luoc-chai-long-meo.jpg',
       rating: 4.5,
       bestSeller: false,
       description: 'Lược thép không gỉ, nhẹ tay.'
@@ -242,7 +242,7 @@ const DATA = {
       price: 125000,
       category: 'phu-kien',
       petType: 'cho',
-      image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400',
+      image: 'img/balo-dung-do-khi-dat-cho.jpg',
       rating: 4.6,
       bestSeller: false,
       description: 'Balo nhỏ gọn, nhiều ngăn.'
@@ -254,7 +254,7 @@ const DATA = {
       price: 195000,
       category: 'thuc-an',
       petType: 'cho',
-      image: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400',
+      image: 'img/thuc-an-hat-cho-cho-con.jpg',
       rating: 4.9,
       bestSeller: true,
       description: 'Công thức dinh dưỡng cho chó 2-12 tháng.'
@@ -266,7 +266,7 @@ const DATA = {
       price: 68000,
       category: 'cham-soc',
       petType: 'both',
-      image: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400',
+      image: 'img/xit-khu-mui-long-thu-cung.jpg',
       rating: 4.6,
       bestSeller: false,
       description: 'Khử mùi nhanh, an toàn không cồn.'
@@ -278,7 +278,7 @@ const DATA = {
       price: 25000,
       category: 'do-choi',
       petType: 'cho',
-      image: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400',
+      image: 'img/bong-tennis-cho-cho.jpg',
       rating: 4.7,
       bestSeller: true,
       description: 'Bóng cao su bền, dễ cầm ném.'
@@ -291,7 +291,7 @@ const DATA = {
       oldPrice: 105000,
       category: 'thuc-an',
       petType: 'meo',
-      image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400',
+      image: 'img/sua-bot-cho-meo-con.jpg',
       rating: 4.8,
       bestSeller: true,
       description: 'Thay thế sữa mẹ, giàu dinh dưỡng.'
@@ -303,7 +303,7 @@ const DATA = {
       price: 95000,
       category: 'phu-kien',
       petType: 'both',
-      image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400',
+      image: 'img/vong-co-led-an-toan-dem.webp',
       rating: 4.7,
       bestSeller: false,
       description: 'Đèn LED sáng, pin lâu, chống nước.'
@@ -315,7 +315,7 @@ const DATA = {
       price: 45000,
       category: 'do-choi',
       petType: 'meo',
-      image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400',
+      image: 'img/can-cau-moi-co-long-vu.jpg',
       rating: 4.8,
       bestSeller: true,
       description: 'Mèo thích đuổi bắt, vận động vui.'
@@ -339,9 +339,9 @@ const DATA = {
 
   // Team (Groomers)
   team: [
-    { id: 't1', name: 'Nguyễn Minh Tuấn', role: 'Senior Groomer', experience: '8 năm', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300' },
-    { id: 't2', name: 'Trần Thị Hương', role: 'Spa Specialist', experience: '6 năm', image: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=300' },
-    { id: 't3', name: 'Lê Văn Đức', role: 'Pet Stylist', experience: '5 năm', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300' }
+    { id: 't1', name: 'Nguyễn Ngọc Đô', role: 'Senior Groomer', experience: '8 năm', image: 'img/nnd.jpg' },
+    { id: 't2', name: 'Nguyễn Ngọc Thiện', role: 'Spa Specialist', experience: '6 năm', image: 'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=300' },
+    { id: 't3', name: 'Phạm Võ Thành Hưng', role: 'Pet Stylist', experience: '5 năm', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300' }
   ],
 
   // Testimonials
@@ -364,12 +364,12 @@ const DATA = {
 
   // Gallery images (before/after, thú cưng)
   gallery: [
-    { id: 'g1', src: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400', title: 'Sau tắm', category: 'after' },
-    { id: 'g2', src: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400', title: 'Cắt tỉa', category: 'grooming' },
-    { id: 'g3', src: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400', title: 'Spa', category: 'spa' },
-    { id: 'g4', src: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400', title: 'Mèo', category: 'cat' },
-    { id: 'g5', src: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=400', title: 'Vui vẻ', category: 'happy' },
-    { id: 'g6', src: 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400', title: 'Chăm sóc', category: 'care' }
+    { id: 'g1', src: 'img/sau-tam.jpg', title: 'Sau tắm', category: 'after' },
+    { id: 'g2', src: 'img/cat-tia.jpg', title: 'Cắt tỉa', category: 'grooming' },
+    { id: 'g3', src: 'img/spa.jpg', title: 'Spa', category: 'spa' },
+    { id: 'g4', src: 'img/meo.jpg', title: 'Mèo', category: 'cat' },
+    { id: 'g5', src: 'img/vui-ve.jpg', title: 'Vui vẻ', category: 'happy' },
+    { id: 'g6', src: 'img/cham-soc.jpg', title: 'Chăm sóc', category: 'care' }
   ],
 
   // Admin mặc định (để đăng nhập admin)
