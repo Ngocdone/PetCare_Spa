@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đơn hàng - Spapet Admin</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../../js/data.js"></script>
+    <script src="../admin-integration.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand">
+          <div class="sidebar__logo">SP</div>
+          <div>
+            <div class="sidebar__title">Spapet Admin</div>
+            <div class="sidebar__subtitle">Quản lý spa thú cưng</div>
+          </div>
+        </div>
+
+        <nav class="sidebar__nav">
+          <a href="../index.html" class="nav-item">
+            <span class="nav-item__icon">🏠</span>
+            <span>Tổng quan</span>
+          </a>
+          <a href="products.html" class="nav-item">
+            <span class="nav-item__icon">🐾</span>
+            <span>Sản phẩm</span>
+          </a>
+          <a href="categories.html" class="nav-item">
+            <span class="nav-item__icon">📂</span>
+            <span>Danh mục</span>
+          </a>
+          <a href="services.html" class="nav-item">
+            <span class="nav-item__icon">🧴</span>
+            <span>Dịch vụ spa</span>
+          </a>
+          <a href="orders.html" class="nav-item nav-item--active">
+            <span class="nav-item__icon">📦</span>
+            <span>Đơn hàng</span>
+          </a>
+          <a href="customers.html" class="nav-item">
+            <span class="nav-item__icon">👥</span>
+            <span>Khách hàng</span>
+          </a>
+          <a href="appointments.html" class="nav-item">
+            <span class="nav-item__icon">📅</span>
+            <span>Lịch hẹn</span>
+          </a>
+        </nav>
+
+        <div class="sidebar__footer">
+          <div class="user-mini">
+            <div class="user-mini__avatar">V</div>
+            <div>
+              <div class="user-mini__name">Admin</div>
+              <div class="user-mini__role">Quản trị viên</div>
+            </div>
+          </div>
+          <a href="../../index.html" class="nav-item" style="margin-top:8px;font-size:11px">🏠 Về trang chủ</a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar__left">
+            <button class="btn-icon mobile-toggle" id="mobile-toggle" aria-label="Mở menu">
+              ☰
+            </button>
+            <h1 class="topbar__title">Đơn hàng</h1>
+            <p class="topbar__subtitle">
+              Theo dõi trạng thái, thanh toán và kênh bán của từng đơn hàng.
+            </p>
+          </div>
+          <div class="topbar__actions">
+            <div class="search">
+              <span class="search__icon">🔍</span>
+              <input
+                type="text"
+                class="search__input"
+                id="orders-search"
+                placeholder="Tìm theo mã đơn, tên khách, số điện thoại..."
+              />
+            </div>
+            <button class="btn btn--ghost">Lọc nâng cao</button>
+            <a href="../../shop.html" class="btn btn--primary">+ Tạo đơn tại quầy</a>
+          </div>
+        </header>
+
+        <section class="section">
+          <div class="section__header">
+            <h2 class="section__title">Tổng quan đơn hàng hôm nay</h2>
+            <span class="section__hint">Số lượng theo từng trạng thái</span>
+          </div>
+          <div class="grid grid--stats">
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Tổng đơn</span>
+                <span class="badge badge--info">Cả online & tại quầy</span>
+              </div>
+              <div class="card__value" id="orders-total">0 đơn</div>
+              <div class="card__meta" id="orders-revenue">Doanh thu: 0 ₫</div>
+            </div>
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Đang xử lý</span>
+                <span class="badge badge--warning">Cần chú ý</span>
+              </div>
+              <div class="card__value" id="orders-pending">0 đơn</div>
+              <div class="card__meta">Chờ xác nhận / thanh toán</div>
+            </div>
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Đã hoàn thành</span>
+                <span class="badge badge--success">Đã thanh toán</span>
+              </div>
+              <div class="card__value" id="orders-completed">0 đơn</div>
+              <div class="card__meta">Đơn đã giao</div>
+            </div>
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Đã huỷ</span>
+                <span class="badge badge--purple">Theo yêu cầu</span>
+              </div>
+              <div class="card__value" id="orders-cancelled">0 đơn</div>
+              <div class="card__meta">Đơn đã hủy</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="card card--table">
+            <div class="card__header card__header--between">
+              <div>
+                <h2 class="card__title">Danh sách đơn hàng</h2>
+                <p class="card__subtitle">
+                  Demo dữ liệu – có thể thêm phân trang, lọc theo ngày/tháng.
+                </p>
+              </div>
+              <button class="btn btn--ghost btn--sm" id="btn-export-orders">Xuất CSV</button>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Mã đơn</th>
+                    <th>Khách hàng</th>
+                    <th>Thời gian</th>
+                    <th>Kênh</th>
+                    <th>Giá trị</th>
+                    <th>Trạng thái</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="orders-tbody">
+                  <!-- Render từ AdminData -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>© 2026 Spapet Admin – Đơn hàng.</span>
+          <span class="footer__hint">Gợi ý: liên kết đơn hàng với lịch hẹn & khách hàng.</span>
+        </footer>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+    <div class="modal" id="order-modal" hidden>
+      <div class="modal__header">
+        <h2 class="modal__title">Chi tiết đơn hàng <span id="order-modal-id"></span></h2>
+        <button class="btn-icon modal__close" data-close-modal aria-label="Đóng">✕</button>
+      </div>
+      <div class="modal__body" id="order-modal-body">
+        <p class="modal__hint">Chọn đơn để xem chi tiết.</p>
+      </div>
+      <div class="modal__footer" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <button type="button" class="btn btn--ghost" data-close-modal>Đóng</button>
+        <div class="order-modal-actions" id="order-modal-actions"></div>
+      </div>
+    </div>
+
+    <script src="../scripts.js"></script>
+    <script>
+    (function(){
+      if(!window.AdminData)return;
+      var fmt=AdminData.formatPrice;
+      var payLbl={cod:'COD',transfer:'Chuyển khoản',vnpay:'VNPay',momo:'MoMo',zalopay:'ZaloPay',card:'Thẻ tín dụng'};
+      var statusMap={pending:{cls:'pill--warning',txt:'Chờ xử lý'},confirmed:{cls:'pill--info',txt:'Đã xác nhận'},shipping:{cls:'pill--info',txt:'Đang giao'},completed:{cls:'pill--success',txt:'Hoàn thành'},cancelled:{cls:'pill--danger',txt:'Đã hủy'}};
+      var searchTerm='';
+      function el(id,v){var e=document.getElementById(id);if(e&&v!==undefined)e.textContent=v;}
+
+      function openOrderModal(id){
+        var o=AdminData.getOrders().find(function(x){return x.id===id;});
+        if(!o)return;
+        document.getElementById('order-modal-id').textContent='#'+(o.id||'');
+        var itemsHtml=(o.items||[]).map(function(i){
+          var qty=i.quantity||1;
+          var sub=i.price*qty;
+          return '<div class="list-item"><div><div class="list-item__title">'+(i.name||'')+'</div><div class="list-item__meta">x'+qty+' · '+fmt(i.price||0)+'</div></div><div class="list-item__right"><div class="list-item__amount">'+fmt(sub)+'</div></div></div>';
+        }).join('')||'<p class="modal__hint">Không có sản phẩm.</p>';
+        var body='<div class="order-detail"><div class="order-detail__section"><strong>Thông tin khách</strong><p>'+(o.name||'-')+'</p><p>SĐT: '+(o.phone||'-')+'</p><p>Email: '+(o.email||'-')+'</p><p>Địa chỉ: '+(o.address||'-')+'</p></div><div class="order-detail__section"><strong>Thanh toán</strong><p>'+(payLbl[o.payment]||o.payment||'COD')+'</p></div><div class="order-detail__section"><strong>Sản phẩm</strong>'+itemsHtml+'</div><div class="order-detail__section"><strong>Tổng cộng</strong><p class="order-detail__total">'+fmt(o.total||0)+'</p></div></div>';
+        document.getElementById('order-modal-body').innerHTML=body;
+        var actsEl=document.getElementById('order-modal-actions');
+        var st=o.status||'pending';
+        var actsHtml='';
+        if(st!=='cancelled'&&st!=='completed'){
+          if(st==='pending')actsHtml+='<button class="btn btn--primary btn-order-confirm" data-id="'+o.id+'">Xác nhận</button>';
+          if(st==='confirmed')actsHtml+='<button class="btn btn--primary btn-order-ship" data-id="'+o.id+'">Đang giao</button>';
+          if(st==='shipping')actsHtml+='<button class="btn btn--primary btn-order-complete" data-id="'+o.id+'">Hoàn thành</button>';
+          actsHtml+='<button class="btn btn--ghost btn-icon--danger btn-order-cancel" data-id="'+o.id+'">Hủy đơn</button>';
+        }
+        actsEl.innerHTML=actsHtml;
+        actsEl.querySelectorAll('.btn-order-confirm').forEach(function(b){b.onclick=function(){updateStatus(b.dataset.id,'confirmed');closeOrderModal();renderOrders();};});
+        actsEl.querySelectorAll('.btn-order-ship').forEach(function(b){b.onclick=function(){updateStatus(b.dataset.id,'shipping');closeOrderModal();renderOrders();};});
+        actsEl.querySelectorAll('.btn-order-complete').forEach(function(b){b.onclick=function(){updateStatus(b.dataset.id,'completed');closeOrderModal();renderOrders();};});
+        actsEl.querySelectorAll('.btn-order-cancel').forEach(function(b){b.onclick=function(){if(confirm('Hủy đơn hàng này?')){updateStatus(b.dataset.id,'cancelled');closeOrderModal();renderOrders();}};});
+        document.getElementById('order-modal').style.display='flex';document.getElementById('modal-backdrop').style.display='block';document.getElementById('order-modal').setAttribute('data-open','true');
+      }
+      function closeOrderModal(){document.getElementById('order-modal').style.display='none';document.getElementById('modal-backdrop').style.display='none';document.getElementById('order-modal').removeAttribute('data-open');}
+
+      function canConfirmOrder(items){
+        var products=AdminData.getProducts();
+        for(var i=0;i<(items||[]).length;i++){
+          var it=items[i];var p=products.find(function(x){return x.id===it.id;});
+          if(p&&p.stock!==undefined){var n=parseInt(p.stock,10);if(!isNaN(n)&&n<=0)return {ok:false,msg:'Sản phẩm "'+(it.name||p.name)+'" đã hết hàng.'};var q=it.quantity||1;if(q>n)return {ok:false,msg:'Sản phẩm "'+(it.name||p.name)+'" chỉ còn '+n+', đơn cần '+q+'.'};}
+        }
+        return {ok:true};
+      }
+      function deductStock(items){var list=AdminData.getProducts().slice();items.forEach(function(it){var idx=list.findIndex(function(p){return p.id===it.id;});if(idx>=0&&list[idx].stock!==undefined){var n=parseInt(list[idx].stock,10);if(!isNaN(n)){var q=it.quantity||1;list[idx].stock=Math.max(0,n-q);}}});AdminData.setProducts(list);}
+      function restoreStock(items){var list=AdminData.getProducts().slice();items.forEach(function(it){var idx=list.findIndex(function(p){return p.id===it.id;});if(idx>=0&&list[idx].stock!==undefined){var n=parseInt(list[idx].stock,10);if(!isNaN(n)){var q=it.quantity||1;list[idx].stock=n+q;}}});AdminData.setProducts(list);}
+
+      function updateStatus(id,status){
+        var orders=AdminData.getOrders();
+        var o=orders.find(function(x){return x.id===id;});
+        if(!o)return;
+        var prev=o.status||'pending';
+        if(status==='confirmed'&&prev==='pending'){
+          var check=canConfirmOrder(o.items);
+          if(!check.ok){alert(check.msg);return;}
+          deductStock(o.items||[]);
+        }else if(status==='cancelled'&&(prev==='confirmed'||prev==='shipping'||prev==='completed')){restoreStock(o.items||[]);}
+        var list=orders.map(function(x){return x.id===id?Object.assign({},x,{status:status}):x;});
+        AdminData.setOrders(list);
+      }
+
+      function renderOrders(){
+        var orders=AdminData.getOrders().slice().reverse();
+        var filtered=orders.filter(function(o){
+          if(!searchTerm)return true;
+          var t=(o.id||'')+(o.name||'')+(o.phone||'')+(o.email||'');
+          return t.toLowerCase().indexOf(searchTerm)>=0;
+        });
+        var p=orders.filter(function(o){return o.status==='pending';}).length;
+        var c=orders.filter(function(o){return o.status==='completed';}).length;
+        var x=orders.filter(function(o){return o.status==='cancelled';}).length;
+        var rev=orders.reduce(function(s,o){return s+(o.total||0);},0);
+        el('orders-total',orders.length+' đơn');el('orders-revenue','Doanh thu: '+fmt(rev));
+        el('orders-pending',p+' đơn');el('orders-completed',c+' đơn');el('orders-cancelled',x+' đơn');
+        var tbody=document.getElementById('orders-tbody');
+        if(!tbody)return;
+        tbody.innerHTML=filtered.length?filtered.map(function(o){
+          var st=o.status||'pending';
+          var s=statusMap[st]||statusMap.pending;
+          var d=o.createdAt?new Date(o.createdAt).toLocaleString('vi-VN',{dateStyle:'short',timeStyle:'short'}):'-';
+          var acts='<button class="btn-icon btn-order-view" data-id="'+(o.id||'')+'" title="Xem chi tiết">👁️</button>';
+          if(st!=='cancelled'&&st!=='completed'){if(st==='pending')acts+='<button class="btn-icon btn-order-confirm" data-id="'+(o.id||'')+'" title="Xác nhận">✓</button>';if(st==='confirmed')acts+='<button class="btn-icon btn-order-ship" data-id="'+(o.id||'')+'" title="Đang giao">🚚</button>';if(st==='shipping')acts+='<button class="btn-icon btn-order-complete" data-id="'+(o.id||'')+'" title="Hoàn thành">✔</button>';acts+='<button class="btn-icon btn-icon--danger btn-order-cancel" data-id="'+(o.id||'')+'" title="Hủy">✕</button>';}
+          return '<tr><td>'+(o.id||'-')+'</td><td>'+(o.name||'-')+'</td><td>'+d+'</td><td>Online</td><td>'+fmt(o.total||0)+'</td><td><span class="pill '+s.cls+'">'+s.txt+'</span></td><td class="table__actions">'+acts+'</td></tr>';
+        }).join(''):'<tr><td colspan="7">Chưa có đơn hàng.</td></tr>';
+        tbody.querySelectorAll('.btn-order-view').forEach(function(b){b.onclick=function(){openOrderModal(b.dataset.id);};});
+        tbody.querySelectorAll('.btn-order-confirm').forEach(function(b){b.onclick=function(){updateStatus(b.dataset.id,'confirmed');renderOrders();};});
+        tbody.querySelectorAll('.btn-order-ship').forEach(function(b){b.onclick=function(){updateStatus(b.dataset.id,'shipping');renderOrders();};});
+        tbody.querySelectorAll('.btn-order-complete').forEach(function(b){b.onclick=function(){updateStatus(b.dataset.id,'completed');renderOrders();};});
+        tbody.querySelectorAll('.btn-order-cancel').forEach(function(b){b.onclick=function(){if(confirm('Hủy đơn hàng này?')){updateStatus(b.dataset.id,'cancelled');renderOrders();}};});
+      }
+
+      document.getElementById('orders-search').oninput=function(){searchTerm=this.value.toLowerCase().trim();renderOrders();};
+      document.getElementById('btn-export-orders').onclick=function(){
+        var orders=AdminData.getOrders();
+        if(!orders.length){alert('Chưa có đơn hàng để xuất.');return;}
+        var headers=['Mã đơn','Khách','SĐT','Email','Địa chỉ','Tổng tiền','Trạng thái','Ngày'];
+        var rows=orders.map(function(o){return[(o.id||''),(o.name||''),(o.phone||''),(o.email||''),(o.address||''),(o.total||0),(statusMap[o.status]?.txt||o.status),(o.createdAt||'')];});
+        var csv=[headers.join(','),rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n')].join('\n');
+        var a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent('\uFEFF'+csv);a.download='don-hang-'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+      };
+      renderOrders();
+    })();
+    </script>
+  </body>
+</html>
+

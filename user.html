@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tài khoản - Pet Spa & Shop - Quản lý hồ sơ, thú cưng, đơn hàng, lịch hẹn">
+  <title>Tài khoản - Pet Spa & Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/user.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="user-page">
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">
+        <span class="header__logo-icon"><i class="fas fa-paw"></i></span>
+        PETCARE SPA
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link" data-page="index.html">Trang chủ</a></li>
+          <li><a href="services.html" class="nav__link" data-page="services.html">Dịch vụ</a></li>
+          <li><a href="shop.html" class="nav__link" data-page="shop.html">Cửa hàng</a></li>
+          <li><a href="booking.html" class="nav__link" data-page="booking.html">Đặt lịch</a></li>
+          <li><a href="about.html" class="nav__link" data-page="about.html">Về chúng tôi</a></li>
+          <li><a href="contact.html" class="nav__link" data-page="contact.html">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <div class="header__user-wrap">
+          <button type="button" class="header__icon-btn header__user-btn" aria-expanded="false" aria-haspopup="true" title="Tài khoản">
+            <i class="fas fa-user"></i>
+          </button>
+          <div class="header__user-dropdown" id="userDropdown" aria-hidden="true"></div>
+        </div>
+        <a href="cart.html" class="header__icon-btn header__cart-wrap">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="header__cart-badge cart-count" style="display:none">0</span>
+        </a>
+        <button type="button" class="header__menu-toggle" aria-label="Mở menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" aria-hidden="true"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__title">Menu</span>
+      <button type="button" class="mobile-menu__close" aria-label="Đóng menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link"><i class="fas fa-home"></i><span>Trang chủ</span></a>
+      <a href="services.html" class="mobile-menu__link"><i class="fas fa-spa"></i><span>Dịch vụ</span></a>
+      <a href="shop.html" class="mobile-menu__link"><i class="fas fa-shopping-bag"></i><span>Cửa hàng</span></a>
+      <a href="booking.html" class="mobile-menu__link"><i class="fas fa-calendar-check"></i><span>Đặt lịch</span></a>
+      <a href="about.html" class="mobile-menu__link"><i class="fas fa-paw"></i><span>Về chúng tôi</span></a>
+      <a href="contact.html" class="mobile-menu__link"><i class="fas fa-envelope"></i><span>Liên hệ</span></a>
+    </nav>
+  </div>
+
+  <main class="user-main">
+    <!-- Sidebar -->
+    <aside class="user-sidebar" id="userSidebar">
+      <div class="user-sidebar__header">
+        <div class="user-sidebar__avatar" id="userAvatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <h2 class="user-sidebar__name" id="userName">Người dùng</h2>
+        <p class="user-sidebar__email" id="userEmail">user@email.com</p>
+      </div>
+      <nav class="user-sidebar__nav">
+        <button type="button" class="user-nav__item active" data-tab="overview"><i class="fas fa-th-large"></i><span>Tổng quan</span></button>
+        <button type="button" class="user-nav__item" data-tab="profile"><i class="fas fa-user-edit"></i><span>Hồ sơ cá nhân</span></button>
+        <button type="button" class="user-nav__item" data-tab="pets"><i class="fas fa-paw"></i><span>Thú cưng của tôi</span></button>
+        <button type="button" class="user-nav__item" data-tab="bookings"><i class="fas fa-calendar-check"></i><span>Lịch hẹn Spa</span></button>
+        <button type="button" class="user-nav__item" data-tab="orders"><i class="fas fa-box"></i><span>Đơn hàng</span></button>
+        <button type="button" class="user-nav__item" data-tab="favorites"><i class="fas fa-heart"></i><span>Sản phẩm yêu thích</span></button>
+        <button type="button" class="user-nav__item" data-tab="addresses"><i class="fas fa-map-marker-alt"></i><span>Địa chỉ giao hàng</span></button>
+        <button type="button" class="user-nav__item" data-tab="password"><i class="fas fa-lock"></i><span>Đổi mật khẩu</span></button>
+        <a href="#" class="user-nav__item user-nav__logout" id="btnLogout"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></a>
+      </nav>
+    </aside>
+
+    <!-- Mobile sidebar overlay -->
+    <div class="user-sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+    <!-- Mobile sidebar toggle -->
+    <button type="button" class="user-sidebar-toggle" id="sidebarToggle" aria-label="Mở menu tài khoản">
+      <i class="fas fa-user-circle"></i>
+      <span class="user-sidebar-toggle__label">Tài khoản</span>
+    </button>
+
+    <!-- Main Content -->
+    <div class="user-content">
+      <!-- 1. Tổng quan -->
+      <section class="user-panel active" id="panelOverview" data-panel="overview">
+        <div class="user-panel__welcome">
+          <h1>Chào mừng bạn quay lại với Pet Spa 💖</h1>
+          <p>Quản lý thông tin và dịch vụ của bạn tại đây</p>
+        </div>
+        <div class="user-stats">
+          <div class="user-stat-card">
+            <div class="user-stat-card__icon"><i class="fas fa-paw"></i></div>
+            <div class="user-stat-card__info">
+              <span class="user-stat-card__value" id="statPets">0</span>
+              <span class="user-stat-card__label">Thú cưng</span>
+            </div>
+          </div>
+          <div class="user-stat-card">
+            <div class="user-stat-card__icon"><i class="fas fa-calendar-alt"></i></div>
+            <div class="user-stat-card__info">
+              <span class="user-stat-card__value" id="statBookings">0</span>
+              <span class="user-stat-card__label">Lịch hẹn sắp tới</span>
+            </div>
+          </div>
+          <div class="user-stat-card">
+            <div class="user-stat-card__icon"><i class="fas fa-shopping-bag"></i></div>
+            <div class="user-stat-card__info">
+              <span class="user-stat-card__value" id="statOrders">0</span>
+              <span class="user-stat-card__label">Đơn hàng đã mua</span>
+            </div>
+          </div>
+          <div class="user-stat-card">
+            <div class="user-stat-card__icon"><i class="fas fa-star"></i></div>
+            <div class="user-stat-card__info">
+              <span class="user-stat-card__value" id="statPoints">0</span>
+              <span class="user-stat-card__label">Điểm tích lũy</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Hồ sơ cá nhân -->
+      <section class="user-panel" id="panelProfile" data-panel="profile">
+        <h2 class="user-panel__title">Hồ sơ cá nhân</h2>
+        <div class="profile-layout">
+          <form class="profile-form profile-form--polished" id="formProfile">
+            <div class="profile-form__section">
+              <h3 class="profile-form__section-title"><i class="fas fa-user-circle"></i> Thông tin cơ bản</h3>
+              <div class="profile-form__grid">
+                <div class="profile-form__field">
+                  <label for="profileName"><i class="fas fa-user form-field-icon"></i> Họ tên <span class="required">*</span></label>
+                  <input type="text" id="profileName" required placeholder="Họ và tên đầy đủ">
+                </div>
+                <div class="profile-form__field profile-form__field--readonly">
+                  <label for="profileEmail"><i class="fas fa-envelope form-field-icon"></i> Email</label>
+                  <input type="email" id="profileEmail" required placeholder="email@example.com" readonly>
+                  <span class="profile-form__hint">Email dùng để đăng nhập, không thể thay đổi</span>
+                </div>
+              </div>
+            </div>
+            <div class="profile-form__section">
+              <h3 class="profile-form__section-title"><i class="fas fa-address-card"></i> Liên hệ & địa chỉ</h3>
+              <div class="profile-form__grid">
+                <div class="profile-form__field">
+                  <label for="profilePhone"><i class="fas fa-phone form-field-icon"></i> Số điện thoại</label>
+                  <input type="tel" id="profilePhone" placeholder="0900 123 456">
+                </div>
+                <div class="profile-form__field">
+                  <label for="profileDob"><i class="fas fa-calendar-alt form-field-icon"></i> Ngày sinh</label>
+                  <input type="date" id="profileDob" placeholder="dd/mm/yyyy">
+                </div>
+                <div class="profile-form__field profile-form__field--full">
+                  <label for="profileAddress"><i class="fas fa-map-marker-alt form-field-icon"></i> Địa chỉ</label>
+                  <textarea id="profileAddress" rows="3" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố"></textarea>
+                </div>
+                <div class="profile-form__field profile-form__field--full">
+                  <label for="profileGender"><i class="fas fa-venus-mars form-field-icon"></i> Giới tính</label>
+                  <select id="profileGender">
+                    <option value="">-- Chọn giới tính --</option>
+                    <option value="male">Nam</option>
+                    <option value="female">Nữ</option>
+                    <option value="other">Khác</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="profile-form__actions">
+              <button type="submit" class="btn btn--primary btn-profile-save">
+                <i class="fas fa-save"></i> Lưu thay đổi
+              </button>
+              <button type="button" class="btn btn--secondary" id="btnCancelProfile">
+                <i class="fas fa-times"></i> Hủy
+              </button>
+            </div>
+          </form>
+          <aside class="profile-sidebar">
+            <div class="profile-sidebar__avatar" id="profileSidebarAvatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <h3 class="profile-sidebar__name" id="profileSidebarName">Người dùng</h3>
+            <p class="profile-sidebar__email" id="profileSidebarEmail">email@example.com</p>
+            <div class="profile-sidebar__tips">
+              <h4><i class="fas fa-lightbulb"></i> Mẹo</h4>
+              <ul>
+                <li>Thông tin đầy đủ giúp giao hàng nhanh hơn</li>
+                <li>Địa chỉ chính xác để nhận voucher & ưu đãi</li>
+                <li>Cập nhật SĐT để nhận thông báo đặt lịch</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- 3. Thú cưng của tôi -->
+      <section class="user-panel" id="panelPets" data-panel="pets">
+        <div class="user-panel__head">
+          <h2 class="user-panel__title">Thú cưng của tôi</h2>
+          <button type="button" class="btn btn--primary" id="btnAddPet"><i class="fas fa-plus"></i> Thêm thú cưng</button>
+        </div>
+        <div class="user-pets-grid" id="petsGrid"></div>
+      </section>
+
+      <!-- 4. Lịch hẹn Spa -->
+      <section class="user-panel" id="panelBookings" data-panel="bookings">
+        <div class="user-panel__head">
+          <h2 class="user-panel__title">Lịch hẹn Spa</h2>
+          <a href="booking.html" class="btn btn--primary"><i class="fas fa-calendar-plus"></i> Đặt lịch mới</a>
+        </div>
+        <div class="user-table-wrap">
+          <table class="user-table" id="bookingsTable">
+            <thead>
+              <tr>
+                <th>Thú cưng</th>
+                <th>Dịch vụ</th>
+                <th>Ngày giờ</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="bookingsTableBody"></tbody>
+          </table>
+        </div>
+        <p class="user-empty" id="bookingsEmpty">Chưa có lịch hẹn.</p>
+      </section>
+
+      <!-- 5. Đơn hàng -->
+      <section class="user-panel" id="panelOrders" data-panel="orders">
+        <h2 class="user-panel__title">Đơn hàng</h2>
+        <div class="orders-layout">
+          <div class="orders-main">
+            <div class="user-orders-list" id="ordersList"></div>
+            <p class="user-empty" id="ordersEmpty">Chưa có đơn hàng. <a href="shop.html">Mua sắm ngay</a></p>
+          </div>
+          <!-- Modal Chi tiết đơn hàng -->
+          <div class="user-modal" id="modalOrderDetail" aria-hidden="true">
+            <div class="user-modal__overlay"></div>
+            <div class="user-modal__content user-modal__content--wide user-modal__content--order">
+              <div class="order-detail__header">
+                <div class="order-detail__header-inner">
+                  <div class="order-detail__header-icon"><i class="fas fa-receipt"></i></div>
+                  <div>
+                    <h3>Chi tiết đơn hàng</h3>
+                    <p class="order-detail__header-sub" id="orderDetailId"></p>
+                  </div>
+                </div>
+                <button type="button" class="order-detail__close user-modal__close" aria-label="Đóng"><i class="fas fa-times"></i></button>
+              </div>
+              <div class="order-detail" id="orderDetailContent">
+                <div class="order-detail__timeline-wrap">
+                  <div class="order-detail__timeline" id="orderDetailTimeline"></div>
+                </div>
+                <div class="order-detail__carrier">
+                  <div class="order-detail__carrier-icon"><i class="fas fa-truck"></i></div>
+                  <div>
+                    <h4>Đơn vị giao hàng</h4>
+                    <p class="order-detail__carrier-name"><strong id="orderDetailCarrier">-</strong></p>
+                    <a href="#" id="orderDetailCarrierPhone" class="order-detail__carrier-phone"><i class="fas fa-phone"></i> -</a>
+                  </div>
+                </div>
+                <div class="order-detail__items" id="orderDetailItems"></div>
+                <div class="order-detail__footer">
+                  <div class="order-detail__total-box">
+                    <span>Tổng thanh toán</span>
+                    <strong id="orderDetailTotal">0 ₫</strong>
+                  </div>
+                  <div class="order-detail__actions">
+                    <button type="button" class="btn btn--secondary btn-order-cancel" id="btnCancelOrder" style="display:none">
+                      <i class="fas fa-times-circle"></i> Hủy đơn hàng
+                    </button>
+                    <button type="button" class="btn btn--danger btn-order-delete-detail" id="btnDeleteOrder" style="display:none">
+                      <i class="fas fa-trash"></i> Xóa đơn hàng
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <aside class="orders-sidebar">
+            <div class="orders-stats">
+              <div class="orders-stat">
+                <span class="orders-stat__value" id="ordersStatCount">0</span>
+                <span class="orders-stat__label">Tổng đơn hàng</span>
+              </div>
+              <div class="orders-stat">
+                <span class="orders-stat__value" id="ordersStatTotal">0 ₫</span>
+                <span class="orders-stat__label">Tổng đã mua</span>
+              </div>
+            </div>
+            <a href="shop.html" class="btn btn--primary orders-sidebar__cta">
+              <i class="fas fa-shopping-bag"></i> Tiếp tục mua sắm
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <!-- 6. Sản phẩm yêu thích -->
+      <section class="user-panel" id="panelFavorites" data-panel="favorites">
+        <h2 class="user-panel__title">Sản phẩm yêu thích</h2>
+        <div class="user-products-grid" id="favoritesGrid"></div>
+        <p class="user-empty" id="favoritesEmpty">Chưa có sản phẩm yêu thích.</p>
+      </section>
+
+      <!-- 7. Địa chỉ giao hàng -->
+      <section class="user-panel" id="panelAddresses" data-panel="addresses">
+        <div class="user-panel__head">
+          <h2 class="user-panel__title">Địa chỉ giao hàng</h2>
+          <button type="button" class="btn btn--primary" id="btnAddAddress"><i class="fas fa-plus"></i> Thêm địa chỉ</button>
+        </div>
+        <div class="user-addresses-list" id="addressesList"></div>
+        <p class="user-empty" id="addressesEmpty">Chưa có địa chỉ.</p>
+      </section>
+
+      <!-- 8. Đổi mật khẩu -->
+      <section class="user-panel" id="panelPassword" data-panel="password">
+        <h2 class="user-panel__title">Đổi mật khẩu</h2>
+        <form class="user-form" id="formPassword">
+          <div class="user-form__row">
+            <label>Mật khẩu hiện tại</label>
+            <div class="password-input-wrap">
+              <input type="password" id="passwordOld" required placeholder="••••••••">
+              <button type="button" class="password-toggle" aria-label="Hiện/ẩn mật khẩu" data-target="passwordOld"><i class="fas fa-eye"></i></button>
+            </div>
+            <span class="user-form__error" id="errorPasswordOld"></span>
+          </div>
+          <div class="user-form__row">
+            <label>Mật khẩu mới</label>
+            <div class="password-input-wrap">
+              <input type="password" id="passwordNew" required placeholder="••••••••" minlength="6">
+              <button type="button" class="password-toggle" aria-label="Hiện/ẩn mật khẩu" data-target="passwordNew"><i class="fas fa-eye"></i></button>
+            </div>
+            <span class="user-form__error" id="errorPasswordNew"></span>
+          </div>
+          <div class="user-form__row">
+            <label>Xác nhận mật khẩu mới</label>
+            <div class="password-input-wrap">
+              <input type="password" id="passwordConfirm" required placeholder="••••••••">
+              <button type="button" class="password-toggle" aria-label="Hiện/ẩn mật khẩu" data-target="passwordConfirm"><i class="fas fa-eye"></i></button>
+            </div>
+            <span class="user-form__error" id="errorPasswordConfirm"></span>
+          </div>
+          <div class="user-form__actions">
+            <button type="submit" class="btn btn--primary"><i class="fas fa-key"></i> Đổi mật khẩu</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal Thú cưng -->
+  <div class="user-modal" id="modalPet" aria-hidden="true">
+    <div class="user-modal__overlay"></div>
+    <div class="user-modal__content user-modal__content--wide">
+      <div class="user-modal__header">
+        <h3 id="modalPetTitle"><i class="fas fa-paw"></i> Thêm thú cưng</h3>
+        <button type="button" class="user-modal__close" aria-label="Đóng"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="formPet" class="user-modal-form">
+        <input type="hidden" id="petId">
+        <div class="user-modal-form__grid">
+          <div class="user-modal-form__field">
+            <label for="petName"><i class="fas fa-tag"></i> Tên thú cưng <span class="required">*</span></label>
+            <input type="text" id="petName" required placeholder="Ví dụ: Milu">
+          </div>
+          <div class="user-modal-form__field">
+            <label for="petType"><i class="fas fa-dog"></i> Loài <span class="required">*</span></label>
+            <select id="petType" required>
+              <option value="">-- Chọn loài --</option>
+              <option value="dog">Chó</option>
+              <option value="cat">Mèo</option>
+            </select>
+          </div>
+          <div class="user-modal-form__field">
+            <label for="petAge"><i class="fas fa-calendar-alt"></i> Tuổi (tháng)</label>
+            <input type="number" id="petAge" min="1" placeholder="12">
+          </div>
+          <div class="user-modal-form__field">
+            <label for="petWeight"><i class="fas fa-weight-hanging"></i> Cân nặng (kg) <span class="required">*</span></label>
+            <input type="number" id="petWeight" step="0.1" min="0.5" required placeholder="5.0">
+          </div>
+          <div class="user-modal-form__field user-modal-form__field--full">
+            <label for="petImage"><i class="fas fa-image"></i> Ảnh (URL)</label>
+            <input type="url" id="petImage" placeholder="https://example.com/pet.jpg">
+          </div>
+        </div>
+        <div class="user-modal__footer">
+          <button type="submit" class="btn btn--primary"><i class="fas fa-save"></i> Lưu</button>
+          <button type="button" class="btn btn--secondary user-modal__cancel">Hủy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Địa chỉ -->
+  <div class="user-modal" id="modalAddress" aria-hidden="true">
+    <div class="user-modal__overlay"></div>
+    <div class="user-modal__content user-modal__content--wide">
+      <div class="user-modal__header">
+        <h3 id="modalAddressTitle"><i class="fas fa-map-marker-alt"></i> Thêm địa chỉ</h3>
+        <button type="button" class="user-modal__close" aria-label="Đóng"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="formAddress" class="user-modal-form">
+        <input type="hidden" id="addressId">
+        <div class="user-modal-form__grid">
+          <div class="user-modal-form__field">
+            <label for="addressName"><i class="fas fa-user"></i> Họ tên người nhận <span class="required">*</span></label>
+            <input type="text" id="addressName" required placeholder="Họ và tên">
+          </div>
+          <div class="user-modal-form__field">
+            <label for="addressPhone"><i class="fas fa-phone"></i> Số điện thoại <span class="required">*</span></label>
+            <input type="tel" id="addressPhone" required placeholder="0900 123 456">
+          </div>
+          <div class="user-modal-form__field user-modal-form__field--full">
+            <label for="addressDetail"><i class="fas fa-map-marker-alt"></i> Địa chỉ <span class="required">*</span></label>
+            <textarea id="addressDetail" rows="3" required placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố"></textarea>
+          </div>
+          <div class="user-modal-form__field user-modal-form__field--full user-modal-form__field--checkbox">
+            <label><input type="checkbox" id="addressDefault"> Đặt làm địa chỉ mặc định</label>
+          </div>
+        </div>
+        <div class="user-modal__footer">
+          <button type="submit" class="btn btn--primary"><i class="fas fa-save"></i> Lưu</button>
+          <button type="button" class="btn btn--secondary user-modal__cancel">Hủy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Pet Spa & Shop</div>
+          <p class="footer__text">Spa thú cưng chuyên nghiệp, cửa hàng phụ kiện và thức ăn chất lượng. Cam kết mang lại sự hài lòng cho bạn và thú cưng.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Zalo"><i class="fas fa-phone"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên kết</h4>
+          <ul class="footer__links">
+            <li><a href="services.html" class="footer__link">Dịch vụ</a></li>
+            <li><a href="shop.html" class="footer__link">Cửa hàng</a></li>
+            <li><a href="booking.html" class="footer__link">Đặt lịch</a></li>
+            <li><a href="about.html" class="footer__link">Về chúng tôi</a></li>
+            <li><a href="contact.html" class="footer__link">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên hệ</h4>
+          <ul class="footer__links">
+            <li><i class="fas fa-map-marker-alt"></i> QTSC Building 1, Đường Quang Trung, Tân Hưng Thuận, Hóc Môn, Thành phố Hồ Chí Minh, Vietnam</li>
+            <li><i class="fas fa-phone"></i> 0900 123 456</li>
+            <li><i class="fas fa-envelope"></i> hello@petspa.vn</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Đăng ký nhận tin</h4>
+          <form class="footer__newsletter" id="newsletterForm">
+            <div class="footer__input-wrap">
+              <input type="email" class="footer__input" name="email" placeholder="Email của bạn" required>
+              <button type="submit" class="btn btn--primary">Gửi</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Pet Spa & Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/user.js"></script>
+</body>
+</html>

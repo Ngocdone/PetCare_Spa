@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Khách hàng - Spapet Admin</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../../js/data.js"></script>
+    <script src="../admin-integration.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand">
+          <div class="sidebar__logo">SP</div>
+          <div>
+            <div class="sidebar__title">Spapet Admin</div>
+            <div class="sidebar__subtitle">Quản lý spa thú cưng</div>
+          </div>
+        </div>
+
+        <nav class="sidebar__nav">
+          <a href="../index.html" class="nav-item">
+            <span class="nav-item__icon">🏠</span>
+            <span>Tổng quan</span>
+          </a>
+          <a href="products.html" class="nav-item">
+            <span class="nav-item__icon">🐾</span>
+            <span>Sản phẩm</span>
+          </a>
+          <a href="categories.html" class="nav-item">
+            <span class="nav-item__icon">📂</span>
+            <span>Danh mục</span>
+          </a>
+          <a href="services.html" class="nav-item">
+            <span class="nav-item__icon">🧴</span>
+            <span>Dịch vụ spa</span>
+          </a>
+          <a href="orders.html" class="nav-item">
+            <span class="nav-item__icon">📦</span>
+            <span>Đơn hàng</span>
+          </a>
+          <a href="customers.html" class="nav-item nav-item--active">
+            <span class="nav-item__icon">👥</span>
+            <span>Khách hàng</span>
+          </a>
+          <a href="appointments.html" class="nav-item">
+            <span class="nav-item__icon">📅</span>
+            <span>Lịch hẹn</span>
+          </a>
+        </nav>
+
+        <div class="sidebar__footer">
+          <div class="user-mini">
+            <div class="user-mini__avatar">V</div>
+            <div>
+              <div class="user-mini__name">Admin</div>
+              <div class="user-mini__role">Quản trị viên</div>
+            </div>
+          </div>
+          <a href="../../index.html" class="nav-item" style="margin-top:8px;font-size:11px">🏠 Về trang chủ</a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar__left">
+            <button class="btn-icon mobile-toggle" id="mobile-toggle" aria-label="Mở menu">
+              ☰
+            </button>
+            <h1 class="topbar__title">Khách hàng</h1>
+            <p class="topbar__subtitle">
+              Quản lý thông tin khách, thú cưng, hạng thành viên và điểm thưởng.
+            </p>
+          </div>
+          <div class="topbar__actions">
+            <div class="search">
+              <span class="search__icon">🔍</span>
+              <input
+                type="text"
+                class="search__input"
+                id="customers-search"
+                placeholder="Tìm tên, số điện thoại, email..."
+              />
+            </div>
+            <button class="btn btn--primary" data-open-modal="customer-modal">
+              + Thêm khách hàng
+            </button>
+          </div>
+        </header>
+
+        <section class="section">
+          <div class="section__header">
+            <h2 class="section__title">Thống kê theo hạng thành viên</h2>
+            <span class="section__hint">Số lượng khách theo từng hạng</span>
+          </div>
+          <div class="grid grid--stats">
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Tổng khách</span>
+                <span class="badge badge--info">Toàn hệ thống</span>
+              </div>
+              <div class="card__value" id="customers-total">0 khách</div>
+              <div class="card__meta" id="customers-detail">Đã đăng ký / thêm từ admin</div>
+            </div>
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Bronze</span>
+                <span class="badge" style="background:#cd7f32;color:#fff">Mặc định</span>
+              </div>
+              <div class="card__value" id="tier-bronze">0</div>
+              <div class="card__meta">Hạng cơ bản</div>
+            </div>
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Silver</span>
+                <span class="badge badge--success">Giảm 5%</span>
+              </div>
+              <div class="card__value" id="tier-silver">0</div>
+              <div class="card__meta">Chi tiêu từ 1M</div>
+            </div>
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">Gold</span>
+                <span class="badge badge--warning">Giảm 10%</span>
+              </div>
+              <div class="card__value" id="tier-gold">0</div>
+              <div class="card__meta">Chi tiêu từ 5M</div>
+            </div>
+            <div class="card card--stat">
+              <div class="card__header">
+                <span class="card__label">VIP</span>
+                <span class="badge badge--purple">Ưu tiên cao nhất</span>
+              </div>
+              <div class="card__value" id="tier-vip">0</div>
+              <div class="card__meta">Chi tiêu từ 20M / đặc biệt</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section__header">
+            <h2 class="section__title">Bộ lọc</h2>
+            <span class="section__hint">Lọc theo hạng thành viên</span>
+          </div>
+          <div class="grid grid--filter" id="customer-tier-filters" style="margin-bottom:16px">
+            <button type="button" class="btn btn--ghost filter-btn active" data-tier="">Tất cả</button>
+            <button type="button" class="btn btn--ghost filter-btn" data-tier="bronze">🥉 Bronze</button>
+            <button type="button" class="btn btn--ghost filter-btn" data-tier="silver">🥈 Silver</button>
+            <button type="button" class="btn btn--ghost filter-btn" data-tier="gold">🥇 Gold</button>
+            <button type="button" class="btn btn--ghost filter-btn" data-tier="vip">💎 VIP</button>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="card card--table">
+            <div class="card__header card__header--between">
+              <div>
+                <h2 class="card__title">Danh sách khách hàng</h2>
+                <p class="card__subtitle">
+                  Demo tĩnh – có thể gắn với lịch sử mua hàng và lịch hẹn sau này.
+                </p>
+              </div>
+              <button class="btn btn--ghost btn--sm" id="btn-export-customers">Xuất CSV</button>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Tên khách</th>
+                    <th>SĐT</th>
+                    <th>Email</th>
+                    <th>Hạng</th>
+                    <th>Đăng ký</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="customers-tbody">
+                  <!-- Render từ AdminData.getUsers -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>© 2026 Spapet Admin – Khách hàng.</span>
+          <span class="footer__hint">Gợi ý: tích hợp gửi SMS/Zalo chăm sóc khách.</span>
+        </footer>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+    <div class="modal" id="customer-modal" hidden>
+      <div class="modal__header">
+        <h2 class="modal__title" id="customer-modal-title">Thêm khách hàng mới</h2>
+        <button class="btn-icon modal__close" data-close-modal aria-label="Đóng">✕</button>
+      </div>
+      <form class="modal__body" id="customer-form">
+        <input type="hidden" id="customer-email-key" value="" />
+        <div class="form-grid">
+          <div class="form-field form-field--full">
+            <label for="customer-name">Tên khách <span class="required">*</span></label>
+            <input id="customer-name" type="text" placeholder="Ví dụ: Minh Anh" required />
+          </div>
+          <div class="form-field">
+            <label for="customer-phone">Số điện thoại</label>
+            <input id="customer-phone" type="tel" placeholder="09xx xxx xxx" />
+          </div>
+          <div class="form-field">
+            <label for="customer-email">Email <span class="required">*</span></label>
+            <input id="customer-email" type="email" placeholder="email@example.com" required />
+          </div>
+          <div class="form-field">
+            <label for="customer-address">Địa chỉ</label>
+            <input id="customer-address" type="text" placeholder="Địa chỉ giao hàng..." />
+          </div>
+          <div class="form-field">
+            <label for="customer-pet">Thú cưng</label>
+            <input id="customer-pet" type="text" placeholder="Poodle, Mèo ALN..." />
+          </div>
+          <div class="form-field">
+            <label for="customer-tier">Hạng thành viên</label>
+            <select id="customer-tier">
+              <option value="bronze">🥉 Bronze (Mặc định)</option>
+              <option value="silver">🥈 Silver (Giảm 5%)</option>
+              <option value="gold">🥇 Gold (Giảm 10%)</option>
+              <option value="vip">💎 VIP (Ưu tiên cao nhất)</option>
+            </select>
+          </div>
+        </div>
+        <p class="modal__hint">Khách hàng lưu vào localStorage. Email dùng làm mã định danh (đăng nhập).</p>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--ghost" data-close-modal>Huỷ</button>
+          <button type="submit" class="btn btn--primary" id="customer-submit-btn">Thêm khách</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal" id="customer-detail-modal" hidden>
+      <div class="modal__header">
+        <h2 class="modal__title">Chi tiết khách hàng</h2>
+        <button class="btn-icon modal__close" data-close-modal aria-label="Đóng">✕</button>
+      </div>
+      <div class="modal__body" id="customer-detail-body"></div>
+      <div class="modal__footer" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <button type="button" class="btn btn--ghost" data-close-modal>Đóng</button>
+        <button type="button" class="btn btn--primary" id="customer-detail-edit">Sửa</button>
+        <div class="customer-upgrade-actions">
+          <span style="font-size:12px;color:#6b7280;margin-right:4px">Đổi hạng:</span>
+          <button type="button" class="btn btn--ghost btn--sm btn-upgrade-tier" data-tier="bronze" title="Hạ xuống Bronze">🥉</button>
+          <button type="button" class="btn btn--ghost btn--sm btn-upgrade-tier" data-tier="silver" title="Silver">🥈</button>
+          <button type="button" class="btn btn--ghost btn--sm btn-upgrade-tier" data-tier="gold" title="Gold">🥇</button>
+          <button type="button" class="btn btn--ghost btn--sm btn-upgrade-tier" data-tier="vip" title="VIP">💎</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../scripts.js"></script>
+    <script>
+    (function(){
+      if(!window.AdminData)return;
+      var searchTerm='', filterTier='';
+      var tierLbl={bronze:'🥉 Bronze',silver:'🥈 Silver',gold:'🥇 Gold',vip:'💎 VIP'};
+      var tierCls={bronze:'pill--default',silver:'pill--success',gold:'pill--warning',vip:'pill--purple'};
+
+      function getCustomers(){return AdminData.getUsers().filter(function(u){return u.role!=='admin';});}
+
+      function closeModal(id){var m=document.getElementById(id||'customer-modal');var b=document.getElementById('modal-backdrop');if(m){m.style.display='none';m.removeAttribute('data-open');}if(b){b.style.display='none';}}
+      function openModal(id){var m=document.getElementById(id);var b=document.getElementById('modal-backdrop');if(m){m.style.display='flex';m.setAttribute('data-open','true');}if(b){b.style.display='block';}}
+
+      function upgradeCustomer(email,tier){
+        var list=AdminData.getUsers();
+        var idx=list.findIndex(function(x){return x.email===email;});
+        if(idx>=0){list[idx]={...list[idx],tier:tier};AdminData.setUsers(list);return true;}
+        return false;
+      }
+
+      function openDetailModal(email){
+        var u=getCustomers().find(function(x){return x.email===email;});
+        if(!u)return;
+        var d=u.createdAt?new Date(u.createdAt).toLocaleString('vi-VN'):'-';
+        var tier=u.tier||'bronze';
+        document.getElementById('customer-detail-body').innerHTML='<div class="order-detail"><div class="order-detail__section"><strong>Thông tin</strong><p><strong>'+(u.name||'-')+'</strong></p><p>Hạng: <span class="pill '+(tierCls[tier]||'pill--default')+'">'+(tierLbl[tier]||tier)+'</span></p><p>Email: '+(u.email||'-')+'</p><p>SĐT: '+(u.phone||'-')+'</p><p>Địa chỉ: '+(u.address||'-')+'</p><p>Thú cưng: '+(u.pet||'-')+'</p><p>Đăng ký: '+d+'</p></div></div>';
+        document.getElementById('customer-detail-modal').setAttribute('data-edit-email',email);
+        document.querySelectorAll('.btn-upgrade-tier').forEach(function(btn){
+          btn.onclick=function(){var t=btn.dataset.tier;if(upgradeCustomer(email,t)){openDetailModal(email);renderCustomers();}};
+        });
+        closeModal();openModal('customer-detail-modal');
+      }
+
+      function openEditModal(email){
+        var u=getCustomers().find(function(x){return x.email===email;});
+        if(!u)return;
+        document.getElementById('customer-email-key').value=u.email||'';
+        document.getElementById('customer-name').value=u.name||'';
+        document.getElementById('customer-phone').value=u.phone||'';
+        document.getElementById('customer-email').value=u.email||'';
+        document.getElementById('customer-address').value=u.address||'';
+        document.getElementById('customer-pet').value=u.pet||'';
+        document.getElementById('customer-tier').value=u.tier||'bronze';
+        document.getElementById('customer-modal-title').textContent='Sửa khách hàng';
+        document.getElementById('customer-submit-btn').textContent='Cập nhật';
+        document.getElementById('customer-email').readOnly=true;
+        closeModal('customer-detail-modal');openModal('customer-modal');
+      }
+
+      function renderCustomers(){
+        var users=getCustomers();
+        var filtered=users.filter(function(u){
+          if(filterTier&&(u.tier||'bronze')!==filterTier)return false;
+          if(searchTerm){var t=(u.name||'')+(u.phone||'')+(u.email||'');return t.toLowerCase().indexOf(searchTerm)>=0;}
+          return true;
+        });
+        var tiers={bronze:0,silver:0,gold:0,vip:0};
+        users.forEach(function(u){var t=u.tier||'bronze';tiers[t]=tiers[t]||0;tiers[t]++;});
+        document.getElementById('customers-total').textContent=users.length+' khách';
+        document.getElementById('customers-detail').textContent='Đã đăng ký hoặc thêm từ admin';
+        document.getElementById('tier-bronze').textContent=tiers.bronze||0;
+        document.getElementById('tier-silver').textContent=tiers.silver||0;
+        document.getElementById('tier-gold').textContent=tiers.gold||0;
+        document.getElementById('tier-vip').textContent=tiers.vip||0;
+        var tbody=document.getElementById('customers-tbody');
+        if(!tbody)return;
+        tbody.innerHTML=filtered.length?filtered.map(function(u){
+          var d=u.createdAt?new Date(u.createdAt).toLocaleDateString('vi-VN'):'-';
+          var tier=u.tier||'bronze';
+          return '<tr><td><strong>'+(u.name||'-')+'</strong></td><td>'+(u.phone||'-')+'</td><td>'+(u.email||'-')+'</td><td><span class="pill '+(tierCls[tier]||'pill--default')+'">'+(tierLbl[tier]||tier)+'</span></td><td>'+d+'</td><td class="table__actions"><button class="btn-icon btn-view-customer" data-email="'+(u.email||'')+'" title="Xem">👁️</button><button class="btn-icon btn-edit-customer" data-email="'+(u.email||'')+'" title="Sửa">✏️</button><button class="btn-icon btn-upgrade-customer" data-email="'+(u.email||'')+'" title="Nâng cấp">⬆️</button><button class="btn-icon btn-icon--danger btn-delete-customer" data-email="'+(u.email||'')+'" title="Xóa">🗑️</button></td></tr>';
+        }).join(''):'<tr><td colspan="6">Chưa có khách hàng.</td></tr>';
+        tbody.querySelectorAll('.btn-view-customer').forEach(function(b){b.onclick=function(){openDetailModal(b.dataset.email);};});
+        tbody.querySelectorAll('.btn-edit-customer').forEach(function(b){b.onclick=function(){openEditModal(b.dataset.email);};});
+        tbody.querySelectorAll('.btn-upgrade-customer').forEach(function(b){b.onclick=function(){openDetailModal(b.dataset.email);};});
+        tbody.querySelectorAll('.btn-delete-customer').forEach(function(b){b.onclick=function(){var e=b.dataset.email;if(!e||!confirm('Xóa khách hàng này? Dữ liệu đơn hàng có thể bị ảnh hưởng.'))return;var list=AdminData.getUsers().filter(function(x){return x.email!==e;});AdminData.setUsers(list);renderCustomers();closeModal('customer-detail-modal');};});
+      }
+
+      document.getElementById('customer-form').onsubmit=function(e){
+        e.preventDefault();
+        var key=document.getElementById('customer-email-key').value;
+        var name=document.getElementById('customer-name').value.trim();
+        var email=document.getElementById('customer-email').value.trim().toLowerCase();
+        var phone=document.getElementById('customer-phone').value.trim();
+        var address=document.getElementById('customer-address').value.trim();
+        var pet=document.getElementById('customer-pet').value.trim();
+        var tier=document.getElementById('customer-tier').value||'bronze';
+        if(!name||!email){alert('Vui lòng nhập tên và email.');return;}
+        var list=AdminData.getUsers();
+        if(key){
+          var idx=list.findIndex(function(x){return x.email===key;});
+          if(idx>=0){list[idx]={...list[idx],name,phone,address,pet,tier};AdminData.setUsers(list);}
+        }else{
+          if(list.some(function(x){return x.email===email;})){alert('Email đã tồn tại.');return;}
+          list.push({id:'u'+Date.now(),name,email,phone,address,pet,tier: tier,password:'123456',role:'user',createdAt:new Date().toISOString()});AdminData.setUsers(list);
+        }
+        document.getElementById('customer-email-key').value='';document.getElementById('customer-form').reset();document.getElementById('customer-email').readOnly=false;document.getElementById('customer-tier').value='bronze';
+        document.getElementById('customer-modal-title').textContent='Thêm khách hàng mới';document.getElementById('customer-submit-btn').textContent='Thêm khách';
+        closeModal();renderCustomers();
+      };
+
+      document.getElementById('customer-detail-edit').onclick=function(){var e=document.getElementById('customer-detail-modal').getAttribute('data-edit-email');if(e)openEditModal(e);};
+
+      document.querySelectorAll('#customer-tier-filters .filter-btn').forEach(function(btn){
+        btn.onclick=function(){filterTier=btn.dataset.tier||'';document.querySelectorAll('#customer-tier-filters .filter-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');renderCustomers();};
+      });
+
+      document.querySelectorAll('[data-open-modal="customer-modal"]').forEach(function(b){b.addEventListener('click',function(){document.getElementById('customer-email-key').value='';document.getElementById('customer-form').reset();document.getElementById('customer-email').readOnly=false;document.getElementById('customer-tier').value='bronze';document.getElementById('customer-modal-title').textContent='Thêm khách hàng mới';document.getElementById('customer-submit-btn').textContent='Thêm khách';});});
+
+      document.getElementById('customers-search').oninput=function(){searchTerm=this.value.toLowerCase().trim();renderCustomers();};
+      document.getElementById('btn-export-customers').onclick=function(){
+        var users=getCustomers();if(!users.length){alert('Chưa có khách hàng để xuất.');return;}
+        var headers=['Tên','Email','SĐT','Địa chỉ','Thú cưng','Hạng','Ngày đăng ký'];
+        var rows=users.map(function(u){return[(u.name||''),(u.email||''),(u.phone||''),(u.address||''),(u.pet||''),(tierLbl[u.tier||'bronze']||u.tier||'Bronze'),(u.createdAt||'')];});
+        var csv=[headers.join(','),rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n')].join('\n');
+        var a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent('\uFEFF'+csv);a.download='khach-hang-'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+      };
+      renderCustomers();
+    })();
+    </script>
+  </body>
+</html>
+

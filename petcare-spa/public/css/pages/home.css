@@ -1,0 +1,161 @@
+/* ============================================
+   HOME PAGE - Pet Spa & Shop
+   ============================================ */
+
+.section--about .before-after {
+  display: grid;
+  gap: var(--space-xl);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 992px) {
+  .section--about .before-after {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Products grid (Best Sellers) - 1 hàng 4 sản phẩm, tối đa 2 hàng */
+.products-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Mobile & Tablet: sửa lỗi hiển thị giá (tràn, cắt, format sai) */
+@media (max-width: 991px) {
+  .products-grid .card--product .card__price-wrap {
+    min-width: 0;
+    overflow: visible;
+  }
+  .products-grid .card--product .card__price-line {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .products-grid .card--product .card__price {
+    font-size: var(--text-size-sm);
+  }
+  .products-grid .card--product .card__price-old {
+    font-size: 0.75rem;
+  }
+  .products-grid .card--product .btn--sm {
+    padding: 10px 12px;
+    flex-shrink: 0;
+  }
+  .products-grid .card--product .card__body {
+    padding: var(--space-md);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.products-grid .card--product {
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.products-grid .card--product:nth-child(1) { animation-delay: 0.1s; }
+.products-grid .card--product:nth-child(2) { animation-delay: 0.2s; }
+.products-grid .card--product:nth-child(3) { animation-delay: 0.3s; }
+.products-grid .card--product:nth-child(4) { animation-delay: 0.4s; }
+.products-grid .card--product:nth-child(5) { animation-delay: 0.5s; }
+.products-grid .card--product:nth-child(6) { animation-delay: 0.6s; }
+.products-grid .card--product:nth-child(7) { animation-delay: 0.7s; }
+.products-grid .card--product:nth-child(8) { animation-delay: 0.8s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Carousel services - slide width */
+.carousel--services {
+  padding: 0 var(--space-xl);
+  position: relative;
+}
+
+.carousel--services .carousel__track {
+  display: flex;
+  gap: 0;
+  transition: transform var(--transition-slow);
+}
+
+.carousel--services .carousel__slide {
+  flex: 0 0 100%;
+  padding: 0 var(--space-sm);
+}
+
+@media (min-width: 576px) {
+  .carousel--services .carousel__slide {
+    flex: 0 0 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .carousel--services .carousel__slide {
+    flex: 0 0 33.333%;
+  }
+}
+
+/* Testimonials carousel */
+.carousel--testimonials .carousel__track {
+  display: flex;
+  transition: transform var(--transition-slow);
+}
+
+.carousel--testimonials .carousel__slide {
+  flex: 0 0 100%;
+  padding: 0 var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .carousel--testimonials .carousel__slide {
+    flex: 0 0 50%;
+  }
+}
+
+.carousel--testimonials .testimonial-card {
+  height: 100%;
+}
+
+/* Section backgrounds */
+.section--why,
+.section--process {
+  background: var(--color-white);
+}
+
+.section--gallery {
+  background: var(--color-gray-100);
+}
+
+.section--team {
+  background: var(--color-white);
+}
+
+.section--testimonials {
+  background: var(--color-secondary);
+}
+
+.section--faq {
+  background: var(--color-white);
+}
+
+.section--brands {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}

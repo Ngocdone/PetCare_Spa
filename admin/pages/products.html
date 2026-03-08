@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý sản phẩm - Spapet Admin</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../../js/data.js"></script>
+    <script src="../admin-integration.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand">
+          <div class="sidebar__logo">SP</div>
+          <div>
+            <div class="sidebar__title">Spapet Admin</div>
+            <div class="sidebar__subtitle">Quản lý spa thú cưng</div>
+          </div>
+        </div>
+
+        <nav class="sidebar__nav">
+          <a href="../index.html" class="nav-item">
+            <span class="nav-item__icon">🏠</span>
+            <span>Tổng quan</span>
+          </a>
+          <a href="products.html" class="nav-item nav-item--active">
+            <span class="nav-item__icon">🐾</span>
+            <span>Sản phẩm</span>
+          </a>
+          <a href="categories.html" class="nav-item">
+            <span class="nav-item__icon">📂</span>
+            <span>Danh mục</span>
+          </a>
+          <a href="services.html" class="nav-item">
+            <span class="nav-item__icon">🧴</span>
+            <span>Dịch vụ spa</span>
+          </a>
+          <a href="orders.html" class="nav-item">
+            <span class="nav-item__icon">📦</span>
+            <span>Đơn hàng</span>
+          </a>
+          <a href="customers.html" class="nav-item">
+            <span class="nav-item__icon">👥</span>
+            <span>Khách hàng</span>
+          </a>
+          <a href="appointments.html" class="nav-item">
+            <span class="nav-item__icon">📅</span>
+            <span>Lịch hẹn</span>
+          </a>
+        </nav>
+
+        <div class="sidebar__footer">
+          <div class="user-mini">
+            <div class="user-mini__avatar">V</div>
+            <div>
+              <div class="user-mini__name">Admin</div>
+              <div class="user-mini__role">Quản trị viên</div>
+            </div>
+          </div>
+          <a href="../../index.html" class="nav-item" style="margin-top:8px;font-size:11px">🏠 Về trang chủ</a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar__left">
+            <button class="btn-icon mobile-toggle" id="mobile-toggle" aria-label="Mở menu">
+              ☰
+            </button>
+            <h1 class="topbar__title">Quản lý sản phẩm</h1>
+            <p class="topbar__subtitle">
+              Thêm, sửa, xoá và quản lý tồn kho sản phẩm trong cửa hàng Spapet.
+            </p>
+          </div>
+          <div class="topbar__actions">
+            <div class="search">
+              <span class="search__icon">🔍</span>
+              <input
+                type="text"
+                class="search__input"
+                id="product-search"
+                placeholder="Tìm kiếm theo tên sản phẩm, mã SKU..."
+              />
+            </div>
+            <button class="btn btn--ghost">Nhập file Excel</button>
+            <button class="btn btn--primary" data-open-modal="product-modal">
+              + Thêm sản phẩm
+            </button>
+          </div>
+        </header>
+
+        <section class="section">
+          <div class="section__header">
+            <h2 class="section__title">Bộ lọc nhanh</h2>
+            <span class="section__hint">Lọc theo danh mục</span>
+          </div>
+          <div class="grid grid--filter" id="category-filters">
+            <button type="button" class="btn btn--ghost filter-btn active" data-category="">Tất cả</button>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="card card--table">
+            <div class="card__header card__header--between">
+              <div>
+                <h2 class="card__title">Danh sách sản phẩm</h2>
+                <p class="card__subtitle">Đồng bộ với cửa hàng – dữ liệu lưu localStorage</p>
+              </div>
+              <button type="button" class="btn btn--ghost btn--sm" id="btn-export-csv">Xuất CSV</button>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="table" id="products-table">
+                <thead>
+                  <tr>
+                    <th>Mã</th>
+                    <th>Sản phẩm</th>
+                    <th>Danh mục</th>
+                    <th>Giá bán</th>
+                    <th>Tồn kho</th>
+                    <th>Trạng thái</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="products-tbody">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>© 2026 Spapet Admin – Sản phẩm.</span>
+          <span class="footer__hint">Gợi ý: thêm phân trang, filter nâng cao, upload ảnh.</span>
+        </footer>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+
+    <div class="modal" id="product-modal" hidden>
+      <div class="modal__header">
+        <h2 class="modal__title" id="product-modal-title">Thêm sản phẩm mới</h2>
+        <button class="btn-icon modal__close" data-close-modal aria-label="Đóng">✕</button>
+      </div>
+      <form class="modal__body" id="quick-product-form">
+        <input type="hidden" id="product-id" value="" />
+        <div class="form-grid">
+          <div class="form-field form-field--full">
+            <label for="quick-product-name">Tên sản phẩm <span class="required">*</span></label>
+            <input type="text" id="quick-product-name" placeholder="Ví dụ: Hạt cho mèo Kitten" required />
+          </div>
+          <div class="form-field">
+            <label for="quick-product-price">Giá bán (₫) <span class="required">*</span></label>
+            <input type="number" id="quick-product-price" placeholder="260000" min="0" required />
+          </div>
+          <div class="form-field">
+            <label for="quick-product-stock">Tồn kho</label>
+            <input type="number" id="quick-product-stock" placeholder="0" min="0" value="0" />
+          </div>
+          <div class="form-field">
+            <label for="quick-product-category">Danh mục</label>
+            <select id="quick-product-category">
+            </select>
+          </div>
+          <div class="form-field form-field--full">
+            <label>Hình ảnh</label>
+            <div class="image-upload-section">
+              <div class="image-upload-row" style="margin-bottom: 8px;">
+                <input type="file" id="quick-product-image-file" accept="image/jpeg,image/png,image/gif,image/webp" class="image-file-input" style="display: none;" />
+                <button type="button" class="btn btn--ghost btn--sm" onclick="document.getElementById('quick-product-image-file').click()">📁 Chọn file ảnh</button>
+                <span id="quick-product-file-name" class="form-hint" style="margin-left: 8px;"></span>
+              </div>
+              <div class="form-hint" style="margin-bottom: 8px;">Hoặc nhập URL:</div>
+              <div id="quick-product-images-wrap">
+                <div class="image-url-row">
+                  <input type="text" class="quick-product-image-url" placeholder="https://... hoặc đường dẫn ảnh" />
+                  <button type="button" class="btn btn--ghost btn--sm btn-remove-image" title="Xóa">✕</button>
+                </div>
+              </div>
+              <button type="button" class="btn btn--ghost btn--sm" id="btn-add-image-url">+ Thêm link ảnh</button>
+            </div>
+          </div>
+          <div class="form-field form-field--full">
+            <label for="quick-product-desc">Mô tả</label>
+            <textarea id="quick-product-desc" rows="3" placeholder="Mô tả chi tiết sản phẩm..."></textarea>
+          </div>
+        </div>
+        <p class="modal__hint">Sản phẩm lưu vào localStorage và hiển thị trên cửa hàng.</p>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--ghost" data-close-modal>Huỷ</button>
+          <button type="submit" class="btn btn--primary" id="product-submit-btn">Thêm sản phẩm</button>
+        </div>
+      </form>
+    </div>
+
+    <script src="../scripts.js"></script>
+    <script>
+    // Fallback data functions - check localStorage first, then DATA
+    function getProductsFromStorage() {
+      try {
+        var saved = localStorage.getItem('petspa_products');
+        if (saved) return JSON.parse(saved);
+      } catch(e) {}
+      return window.DATA && window.DATA.products ? window.DATA.products : [];
+    }
+    function getCategoriesFromStorage() {
+      try {
+        var saved = localStorage.getItem('petspa_categories');
+        if (saved) return JSON.parse(saved);
+      } catch(e) {}
+      return window.AdminData ? window.AdminData.DEFAULT_CATEGORIES : [
+        { id: 'thuc-an', name: 'Thức ăn', slug: 'thuc-an', order: 1 },
+        { id: 'cham-soc', name: 'Chăm sóc', slug: 'cham-soc', order: 2 },
+        { id: 'phu-kien', name: 'Phụ kiện', slug: 'phu-kien', order: 3 },
+        { id: 'do-choi', name: 'Đồ chơi', slug: 'do-choi', order: 4 }
+      ];
+    }
+    function saveProductsToStorage(list) {
+      localStorage.setItem('petspa_products', JSON.stringify(list));
+      if (window.AdminData) {
+        AdminData.getProducts = function() { return Promise.resolve(list); };
+        AdminData.getProductsSync = function() { return list; };
+      }
+    }
+    function formatPrice(n) {
+      return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(n);
+    }
+    
+    (function(){
+      var defaultImg = 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=100';
+      var currentFilter = '';
+      var searchTerm = (new URLSearchParams(location.search).get('q')||'').toLowerCase();
+      if(searchTerm) document.getElementById('product-search').value = searchTerm;
+
+      function getCatLabel(cats){
+        var m = {};
+        (cats||[]).forEach(function(c){ m[c.id] = c.name; });
+        return m;
+      }
+      function thumbClass(c){ return c==='thuc-an'?'table-product__thumb--cat':(c==='cham-soc'?'table-product__thumb--dog':'table-product__thumb--spa'); }
+      function thumbHtml(p){
+        var imgs = Array.isArray(p.images) && p.images.length ? p.images : (p.image ? [p.image] : []);
+        var src = (imgs[0]||'').trim() || defaultImg;
+        var cls = thumbClass(p.category);
+        return '<div class="table-product__thumb '+cls+'"><img src="'+src+'" alt="" onerror="this.src=\''+defaultImg+'\'" /></div>';
+      }
+
+      function renderCategoryFilters(){
+        var cats = getCategoriesFromStorage();
+        cats.sort(function(a,b){ return (a.order||0) - (b.order||0); });
+        var container = document.getElementById('category-filters');
+        if(!container) return;
+        var html = '<button type="button" class="btn btn--ghost filter-btn active" data-category="">Tất cả</button>';
+        cats.forEach(function(c){
+          html += '<button type="button" class="btn btn--ghost filter-btn' + (currentFilter===c.id?' active':'') + '" data-category="' + c.id + '">' + (c.name||c.id) + '</button>';
+        });
+        container.innerHTML = html;
+        container.querySelectorAll('.filter-btn').forEach(function(btn){
+          btn.onclick=function(){ currentFilter=this.getAttribute('data-category')||''; container.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');}); this.classList.add('active'); renderProducts(); };
+        });
+      }
+      function renderCategorySelect(){
+        var cats = getCategoriesFromStorage();
+        cats.sort(function(a,b){ return (a.order||0) - (b.order||0); });
+        var sel = document.getElementById('quick-product-category');
+        if(!sel) return;
+        sel.innerHTML = cats.map(function(c){ return '<option value="'+c.id+'">'+(c.name||c.id)+'</option>'; }).join('');
+      }
+
+      function renderProducts(){
+        var products = getProductsFromStorage();
+        var cats = getCategoriesFromStorage();
+        var catLabel = getCatLabel(cats);
+        var filtered = products.filter(function(p){
+          if(currentFilter && p.category !== currentFilter) return false;
+          if(searchTerm){ var t = (p.name||'')+(p.description||'')+(p.id||''); return t.toLowerCase().indexOf(searchTerm)>=0; }
+          return true;
+        });
+        var tbody = document.getElementById('products-tbody');
+        if(!tbody) return;
+        tbody.innerHTML = filtered.length ? filtered.map(function(p,i){
+          var code = 'SP-' + (p.id ? String(p.id).replace(/^p/,'').slice(-4) : String(i+1).padStart(3,'0'));
+          var stock = p.stock!==undefined ? p.stock : '—';
+          var stockNum = parseInt(p.stock,10);
+          var status = isNaN(stockNum) ? 'pill--success' : (stockNum<=0 ? 'pill--danger' : (stockNum<10 ? 'pill--warning' : 'pill--success'));
+          var statusTxt = isNaN(stockNum) ? 'Đang bán' : (stockNum<=0 ? 'Hết hàng' : (stockNum<10 ? 'Sắp hết' : 'Đang bán'));
+          var lbl = catLabel[p.category] || p.category;
+          return '<tr data-product-id="'+(p.id||'')+'"><td>'+code+'</td><td><div class="table-product">'+thumbHtml(p)+'<div><div class="table-product__name">'+(p.name||'')+'</div><div class="table-product__meta">'+(p.description||'').substring(0,40)+'</div></div></div></td><td>'+lbl+'</td><td>'+(window.AdminData ? window.AdminData.formatPrice(p.price||0) : formatPrice(p.price||0))+'</td><td>'+stock+'</td><td><span class="pill '+status+'">'+statusTxt+'</span></td><td class="table__actions"><button type="button" class="btn-icon btn-edit-product" data-edit-id="'+(p.id||'')+'" title="Sửa">✏️</button><button type="button" class="btn-icon btn-icon--danger" data-delete-id="'+(p.id||'')+'" title="Xóa">🗑️</button></td></tr>';
+        }).join('') : '<tr><td colspan="7">Không có sản phẩm nào.</td></tr>';
+        tbody.querySelectorAll('[data-delete-id]').forEach(function(btn){
+          btn.onclick=function(){ var id=this.getAttribute('data-delete-id'); if(!id||!confirm('Xóa sản phẩm này?'))return; var list=getProductsFromStorage().filter(function(x){return x.id!==id;}); saveProductsToStorage(list); renderProducts(); };
+        });
+        tbody.querySelectorAll('.btn-edit-product').forEach(function(btn){
+          btn.onclick=function(){ openEditModal(this.getAttribute('data-edit-id')); };
+        });
+      }
+
+      function openEditModal(id){
+        var p = getProductsFromStorage().find(function(x){return x.id===id;});
+        if(!p) return;
+        document.getElementById('product-id').value = p.id||'';
+        document.getElementById('quick-product-name').value = p.name||'';
+        document.getElementById('quick-product-price').value = p.price||'';
+        document.getElementById('quick-product-stock').value = p.stock!==undefined ? p.stock : '';
+        var cats = getCategoriesFromStorage();
+        var catId = p.category||'';
+        if(cats.some(function(c){return c.id===catId;})){} else { catId = cats[0] ? cats[0].id : 'cham-soc'; }
+        document.getElementById('quick-product-category').value = catId;
+        var imgs = Array.isArray(p.images) && p.images.length ? p.images : (p.image ? [p.image] : []);
+        var wrap = document.getElementById('quick-product-images-wrap');
+        if (wrap) {
+          wrap.innerHTML = imgs.length ? imgs.map(function(url){
+            return '<div class="image-url-row"><input type="text" class="quick-product-image-url" placeholder="https://... hoặc đường dẫn ảnh" value="' + (url||'').replace(/"/g, '"') + '" /><button type="button" class="btn btn--ghost btn--sm btn-remove-image" title="Xóa">✕</button></div>';
+          }).join('') : '<div class="image-url-row"><input type="text" class="quick-product-image-url" placeholder="https://... hoặc đường dẫn ảnh" /><button type="button" class="btn btn--ghost btn--sm btn-remove-image" title="Xóa">✕</button></div>';
+        }
+        document.getElementById('quick-product-desc').value = p.description||'';
+        document.getElementById('product-modal-title').textContent = 'Sửa sản phẩm';
+        document.getElementById('product-submit-btn').textContent = 'Cập nhật';
+        document.getElementById('product-modal').style.display='flex';
+        document.getElementById('modal-backdrop').style.display='block';
+      }
+
+      // File upload
+      window.uploadedProductImageBase64 = null;
+      (function(){
+        var fileInput = document.getElementById('quick-product-image-file');
+        var fileNameSpan = document.getElementById('quick-product-file-name');
+        if (fileInput) {
+          fileInput.addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+              var file = this.files[0];
+              if (!file.type.match(/^image\/(jpeg|png|gif|webp)$/)) {
+                alert('Vui lòng chọn file ảnh (JPEG, PNG, GIF, hoặc WebP)');
+                this.value = '';
+                return;
+              }
+              if (file.size > 2 * 1024 * 1024) {
+                alert('Kích thước ảnh tối đa 2MB');
+                this.value = '';
+                return;
+              }
+              if (fileNameSpan) fileNameSpan.textContent = file.name;
+              window.fileToBase64(file).then(function(base64) {
+                window.uploadedProductImageBase64 = base64;
+              }).catch(function(err) {
+                console.error('Lỗi upload:', err);
+                alert('Lỗi khi upload ảnh');
+              });
+            }
+          });
+        }
+      })();
+
+      // Search
+      var searchEl = document.getElementById('product-search');
+      if(searchEl) searchEl.oninput = function(){ searchTerm = this.value.toLowerCase().trim(); renderProducts(); };
+
+      // Export CSV
+      document.getElementById('btn-export-csv').onclick = function(){
+        var products = getProductsFromStorage();
+        var cats = getCategoriesFromStorage();
+        var catLabel = getCatLabel(cats);
+        if(!products.length){ alert('Chưa có sản phẩm để xuất.'); return; }
+        var headers = ['Mã','Tên','Danh mục','Giá','Tồn kho','Mô tả'];
+        var rows = products.map(function(p){ return [(p.id||''), (p.name||''), (catLabel[p.category]||p.category), (p.price||0), (p.stock||''), (p.description||'').replace(/,/g,';')]; });
+        var csv = [headers.join(','), rows.map(function(r){ return r.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(','); }).join('\n')].join('\n');
+        var a = document.createElement('a'); a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent('\uFEFF'+csv); a.download = 'san-pham-'+new Date().toISOString().slice(0,10)+'.csv'; a.click();
+      };
+
+      // Form submit
+      document.getElementById('quick-product-form').onsubmit = function(e){
+        e.preventDefault();
+        var idEl = document.getElementById('product-id');
+        var nameEl = document.getElementById('quick-product-name');
+        var priceEl = document.getElementById('quick-product-price');
+        var stockEl = document.getElementById('quick-product-stock');
+        var catEl = document.getElementById('quick-product-category');
+        var descEl = document.getElementById('quick-product-desc');
+        
+        var name = nameEl.value.trim();
+        var price = parseInt(priceEl.value, 10) || 0;
+        var stock = parseInt(stockEl.value, 10) || 0;
+        var category = catEl.value;
+        var description = descEl.value.trim();
+        
+        var imageUrls = [];
+        document.querySelectorAll('#quick-product-images-wrap .quick-product-image-url').forEach(function(input) {
+          var val = input.value.trim();
+          if(val) imageUrls.push(val);
+        });
+        if(window.uploadedProductImageBase64) {
+          imageUrls.unshift(window.uploadedProductImageBase64);
+        }
+        
+        var list = getProductsFromStorage();
+        var editId = idEl.value;
+        
+        if(editId){
+          var idx = list.findIndex(function(x){ return x.id === editId; });
+          if(idx >= 0){
+            list[idx] = {...list[idx], name, price, stock, category, description, image: imageUrls[0] || '', images: imageUrls };
+          }
+        }else{
+          var newId = 'p' + (Date.now());
+          list.push({id: newId, name, price, stock, category, description, image: imageUrls[0] || '', images: imageUrls});
+        }
+        
+        saveProductsToStorage(list);
+        
+        idEl.value = '';
+        document.getElementById('quick-product-form').reset();
+        document.getElementById('product-modal-title').textContent = 'Thêm sản phẩm mới';
+        document.getElementById('product-submit-btn').textContent = 'Thêm sản phẩm';
+        window.uploadedProductImageBase64 = null;
+        document.getElementById('quick-product-file-name').textContent = '';
+        
+        document.getElementById('product-modal').style.display = 'none';
+        document.getElementById('modal-backdrop').style.display = 'none';
+        
+        renderProducts();
+      };
+
+      renderCategoryFilters();
+      renderCategorySelect();
+      renderProducts();
+      window.adminOpenEditProduct = openEditModal;
+      window.adminRenderProducts = function(){ renderCategoryFilters(); renderProducts(); };
+    })();
+    </script>
+  </body>
+</html>
+

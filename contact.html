@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Liên hệ - Pet Spa & Shop">
+  <title>Liên hệ - Pet Spa & Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages/contact.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo">
+        <span class="header__logo-icon"><i class="fas fa-paw"></i></span>
+        PETCARE SPA
+      </a>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li><a href="index.html" class="nav__link" data-page="index.html">Trang chủ</a></li>
+          <li><a href="services.html" class="nav__link" data-page="services.html">Dịch vụ</a></li>
+          <li><a href="shop.html" class="nav__link" data-page="shop.html">Cửa hàng</a></li>
+          <li><a href="booking.html" class="nav__link" data-page="booking.html">Đặt lịch</a></li>
+          <li><a href="about.html" class="nav__link" data-page="about.html">Về chúng tôi</a></li>
+          <li><a href="contact.html" class="nav__link nav__link--active" data-page="contact.html">Liên hệ</a></li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <div class="header__user-wrap">
+        <button type="button" class="header__icon-btn header__user-btn" aria-expanded="false" aria-haspopup="true" title="Tài khoản">
+          <i class="fas fa-user"></i>
+        </button>
+        <div class="header__user-dropdown" id="userDropdown" aria-hidden="true"></div>
+      </div>
+        <a href="cart.html" class="header__icon-btn header__cart-wrap">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="header__cart-badge cart-count" style="display:none">0</span>
+        </a>
+        <button type="button" class="header__menu-toggle" aria-label="Mở menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" aria-hidden="true"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__header">
+      <span class="mobile-menu__title">Menu</span>
+      <button type="button" class="mobile-menu__close" aria-label="Đóng menu">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <nav class="mobile-menu__nav">
+      <a href="index.html" class="mobile-menu__link"><i class="fas fa-home"></i><span>Trang chủ</span></a>
+      <a href="services.html" class="mobile-menu__link"><i class="fas fa-spa"></i><span>Dịch vụ</span></a>
+      <a href="shop.html" class="mobile-menu__link"><i class="fas fa-shopping-bag"></i><span>Cửa hàng</span></a>
+      <a href="booking.html" class="mobile-menu__link"><i class="fas fa-calendar-check"></i><span>Đặt lịch</span></a>
+      <a href="about.html" class="mobile-menu__link"><i class="fas fa-paw"></i><span>Về chúng tôi</span></a>
+      <a href="contact.html" class="mobile-menu__link"><i class="fas fa-envelope"></i><span>Liên hệ</span></a>
+    </nav>
+  </div>
+
+  <main class="page-main page-main--contact">
+    <section class="contact-hero">
+      <div class="contact-hero__bg"></div>
+      <div class="container contact-hero__inner">
+        <h1 class="contact-hero__title">Liên hệ</h1>
+        <p class="contact-hero__subtitle">Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Gửi tin nhắn hoặc gọi trực tiếp để được tư vấn.</p>
+      </div>
+    </section>
+
+    <section class="section contact-section">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item"><a href="index.html" class="breadcrumb__link">Trang chủ</a></li>
+            <li class="breadcrumb__item"><span class="breadcrumb__current">Liên hệ</span></li>
+          </ol>
+        </nav>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h2 class="contact-info__title">Thông tin liên hệ</h2>
+            <ul class="contact-info__list">
+              <li>
+                <span class="contact-info__icon"><i class="fas fa-map-marker-alt"></i></span>
+                <div>
+                  <strong>Địa chỉ</strong>
+                  <span>QTSC Building 1, Đường Quang Trung, Tân Hưng Thuận, Hóc Môn, Thành phố Hồ Chí Minh, Vietnam</span>
+                </div>
+              </li>
+              <li>
+                <span class="contact-info__icon"><i class="fas fa-phone"></i></span>
+                <div>
+                  <strong>Điện thoại</strong>
+                  <a href="tel:0900123456">0900 123 456</a>
+                </div>
+              </li>
+              <li>
+                <span class="contact-info__icon"><i class="fas fa-envelope"></i></span>
+                <div>
+                  <strong>Email</strong>
+                  <a href="mailto:hello@petspa.vn">hello@petspa.vn</a>
+                </div>
+              </li>
+            </ul>
+            <div class="contact-info__hours">
+              <h3 class="contact-info__subtitle"><i class="fas fa-clock"></i> Giờ mở cửa</h3>
+              <p>Thứ 2 – Chủ nhật: 8:00 – 20:00</p>
+            </div>
+            <div class="contact-map" id="contactMap">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.424281644531!2d106.69927631480097!3d10.776837992319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4670b37d0b%3A0x2b2f5a8e7e8e8e8e!2sHo%20Chi%20Minh%20City!5e0!3m2!1sen!2s!4v1234567890" width="100%" height="220" style="border:0; border-radius: var(--radius-md);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bản đồ Pet Spa & Shop"></iframe>
+            </div>
+          </div>
+          <div class="contact-form-wrap">
+            <h2 class="contact-form__title">Gửi tin nhắn</h2>
+            <p class="contact-form__desc">Điền form bên dưới, chúng tôi sẽ phản hồi trong vòng 24 giờ.</p>
+            <form class="contact-form" id="contactForm">
+              <div class="form-group">
+                <label for="contactName">Họ tên <span class="required">*</span></label>
+                <input type="text" id="contactName" name="name" required placeholder="Họ và tên">
+                <span class="form-error" id="errorContactName"></span>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email <span class="required">*</span></label>
+                <input type="email" id="contactEmail" name="email" required placeholder="email@example.com">
+                <span class="form-error" id="errorContactEmail"></span>
+              </div>
+              <div class="form-group">
+                <label for="contactPhone">Số điện thoại</label>
+                <input type="tel" id="contactPhone" name="phone" placeholder="0900 123 456">
+              </div>
+              <div class="form-group">
+                <label for="contactMessage">Nội dung <span class="required">*</span></label>
+                <textarea id="contactMessage" name="message" rows="4" required placeholder="Nội dung tin nhắn..."></textarea>
+                <span class="form-error" id="errorContactMessage"></span>
+              </div>
+              <button type="submit" class="btn-modern btn-modern--primary btn-modern--lg"><i class="fas fa-paper-plane"></i> Gửi tin nhắn</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Pet Spa & Shop</div>
+          <p class="footer__text">Spa thú cưng chuyên nghiệp, cửa hàng phụ kiện và thức ăn chất lượng. Cam kết mang lại sự hài lòng cho bạn và thú cưng.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Zalo"><i class="fas fa-phone"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên kết</h4>
+          <ul class="footer__links">
+            <li><a href="services.html" class="footer__link">Dịch vụ</a></li>
+            <li><a href="shop.html" class="footer__link">Cửa hàng</a></li>
+            <li><a href="booking.html" class="footer__link">Đặt lịch</a></li>
+            <li><a href="about.html" class="footer__link">Về chúng tôi</a></li>
+            <li><a href="contact.html" class="footer__link">Liên hệ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Liên hệ</h4>
+          <ul class="footer__links">
+            <li><i class="fas fa-map-marker-alt"></i> QTSC Building 1, Đường Quang Trung, Tân Hưng Thuận, Hóc Môn, Thành phố Hồ Chí Minh, Vietnam</li>
+            <li><i class="fas fa-phone"></i> 0900 123 456</li>
+            <li><i class="fas fa-envelope"></i> hello@petspa.vn</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Đăng ký nhận tin</h4>
+          <form class="footer__newsletter" id="newsletterForm">
+            <div class="footer__input-wrap">
+              <input type="email" class="footer__input" name="email" placeholder="Email của bạn" required>
+              <button type="submit" class="btn btn--primary">Gửi</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Pet Spa & Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>
