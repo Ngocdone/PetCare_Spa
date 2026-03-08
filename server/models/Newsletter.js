@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { pool } = require('../config/db');
 
 const Newsletter = {
@@ -22,3 +23,12 @@ const Newsletter = {
 
 module.exports = Newsletter;
 
+=======
+const mongoose = require('mongoose');
+
+const newsletterSchema = new mongoose.Schema({
+  email: { type: String, required: true, unique: true, lowercase: true }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Newsletter', newsletterSchema);
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b

@@ -392,6 +392,7 @@ if (typeof module !== 'undefined' && module.exports) {
     if (gal) DATA.gallery = JSON.parse(gal);
   } catch (e) {}
 }
+<<<<<<< HEAD
 
 /**
  * Trả về URL ảnh để hiển thị. Nếu chỉ nhập tên file (vd: "anh.jpg") thì tự thêm "img/" để ảnh trong thư mục img hiện đúng.
@@ -405,3 +406,5 @@ window.getProductImageSrc = function (src) {
   if (t.indexOf('/') === -1) return 'img/' + t;
   return t;
 };
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b

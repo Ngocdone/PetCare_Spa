@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { pool } = require('../config/db');
 
 const Team = {
@@ -43,3 +44,16 @@ const Team = {
 
 module.exports = Team;
 
+=======
+const mongoose = require('mongoose');
+
+const teamSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  role: { type: String, required: true },
+  experience: { type: String, default: '' },
+  image: { type: String, default: '' },
+  order: { type: Number, default: 0 }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Team', teamSchema);
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b

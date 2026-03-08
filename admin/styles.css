@@ -1056,6 +1056,7 @@ body {
   box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.2);
 }
 
+<<<<<<< HEAD
 .image-url-row {
   display: flex;
   gap: 8px;
@@ -1077,6 +1078,8 @@ body {
   margin-top: 6px;
 }
 
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
 .form-hint {
   font-size: 11px;
   color: #6b7280;

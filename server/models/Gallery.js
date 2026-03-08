@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { pool } = require('../config/db');
 
 const Gallery = {
@@ -41,3 +42,14 @@ const Gallery = {
 
 module.exports = Gallery;
 
+=======
+const mongoose = require('mongoose');
+
+const gallerySchema = new mongoose.Schema({
+  src: { type: String, required: true },
+  title: { type: String, default: '' },
+  category: { type: String, default: 'gallery' }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Gallery', gallerySchema);
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b

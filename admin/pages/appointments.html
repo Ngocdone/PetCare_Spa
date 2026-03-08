@@ -36,6 +36,13 @@
             <span class="nav-item__icon">📂</span>
             <span>Danh mục</span>
           </a>
+<<<<<<< HEAD
+=======
+          <a href="gallery.html" class="nav-item">
+            <span class="nav-item__icon">📸</span>
+            <span>Khoảnh khắc</span>
+          </a>
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
           <a href="services.html" class="nav-item">
             <span class="nav-item__icon">🧴</span>
             <span>Dịch vụ spa</span>
@@ -227,6 +234,7 @@
         var d=new Date();
         return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
       }
+<<<<<<< HEAD
 
       async function renderAppointments(){
         // Wait for bookings to load from API
@@ -237,13 +245,23 @@
         var reversedBookings = bookings.slice().reverse();
         var today=getTodayLocal();
         var todayList=reversedBookings.filter(function(b){return (b.date||'')===today;}).sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
+=======
+      function renderAppointments(){
+        var bookings=AdminData.getBookings().slice().reverse();
+        var today=getTodayLocal();
+        var todayList=bookings.filter(function(b){return (b.date||'')===today;}).sort(function(a,b){return (a.time||'').localeCompare(b.time||'');});
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         var apptEl=document.getElementById('appointments-today');
         if(apptEl)apptEl.innerHTML=todayList.length?todayList.map(function(b,i){
           var s=b.status||'pending';
           return '<li class="timeline__item'+(i===0?' timeline__item--active':'')+'"><div class="timeline__time">'+(b.time||'--:--')+'</div><div class="timeline__content"><div class="timeline__title">'+(b.serviceName||'Dịch vụ')+'</div><div class="timeline__meta">Khách: <strong>'+(b.ownerName||'-')+'</strong> · '+(b.petName||'Thú cưng')+'</div></div><span class="pill '+(statusCls[s]||'pill--default')+'">'+(statusTxt[s]||s)+'</span></li>';
         }).join(''):'<li class="timeline__item"><div class="timeline__time">—</div><div class="timeline__content"><div class="timeline__title">Chưa có lịch hôm nay</div><a href="../../booking.html">Đặt lịch</a></div></li>';
 
+<<<<<<< HEAD
         var filtered=reversedBookings.filter(function(b){
+=======
+        var filtered=bookings.filter(function(b){
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
           if(filterFrom&&b.date<filterFrom)return false;
           if(filterTo&&b.date>filterTo)return false;
           if(filterStatus&&b.status!==filterStatus)return false;
@@ -261,6 +279,7 @@
           return '<tr><td>'+date+'</td><td>'+(b.ownerName||'-')+'</td><td>'+(b.serviceName||'-')+'</td><td>'+(b.time||'-')+'</td><td><span class="pill '+(statusCls[s]||'')+'">'+(statusTxt[s]||s)+'</span></td><td class="table__actions">'+acts+'</td></tr>';
         }).join(''):'<tr><td colspan="6">Chưa có lịch hẹn.</td></tr>';
         tbody.querySelectorAll('.btn-confirm-appt').forEach(function(btn){
+<<<<<<< HEAD
           btn.onclick=async function(){var id=this.dataset.id;if(!id)return;var list=AdminData.getBookingsSync().map(function(b){return String(b.id)===String(id)?Object.assign({},b,{status:'confirmed'}):b;});await AdminData.setBookings(list);renderAppointments();};
         });
         tbody.querySelectorAll('.btn-complete-appt').forEach(function(btn){
@@ -272,6 +291,19 @@
       }
 
       var services=AdminData.getServicesSync()||[];
+=======
+          btn.onclick=function(){var id=this.dataset.id;if(!id)return;var list=AdminData.getBookings().map(function(b){return b.id===id?Object.assign({},b,{status:'confirmed'}):b;});AdminData.setBookings(list);renderAppointments();};
+        });
+        tbody.querySelectorAll('.btn-complete-appt').forEach(function(btn){
+          btn.onclick=function(){var id=this.dataset.id;if(!id)return;var list=AdminData.getBookings().map(function(b){return b.id===id?Object.assign({},b,{status:'completed'}):b;});AdminData.setBookings(list);renderAppointments();};
+        });
+        tbody.querySelectorAll('.btn-cancel-appt').forEach(function(btn){
+          btn.onclick=function(){var id=this.dataset.id;if(!id||!confirm('Hủy lịch này?'))return;var list=AdminData.getBookings().map(function(b){return b.id===id?Object.assign({},b,{status:'cancelled'}):b;});AdminData.setBookings(list);renderAppointments();};
+        });
+      }
+
+      var services=AdminData.getServices()||[];
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       var servSel=document.getElementById('quick-service');
       if(servSel)servSel.innerHTML=services.length?services.map(function(s){return '<option value="'+(s.name||s.id)+'">'+(s.name||s.id)+' - '+(AdminData.formatPrice(s.price||0)+'').replace(/\s/g,' ')+'</option>';}).join(''):'<option value="Dịch vụ spa">Dịch vụ spa</option>';
       var dateInput=document.getElementById('quick-date');
@@ -282,10 +314,14 @@
       var searchEl=document.getElementById('appointments-search');
       if(searchEl)searchEl.oninput=function(){searchTerm=this.value.toLowerCase().trim();renderAppointments();};
 
+<<<<<<< HEAD
       // Initial render - wait for data to load
       setTimeout(function() {
         renderAppointments();
       }, 500);
+=======
+      renderAppointments();
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       window.adminRenderAppointments = renderAppointments;
     })();
     </script>

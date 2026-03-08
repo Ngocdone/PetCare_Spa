@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { pool } = require('../config/db');
 
 const Testimonial = {
@@ -44,3 +45,17 @@ const Testimonial = {
 
 module.exports = Testimonial;
 
+=======
+const mongoose = require('mongoose');
+
+const testimonialSchema = new mongoose.Schema({
+  author: { type: String, required: true },
+  pet: { type: String, default: '' },
+  petImage: { type: String, default: '' },
+  text: { type: String, required: true },
+  rating: { type: Number, default: 5, min: 1, max: 5 },
+  order: { type: Number, default: 0 }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Testimonial', testimonialSchema);
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b

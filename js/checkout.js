@@ -178,7 +178,11 @@
       const st = item.price * (item.quantity || 1);
       return `
         <div class="checkout-summary__item">
+<<<<<<< HEAD
           <img src="${window.getProductImageSrc ? window.getProductImageSrc(item.image) : (item.image || '')}" alt="${item.name}" class="checkout-summary__item-img">
+=======
+          <img src="${item.image}" alt="${item.name}" class="checkout-summary__item-img">
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
           <div class="checkout-summary__item-info">
             <div class="checkout-summary__item-name">${item.name}</div>
             <div class="checkout-summary__item-qty">x${item.quantity || 1}</div>

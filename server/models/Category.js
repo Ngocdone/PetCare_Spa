@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { pool } = require('../config/db');
 
 const Category = {
@@ -41,3 +42,15 @@ const Category = {
 
 module.exports = Category;
 
+=======
+const mongoose = require('mongoose');
+
+const categorySchema = new mongoose.Schema({
+  id: { type: String, required: true },
+  name: { type: String, required: true },
+  slug: { type: String },
+  order: { type: Number, default: 0 }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Category', categorySchema);
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b

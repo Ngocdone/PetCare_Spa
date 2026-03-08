@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { pool } = require('../config/db');
 
 const Brand = {
@@ -40,3 +41,13 @@ const Brand = {
 
 module.exports = Brand;
 
+=======
+const mongoose = require('mongoose');
+
+const brandSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  order: { type: Number, default: 0 }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Brand', brandSchema);
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b

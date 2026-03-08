@@ -29,6 +29,7 @@
     booking.createdAt = new Date().toISOString();
     list.push(booking);
     localStorage.setItem(BOOKINGS_KEY, JSON.stringify(list));
+<<<<<<< HEAD
     
     // Gửi dữ liệu lên server API
     const token = localStorage.getItem('token');
@@ -61,6 +62,8 @@
     .catch(err => {
       console.error('Error saving booking to server:', err);
     });
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
   }
 
   // Time slots 8:00 - 18:00, 30 min

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý khoảnh khắc đáng yêu - Spapet Admin</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../../js/data.js"></script>
+    <script src="../admin-integration.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+    .gallery-item { border-radius: 12px; overflow: hidden; border: 1px solid rgba(226,232,240,0.9); background: #fff; }
+    .gallery-item__thumb { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+    .gallery-item__info { padding: 8px 10px; }
+    .gallery-item__title { font-size: 12px; font-weight: 600; }
+    .gallery-item__cat { font-size: 10px; color: #6b7280; margin-top: 2px; }
+    .gallery-item__actions { padding: 6px 10px; display: flex; gap: 4px; justify-content: flex-end; border-top: 1px solid #f3f4f6; }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar__brand">
+          <div class="sidebar__logo">SP</div>
+          <div>
+            <div class="sidebar__title">Spapet Admin</div>
+            <div class="sidebar__subtitle">Quản lý spa thú cưng</div>
+          </div>
+        </div>
+
+        <nav class="sidebar__nav">
+          <a href="../index.html" class="nav-item">
+            <span class="nav-item__icon">🏠</span>
+            <span>Tổng quan</span>
+          </a>
+          <a href="products.html" class="nav-item">
+            <span class="nav-item__icon">🐾</span>
+            <span>Sản phẩm</span>
+          </a>
+          <a href="categories.html" class="nav-item">
+            <span class="nav-item__icon">📂</span>
+            <span>Danh mục</span>
+          </a>
+          <a href="gallery.html" class="nav-item nav-item--active">
+            <span class="nav-item__icon">📸</span>
+            <span>Khoảnh khắc</span>
+          </a>
+          <a href="services.html" class="nav-item">
+            <span class="nav-item__icon">🧴</span>
+            <span>Dịch vụ spa</span>
+          </a>
+          <a href="orders.html" class="nav-item">
+            <span class="nav-item__icon">📦</span>
+            <span>Đơn hàng</span>
+          </a>
+          <a href="customers.html" class="nav-item">
+            <span class="nav-item__icon">👥</span>
+            <span>Khách hàng</span>
+          </a>
+          <a href="appointments.html" class="nav-item">
+            <span class="nav-item__icon">📅</span>
+            <span>Lịch hẹn</span>
+          </a>
+        </nav>
+
+        <div class="sidebar__footer">
+          <div class="user-mini">
+            <div class="user-mini__avatar">V</div>
+            <div>
+              <div class="user-mini__name">Admin</div>
+              <div class="user-mini__role">Quản trị viên</div>
+            </div>
+          </div>
+          <a href="../../index.html" class="nav-item" style="margin-top:8px;font-size:11px">🏠 Về trang chủ</a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar__left">
+            <button class="btn-icon mobile-toggle" id="mobile-toggle" aria-label="Mở menu">☰</button>
+            <h1 class="topbar__title">Quản lý khoảnh khắc đáng yêu</h1>
+            <p class="topbar__subtitle">
+              Thêm, sửa và xoá ảnh trong gallery "Khoảnh Khắc Đáng Yêu" hiển thị trên trang chủ.
+            </p>
+          </div>
+          <div class="topbar__actions">
+            <div class="search">
+              <span class="search__icon">🔍</span>
+              <input type="text" class="search__input" id="gallery-search" placeholder="Tìm theo tiêu đề, danh mục..." />
+            </div>
+            <button class="btn btn--primary" data-open-modal="gallery-modal">+ Thêm khoảnh khắc</button>
+          </div>
+        </header>
+
+        <section class="section">
+          <div class="card">
+            <div class="card__header card__header--between">
+              <div>
+                <h2 class="card__title">Danh sách khoảnh khắc</h2>
+                <p class="card__subtitle">Hiển thị trên trang chủ – dữ liệu lưu localStorage</p>
+              </div>
+              <span class="badge badge--info" id="gallery-count">0 ảnh</span>
+            </div>
+            <div class="gallery-grid" id="gallery-grid"></div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>© 2026 Spapet Admin – Khoảnh khắc đáng yêu.</span>
+        </footer>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+    <div class="modal" id="gallery-modal" hidden>
+      <div class="modal__header">
+        <h2 class="modal__title" id="gallery-modal-title">Thêm khoảnh khắc</h2>
+        <button class="btn-icon modal__close" data-close-modal aria-label="Đóng">✕</button>
+      </div>
+      <form class="modal__body" id="gallery-form">
+        <input type="hidden" id="gallery-id" value="" />
+        <div class="form-grid">
+          <div class="form-field form-field--full">
+            <label for="gallery-title">Tiêu đề <span class="required">*</span></label>
+            <input type="text" id="gallery-title" placeholder="Ví dụ: Chó Poodle sau spa" required />
+          </div>
+          <div class="form-field form-field--full">
+            <label for="gallery-src">URL ảnh <span class="required">*</span></label>
+            <input type="url" id="gallery-src" placeholder="https://..." required />
+          </div>
+          <div class="form-field">
+            <label for="gallery-category">Danh mục</label>
+            <select id="gallery-category">
+              <option value="grooming">Grooming</option>
+              <option value="spa">Spa</option>
+              <option value="cat">Mèo</option>
+              <option value="happy">Vui vẻ</option>
+              <option value="care">Chăm sóc</option>
+              <option value="after">Sau tắm</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="gallery-order">Thứ tự</label>
+            <input type="number" id="gallery-order" min="1" value="1" />
+          </div>
+        </div>
+        <p class="modal__hint">Ảnh hiển thị trong section "Khoảnh Khắc Đáng Yêu" trên trang chủ.</p>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--ghost" data-close-modal>Huỷ</button>
+          <button type="submit" class="btn btn--primary" id="gallery-submit-btn">Thêm</button>
+        </div>
+      </form>
+    </div>
+
+    <script src="../scripts.js"></script>
+    <script>
+    (function(){
+      if(!window.AdminData)return;
+      var defaultImg='https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400';
+      var searchTerm='';
+
+      function closeModal(){var m=document.getElementById('gallery-modal');var b=document.getElementById('modal-backdrop');if(m){m.style.display='none';m.removeAttribute('data-open');}if(b){b.style.display='none';}}
+      function openModal(){document.getElementById('gallery-modal').style.display='flex';document.getElementById('modal-backdrop').style.display='block';document.getElementById('gallery-modal').setAttribute('data-open','true');}
+
+      function openEditModal(id){
+        var g=AdminData.getGallery().find(function(x){return x.id===id;});
+        if(!g)return;
+        document.getElementById('gallery-id').value=g.id||'';
+        document.getElementById('gallery-title').value=g.title||'';
+        document.getElementById('gallery-src').value=g.src||'';
+        document.getElementById('gallery-category').value=g.category||'grooming';
+        document.getElementById('gallery-order').value=g.order||1;
+        document.getElementById('gallery-modal-title').textContent='Sửa khoảnh khắc';
+        document.getElementById('gallery-submit-btn').textContent='Cập nhật';
+        openModal();
+      }
+
+      function renderGallery(){
+        var items=AdminData.getGallery();
+        var filtered=items.filter(function(g){
+          if(!searchTerm)return true;
+          var t=(g.title||'')+(g.category||'');
+          return t.toLowerCase().indexOf(searchTerm)>=0;
+        });
+        filtered.sort(function(a,b){return(a.order||0)-(b.order||0);});
+        document.getElementById('gallery-count').textContent=items.length+' ảnh';
+        var grid=document.getElementById('gallery-grid');
+        if(!grid)return;
+        grid.innerHTML=filtered.length?filtered.map(function(g){
+          var src=(g.src||'').trim()||defaultImg;
+          return '<div class="gallery-item"><img class="gallery-item__thumb" src="'+src+'" alt="" onerror="this.src=\''+defaultImg+'\'"/><div class="gallery-item__info"><div class="gallery-item__title">'+(g.title||'')+'</div><div class="gallery-item__cat">'+(g.category||'')+'</div></div><div class="gallery-item__actions"><button type="button" class="btn-icon btn-edit-gallery" data-id="'+(g.id||'')+'" title="Sửa">✏️</button><button type="button" class="btn-icon btn-icon--danger btn-delete-gallery" data-id="'+(g.id||'')+'" title="Xóa">🗑️</button></div></div>';
+        }).join(''):'<div style="grid-column:1/-1;padding:24px;text-align:center;color:#6b7280">Chưa có khoảnh khắc nào. Thêm ảnh để hiển thị trên trang chủ.</div>';
+        grid.querySelectorAll('.btn-edit-gallery').forEach(function(b){b.onclick=function(){openEditModal(b.dataset.id);};});
+        grid.querySelectorAll('.btn-delete-gallery').forEach(function(b){b.onclick=function(){var id=b.dataset.id;if(!id||!confirm('Xóa khoảnh khắc này?'))return;var list=AdminData.getGallery().filter(function(x){return x.id!==id;});AdminData.setGallery(list);renderGallery();};});
+      }
+
+      document.getElementById('gallery-form').onsubmit=function(e){
+        e.preventDefault();
+        var idEl=document.getElementById('gallery-id');
+        var titleEl=document.getElementById('gallery-title');
+        var srcEl=document.getElementById('gallery-src');
+        var title=titleEl.value.trim();
+        var src=srcEl.value.trim();
+        if(!title||!src){alert('Vui lòng nhập tiêu đề và URL ảnh.');return;}
+        var list=AdminData.getGallery();
+        var editId=idEl.value;
+        var cat=document.getElementById('gallery-category').value||'grooming';
+        var order=parseInt(document.getElementById('gallery-order').value,10)||1;
+        if(editId){
+          var idx=list.findIndex(function(x){return x.id===editId;});
+          if(idx>=0){list[idx]={...list[idx],title,src,category:cat,order};AdminData.setGallery(list);}
+        }else{
+          list.push({id:'g'+Date.now(),title,src,category:cat,order});list.sort(function(a,b){return(a.order||0)-(b.order||0);});AdminData.setGallery(list);
+        }
+        idEl.value='';document.getElementById('gallery-form').reset();document.getElementById('gallery-order').value='1';
+        document.getElementById('gallery-modal-title').textContent='Thêm khoảnh khắc';document.getElementById('gallery-submit-btn').textContent='Thêm';
+        closeModal();renderGallery();
+      };
+
+      document.querySelectorAll('[data-open-modal="gallery-modal"]').forEach(function(b){
+        b.addEventListener('click',function(){document.getElementById('gallery-id').value='';document.getElementById('gallery-form').reset();document.getElementById('gallery-order').value='1';document.getElementById('gallery-modal-title').textContent='Thêm khoảnh khắc';document.getElementById('gallery-submit-btn').textContent='Thêm';});
+      });
+
+      document.getElementById('gallery-search').oninput=function(){searchTerm=this.value.toLowerCase().trim();renderGallery();};
+      renderGallery();
+    })();
+    </script>
+  </body>
+</html>

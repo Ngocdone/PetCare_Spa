@@ -8,9 +8,14 @@ const auth = async (req, res, next) => {
       return res.status(401).json({ error: 'Vui lòng đăng nhập' });
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'petspa-secret-key');
+<<<<<<< HEAD
     const user = await User.findById(decoded.userId);
     if (!user) return res.status(401).json({ error: 'Token không hợp lệ' });
     req.userId = user.id;
+=======
+    const user = await User.findById(decoded.userId).select('-password');
+    if (!user) return res.status(401).json({ error: 'Token không hợp lệ' });
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
     req.user = user;
     next();
   } catch (e) {
@@ -28,4 +33,7 @@ const adminAuth = (req, res, next) => {
 };
 
 module.exports = { auth, adminAuth };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b

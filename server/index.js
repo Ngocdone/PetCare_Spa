@@ -2,7 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+<<<<<<< HEAD
 const { connectDB } = require('./config/db');
+=======
+const connectDB = require('./config/db');
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
 
 // Routes
 const authRoutes = require('./routes/auth');
@@ -15,7 +19,10 @@ const galleryRoutes = require('./routes/gallery');
 const userRoutes = require('./routes/users');
 const publicRoutes = require('./routes/public');
 const contentRoutes = require('./routes/content');
+<<<<<<< HEAD
 const petRoutes = require('./routes/pets');
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
 
 connectDB();
 
@@ -36,7 +43,10 @@ app.use('/api/gallery', galleryRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/public', publicRoutes);
 app.use('/api/content', contentRoutes);
+<<<<<<< HEAD
 app.use('/api/pets', petRoutes);
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
 
 // Serve static files (frontend)
 app.use(express.static(path.join(__dirname, '..')));
@@ -56,4 +66,7 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server chạy tại http://localhost:${PORT}`);
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b

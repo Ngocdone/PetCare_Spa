@@ -36,6 +36,13 @@
             <span class="nav-item__icon">📂</span>
             <span>Danh mục</span>
           </a>
+<<<<<<< HEAD
+=======
+          <a href="gallery.html" class="nav-item">
+            <span class="nav-item__icon">📸</span>
+            <span>Khoảnh khắc</span>
+          </a>
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
           <a href="services.html" class="nav-item">
             <span class="nav-item__icon">🧴</span>
             <span>Dịch vụ spa</span>
@@ -101,6 +108,10 @@
           </div>
           <div class="grid grid--filter" id="category-filters">
             <button type="button" class="btn btn--ghost filter-btn active" data-category="">Tất cả</button>
+<<<<<<< HEAD
+=======
+            <!-- Các nút danh mục render động từ AdminData.getCategories() -->
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
           </div>
         </section>
 
@@ -128,6 +139,10 @@
                   </tr>
                 </thead>
                 <tbody id="products-tbody">
+<<<<<<< HEAD
+=======
+                  <!-- Render từ localStorage -->
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
                 </tbody>
               </table>
             </div>
@@ -141,6 +156,10 @@
       </main>
     </div>
 
+<<<<<<< HEAD
+=======
+    <!-- Dùng lại modal & backdrop chung của layout, nhúng trực tiếp để demo -->
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
     <div class="modal-backdrop" id="modal-backdrop" hidden></div>
 
     <div class="modal" id="product-modal" hidden>
@@ -166,6 +185,7 @@
           <div class="form-field">
             <label for="quick-product-category">Danh mục</label>
             <select id="quick-product-category">
+<<<<<<< HEAD
             </select>
           </div>
           <div class="form-field form-field--full">
@@ -185,6 +205,14 @@
               </div>
               <button type="button" class="btn btn--ghost btn--sm" id="btn-add-image-url">+ Thêm link ảnh</button>
             </div>
+=======
+              <!-- Options render động từ AdminData.getCategories() -->
+            </select>
+          </div>
+          <div class="form-field form-field--full">
+            <label for="quick-product-image">URL ảnh</label>
+            <input type="url" id="quick-product-image" placeholder="https://..." />
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
           </div>
           <div class="form-field form-field--full">
             <label for="quick-product-desc">Mô tả</label>
@@ -201,6 +229,7 @@
 
     <script src="../scripts.js"></script>
     <script>
+<<<<<<< HEAD
     // Fallback data functions - check localStorage first, then DATA
     function getProductsFromStorage() {
       try {
@@ -234,10 +263,28 @@
     
     (function(){
       var defaultImg = 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=100';
+=======
+    (function(){
+      if(!window.AdminData) return;
+      function getCatLabel(){
+        var cats = AdminData.getCategories();
+        var m = {};
+        cats.forEach(function(c){ m[c.id] = c.name; });
+        return m;
+      }
+      var defaultImg = 'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=100';
+      var thumbClass = function(c){ return c==='thuc-an'?'table-product__thumb--cat':(c==='cham-soc'?'table-product__thumb--dog':'table-product__thumb--spa'); };
+      var thumbHtml = function(p){
+        var src = (p.image||'').trim() || defaultImg;
+        var cls = thumbClass(p.category);
+        return '<div class="table-product__thumb '+cls+'"><img src="'+src+'" alt="" onerror="this.src=\''+defaultImg+'\'" /></div>';
+      };
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       var currentFilter = '';
       var searchTerm = (new URLSearchParams(location.search).get('q')||'').toLowerCase();
       if(searchTerm) document.getElementById('product-search').value = searchTerm;
 
+<<<<<<< HEAD
       function getCatLabel(cats){
         var m = {};
         (cats||[]).forEach(function(c){ m[c.id] = c.name; });
@@ -254,6 +301,10 @@
       function renderCategoryFilters(){
         var cats = getCategoriesFromStorage();
         cats.sort(function(a,b){ return (a.order||0) - (b.order||0); });
+=======
+      function renderCategoryFilters(){
+        var cats = AdminData.getCategories().sort(function(a,b){ return (a.order||0) - (b.order||0); });
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         var container = document.getElementById('category-filters');
         if(!container) return;
         var html = '<button type="button" class="btn btn--ghost filter-btn active" data-category="">Tất cả</button>';
@@ -266,17 +317,25 @@
         });
       }
       function renderCategorySelect(){
+<<<<<<< HEAD
         var cats = getCategoriesFromStorage();
         cats.sort(function(a,b){ return (a.order||0) - (b.order||0); });
+=======
+        var cats = AdminData.getCategories().sort(function(a,b){ return (a.order||0) - (b.order||0); });
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         var sel = document.getElementById('quick-product-category');
         if(!sel) return;
         sel.innerHTML = cats.map(function(c){ return '<option value="'+c.id+'">'+(c.name||c.id)+'</option>'; }).join('');
       }
 
       function renderProducts(){
+<<<<<<< HEAD
         var products = getProductsFromStorage();
         var cats = getCategoriesFromStorage();
         var catLabel = getCatLabel(cats);
+=======
+        var products = window.AdminData.getProducts();
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         var filtered = products.filter(function(p){
           if(currentFilter && p.category !== currentFilter) return false;
           if(searchTerm){ var t = (p.name||'')+(p.description||'')+(p.id||''); return t.toLowerCase().indexOf(searchTerm)>=0; }
@@ -290,11 +349,19 @@
           var stockNum = parseInt(p.stock,10);
           var status = isNaN(stockNum) ? 'pill--success' : (stockNum<=0 ? 'pill--danger' : (stockNum<10 ? 'pill--warning' : 'pill--success'));
           var statusTxt = isNaN(stockNum) ? 'Đang bán' : (stockNum<=0 ? 'Hết hàng' : (stockNum<10 ? 'Sắp hết' : 'Đang bán'));
+<<<<<<< HEAD
           var lbl = catLabel[p.category] || p.category;
           return '<tr data-product-id="'+(p.id||'')+'"><td>'+code+'</td><td><div class="table-product">'+thumbHtml(p)+'<div><div class="table-product__name">'+(p.name||'')+'</div><div class="table-product__meta">'+(p.description||'').substring(0,40)+'</div></div></div></td><td>'+lbl+'</td><td>'+(window.AdminData ? window.AdminData.formatPrice(p.price||0) : formatPrice(p.price||0))+'</td><td>'+stock+'</td><td><span class="pill '+status+'">'+statusTxt+'</span></td><td class="table__actions"><button type="button" class="btn-icon btn-edit-product" data-edit-id="'+(p.id||'')+'" title="Sửa">✏️</button><button type="button" class="btn-icon btn-icon--danger" data-delete-id="'+(p.id||'')+'" title="Xóa">🗑️</button></td></tr>';
         }).join('') : '<tr><td colspan="7">Không có sản phẩm nào.</td></tr>';
         tbody.querySelectorAll('[data-delete-id]').forEach(function(btn){
           btn.onclick=function(){ var id=this.getAttribute('data-delete-id'); if(!id||!confirm('Xóa sản phẩm này?'))return; var list=getProductsFromStorage().filter(function(x){return x.id!==id;}); saveProductsToStorage(list); renderProducts(); };
+=======
+          var lbl = getCatLabel()[p.category] || p.category;
+          return '<tr data-product-id="'+(p.id||'')+'"><td>'+code+'</td><td><div class="table-product">'+thumbHtml(p)+'<div><div class="table-product__name">'+(p.name||'')+'</div><div class="table-product__meta">'+(p.description||'').substring(0,40)+'</div></div></div></td><td>'+lbl+'</td><td>'+(window.AdminData.formatPrice(p.price||0))+'</td><td>'+stock+'</td><td><span class="pill '+status+'">'+statusTxt+'</span></td><td class="table__actions"><button type="button" class="btn-icon btn-edit-product" data-edit-id="'+(p.id||'')+'" title="Sửa">✏️</button><button type="button" class="btn-icon btn-icon--danger" data-delete-id="'+(p.id||'')+'" title="Xóa">🗑️</button></td></tr>';
+        }).join('') : '<tr><td colspan="7">Không có sản phẩm nào.</td></tr>';
+        tbody.querySelectorAll('[data-delete-id]').forEach(function(btn){
+          btn.onclick=function(){ var id=this.getAttribute('data-delete-id'); if(!id||!confirm('Xóa sản phẩm này?'))return; var list=AdminData.getProducts().filter(function(x){return x.id!==id;}); AdminData.setProducts(list); renderProducts(); };
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         });
         tbody.querySelectorAll('.btn-edit-product').forEach(function(btn){
           btn.onclick=function(){ openEditModal(this.getAttribute('data-edit-id')); };
@@ -302,12 +369,17 @@
       }
 
       function openEditModal(id){
+<<<<<<< HEAD
         var p = getProductsFromStorage().find(function(x){return x.id===id;});
+=======
+        var p = AdminData.getProducts().find(function(x){return x.id===id;});
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         if(!p) return;
         document.getElementById('product-id').value = p.id||'';
         document.getElementById('quick-product-name').value = p.name||'';
         document.getElementById('quick-product-price').value = p.price||'';
         document.getElementById('quick-product-stock').value = p.stock!==undefined ? p.stock : '';
+<<<<<<< HEAD
         var cats = getCategoriesFromStorage();
         var catId = p.category||'';
         if(cats.some(function(c){return c.id===catId;})){} else { catId = cats[0] ? cats[0].id : 'cham-soc'; }
@@ -319,11 +391,19 @@
             return '<div class="image-url-row"><input type="text" class="quick-product-image-url" placeholder="https://... hoặc đường dẫn ảnh" value="' + (url||'').replace(/"/g, '"') + '" /><button type="button" class="btn btn--ghost btn--sm btn-remove-image" title="Xóa">✕</button></div>';
           }).join('') : '<div class="image-url-row"><input type="text" class="quick-product-image-url" placeholder="https://... hoặc đường dẫn ảnh" /><button type="button" class="btn btn--ghost btn--sm btn-remove-image" title="Xóa">✕</button></div>';
         }
+=======
+        var cats = AdminData.getCategories();
+        var catId = p.category||'';
+        if(cats.some(function(c){return c.id===catId;})){} else { catId = cats[0] ? cats[0].id : 'cham-soc'; }
+        document.getElementById('quick-product-category').value = catId;
+        document.getElementById('quick-product-image').value = p.image||'';
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         document.getElementById('quick-product-desc').value = p.description||'';
         document.getElementById('product-modal-title').textContent = 'Sửa sản phẩm';
         document.getElementById('product-submit-btn').textContent = 'Cập nhật';
         document.getElementById('product-modal').style.display='flex';
         document.getElementById('modal-backdrop').style.display='block';
+<<<<<<< HEAD
       }
 
       // File upload
@@ -369,10 +449,24 @@
         if(!products.length){ alert('Chưa có sản phẩm để xuất.'); return; }
         var headers = ['Mã','Tên','Danh mục','Giá','Tồn kho','Mô tả'];
         var rows = products.map(function(p){ return [(p.id||''), (p.name||''), (catLabel[p.category]||p.category), (p.price||0), (p.stock||''), (p.description||'').replace(/,/g,';')]; });
+=======
+        document.getElementById('product-modal').setAttribute('data-open','true');
+      }
+
+      var searchEl = document.getElementById('product-search');
+      if(searchEl) searchEl.oninput = function(){ searchTerm = this.value.toLowerCase().trim(); renderProducts(); };
+
+      document.getElementById('btn-export-csv').onclick = function(){
+        var products = AdminData.getProducts();
+        if(!products.length){ alert('Chưa có sản phẩm để xuất.'); return; }
+        var headers = ['Mã','Tên','Danh mục','Giá','Tồn kho','Mô tả'];
+        var rows = products.map(function(p){ return [(p.id||''), (p.name||''), (getCatLabel()[p.category]||p.category), (p.price||0), (p.stock||''), (p.description||'').replace(/,/g,';')]; });
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         var csv = [headers.join(','), rows.map(function(r){ return r.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(','); }).join('\n')].join('\n');
         var a = document.createElement('a'); a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent('\uFEFF'+csv); a.download = 'san-pham-'+new Date().toISOString().slice(0,10)+'.csv'; a.click();
       };
 
+<<<<<<< HEAD
       // Form submit
       document.getElementById('quick-product-form').onsubmit = function(e){
         e.preventDefault();
@@ -426,6 +520,8 @@
         renderProducts();
       };
 
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       renderCategoryFilters();
       renderCategorySelect();
       renderProducts();
@@ -435,4 +531,7 @@
     </script>
   </body>
 </html>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b

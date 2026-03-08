@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { pool } = require('../config/db');
 
 const Faq = {
@@ -41,3 +42,14 @@ const Faq = {
 
 module.exports = Faq;
 
+=======
+const mongoose = require('mongoose');
+
+const faqSchema = new mongoose.Schema({
+  q: { type: String, required: true },
+  a: { type: String, required: true },
+  order: { type: Number, default: 0 }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Faq', faqSchema);
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b

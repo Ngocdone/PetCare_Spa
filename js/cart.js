@@ -67,8 +67,12 @@
       const subtotal = item.price * (item.quantity || 1);
       total += subtotal;
       const link = productUrl(item.id);
+<<<<<<< HEAD
       const imgSrc = window.getProductImageSrc ? window.getProductImageSrc(item.image) : (item.image || '');
       const imgEl = `<img class="cart-item__image" src="${imgSrc}" alt="${item.name}">`;
+=======
+      const imgEl = `<img class="cart-item__image" src="${item.image}" alt="${item.name}">`;
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       const titleEl = item.id
         ? `<a href="${link}">${item.name}</a>`
         : item.name;
@@ -142,6 +146,7 @@
   }
 
   function init() {
+<<<<<<< HEAD
     // Check if user is logged in, if not clear cart
     const currentUser = window.getCurrentUser ? window.getCurrentUser() : null;
     if (!currentUser) {
@@ -153,6 +158,8 @@
         console.error(e);
       }
     }
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
     render();
   }
 

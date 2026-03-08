@@ -36,6 +36,13 @@
             <span class="nav-item__icon">📂</span>
             <span>Danh mục</span>
           </a>
+<<<<<<< HEAD
+=======
+          <a href="gallery.html" class="nav-item">
+            <span class="nav-item__icon">📸</span>
+            <span>Khoảnh khắc</span>
+          </a>
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
           <a href="services.html" class="nav-item nav-item--active">
             <span class="nav-item__icon">🧴</span>
             <span>Dịch vụ spa</span>
@@ -124,7 +131,11 @@
               <div>
                 <h2 class="card__title">Danh sách dịch vụ spa</h2>
                 <p class="card__subtitle">
+<<<<<<< HEAD
                   Dữ liệu từ localStorage hoặc data.js
+=======
+                  Demo tĩnh – sau này có thể gắn giá dynamic, phân loại theo chi nhánh.
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
                 </p>
               </div>
               <button class="btn btn--ghost btn--sm" id="btn-export-services">Xuất CSV</button>
@@ -143,6 +154,10 @@
                   </tr>
                 </thead>
                 <tbody id="services-tbody">
+<<<<<<< HEAD
+=======
+                  <!-- Render từ DATA.services -->
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
                 </tbody>
               </table>
             </div>
@@ -188,6 +203,7 @@
             <input id="service-price" type="number" placeholder="250000" min="0" required />
           </div>
           <div class="form-field form-field--full">
+<<<<<<< HEAD
             <label>Hình ảnh</label>
             <div class="image-upload-section" style="margin-bottom: 8px;">
               <input type="file" id="service-image-file" accept="image/jpeg,image/png,image/gif,image/webp" style="display: none;" />
@@ -195,6 +211,9 @@
               <span id="service-file-name" class="form-hint" style="margin-left: 8px;"></span>
             </div>
             <div class="form-hint" style="margin-bottom: 8px;">Hoặc nhập URL:</div>
+=======
+            <label for="service-image">Hình ảnh (URL)</label>
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
             <input id="service-image" type="url" placeholder="https://example.com/image.jpg" />
             <small class="form-hint">Dán link ảnh từ Unsplash, Imgur hoặc nguồn công khai</small>
           </div>
@@ -216,6 +235,7 @@
 
     <script src="../scripts.js"></script>
     <script>
+<<<<<<< HEAD
     // Fallback data functions - check localStorage first, then DATA
     function getServicesFromStorage() {
       try {
@@ -269,10 +289,18 @@
           });
         }
       })();
+=======
+    (function(){
+      if(!window.AdminData)return;
+      var fmt=AdminData.formatPrice;
+      var catLbl={grooming:'Grooming',bath:'Tắm & vệ sinh',spa:'Spa',hotel:'Khách sạn',care:'Chăm sóc'};
+      var searchTerm='';
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
 
       function closeModal(){var m=document.getElementById('service-modal');var b=document.getElementById('modal-backdrop');if(m){m.style.display='none';m.removeAttribute('data-open');}if(b){b.style.display='none';}}
 
       function openEditModal(id){
+<<<<<<< HEAD
         var s=getServicesFromStorage().find(function(x){return x.id===id;});
         if(!s)return;
         window.uploadedServiceImageBase64 = null;
@@ -281,6 +309,10 @@
         var fileNameSpan = document.getElementById('service-file-name');
         if (fileNameSpan) fileNameSpan.textContent = '';
         
+=======
+        var s=AdminData.getServices().find(function(x){return x.id===id;});
+        if(!s)return;
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         document.getElementById('service-id').value=s.id||'';
         document.getElementById('service-name').value=s.name||'';
         document.getElementById('service-category').value=s.category||'grooming';
@@ -291,11 +323,19 @@
         document.getElementById('service-featured').checked=!!s.featured;
         document.getElementById('service-modal-title').textContent='Sửa dịch vụ';
         document.getElementById('service-submit-btn').textContent='Cập nhật';
+<<<<<<< HEAD
         document.getElementById('service-modal').style.display='flex';document.getElementById('modal-backdrop').style.display='block';
       }
 
       function renderServices(){
         var services=getServicesFromStorage();
+=======
+        document.getElementById('service-modal').style.display='flex';document.getElementById('modal-backdrop').style.display='block';document.getElementById('service-modal').setAttribute('data-open','true');
+      }
+
+      function renderServices(){
+        var services=AdminData.getServices();
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         var filtered=services.filter(function(s){
           if(!searchTerm)return true;
           var t=(s.name||'')+(s.description||'')+(s.category||'');
@@ -308,10 +348,17 @@
         if(!tbody)return;
         tbody.innerHTML=filtered.length?filtered.map(function(s){
           var img=s.image?'<img src="'+s.image+'" alt="" class="service-table__thumb" onerror="this.style.display=\'none\'">':'<span class="service-table__noimg">—</span>';
+<<<<<<< HEAD
           return '<tr><td><div class="service-table__name-cell">'+img+'<strong>'+(s.name||'-')+'</strong></div></td><td>'+(catLbl[s.category]||s.category||'-')+'</td><td>'+(s.duration||0)+' phút</td><td>'+formatPrice(s.price||0)+'</td><td><span class="pill '+(s.featured?'pill--success':'pill--default')+'">'+(s.featured?'Nổi bật':'Đang áp dụng')+'</span></td><td class="table__actions"><button class="btn-icon btn-edit-service" data-id="'+(s.id||'')+'" title="Sửa">✏️</button><button class="btn-icon btn-icon--danger btn-delete-service" data-id="'+(s.id||'')+'" title="Xóa">🗑️</button></td></tr>';
         }).join(''):'<tr><td colspan="6">Chưa có dịch vụ.</td></tr>';
         tbody.querySelectorAll('.btn-edit-service').forEach(function(b){b.onclick=function(){openEditModal(b.dataset.id);};});
         tbody.querySelectorAll('.btn-delete-service').forEach(function(b){b.onclick=function(){var id=b.dataset.id;if(!id||!confirm('Xóa dịch vụ này?'))return;var list=getServicesFromStorage().filter(function(x){return x.id!==id;});saveServicesToStorage(list);renderServices();};});
+=======
+          return '<tr><td><div class="service-table__name-cell">'+img+'<strong>'+(s.name||'-')+'</strong></div></td><td>'+(catLbl[s.category]||s.category||'-')+'</td><td>'+(s.duration||0)+' phút</td><td>'+fmt(s.price||0)+'</td><td><span class="pill '+(s.featured?'pill--success':'pill--default')+'">'+(s.featured?'Nổi bật':'Đang áp dụng')+'</span></td><td class="table__actions"><button class="btn-icon btn-edit-service" data-id="'+(s.id||'')+'" title="Sửa">✏️</button><button class="btn-icon btn-icon--danger btn-delete-service" data-id="'+(s.id||'')+'" title="Xóa">🗑️</button></td></tr>';
+        }).join(''):'<tr><td colspan="6">Chưa có dịch vụ.</td></tr>';
+        tbody.querySelectorAll('.btn-edit-service').forEach(function(b){b.onclick=function(){openEditModal(b.dataset.id);};});
+        tbody.querySelectorAll('.btn-delete-service').forEach(function(b){b.onclick=function(){var id=b.dataset.id;if(!id||!confirm('Xóa dịch vụ này?'))return;var list=AdminData.getServices().filter(function(x){return x.id!==id;});AdminData.setServices(list);renderServices();};});
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       }
 
       document.getElementById('service-form').onsubmit=function(e){
@@ -322,13 +369,18 @@
         var name=nameEl.value.trim();
         var price=parseInt(priceEl.value,10)||0;
         if(!name){alert('Vui lòng nhập tên dịch vụ.');return;}
+<<<<<<< HEAD
         var list=getServicesFromStorage();
+=======
+        var list=AdminData.getServices();
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         var editId=idEl.value;
         var cat=document.getElementById('service-category').value||'grooming';
         var dur=parseInt(document.getElementById('service-duration').value,10)||60;
         var img=document.getElementById('service-image').value.trim();
         var desc=document.getElementById('service-desc').value.trim();
         var feat=document.getElementById('service-featured').checked;
+<<<<<<< HEAD
         var imageUrl = window.uploadedServiceImageBase64 || img;
         var defaultImg='https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600';
         if(!imageUrl && list[0] && list[0].image) {
@@ -349,10 +401,23 @@
         if (fileInput) fileInput.value = '';
         var fileNameSpan = document.getElementById('service-file-name');
         if (fileNameSpan) fileNameSpan.textContent = '';
+=======
+        var defaultImg='https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600';
+        var imageUrl=img||(list[0]&&list[0].image?list[0].image:defaultImg);
+        if(editId){
+          var idx=list.findIndex(function(x){return x.id===editId;});
+          if(idx>=0){list[idx]={...list[idx],name,price,duration:dur,category:cat,description:desc,featured:feat,image:imageUrl};AdminData.setServices(list);}
+        }else{
+          var newId='s'+(Date.now());
+          list.push({id:newId,name,slug:(name||'').toLowerCase().replace(/\s+/g,'-'),price,duration:dur,category:cat,description:desc,featured:feat,image:imageUrl});AdminData.setServices(list);
+        }
+        idEl.value='';document.getElementById('service-form').reset();document.getElementById('service-duration').value='60';
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         document.getElementById('service-modal-title').textContent='Thêm dịch vụ spa';document.getElementById('service-submit-btn').textContent='Thêm dịch vụ';
         closeModal();renderServices();
       };
 
+<<<<<<< HEAD
       document.querySelectorAll('[data-open-modal="service-modal"]').forEach(function(b){
         b.addEventListener('click',function(){
           document.getElementById('service-id').value='';
@@ -372,6 +437,13 @@
       document.getElementById('services-search').oninput=function(){searchTerm=this.value.toLowerCase().trim();renderServices();};
       document.getElementById('btn-export-services').onclick=function(){
         var services=getServicesFromStorage();if(!services.length){alert('Chưa có dịch vụ để xuất.');return;}
+=======
+      document.querySelectorAll('[data-open-modal="service-modal"]').forEach(function(b){b.addEventListener('click',function(){document.getElementById('service-id').value='';document.getElementById('service-form').reset();document.getElementById('service-duration').value='60';document.getElementById('service-image').value='';document.getElementById('service-modal-title').textContent='Thêm dịch vụ spa';document.getElementById('service-submit-btn').textContent='Thêm dịch vụ';});});
+
+      document.getElementById('services-search').oninput=function(){searchTerm=this.value.toLowerCase().trim();renderServices();};
+      document.getElementById('btn-export-services').onclick=function(){
+        var services=AdminData.getServices();if(!services.length){alert('Chưa có dịch vụ để xuất.');return;}
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         var headers=['ID','Tên','Danh mục','Thời lượng','Giá','Mô tả'];var rows=services.map(function(s){return[(s.id||''),(s.name||''),(catLbl[s.category]||s.category),(s.duration||''),(s.price||0),(s.description||'').replace(/,/g,';')];});
         var csv=[headers.join(','),rows.map(function(r){return r.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n')].join('\n');
         var a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent('\uFEFF'+csv);a.download='dich-vu-'+new Date().toISOString().slice(0,10)+'.csv';a.click();

@@ -37,6 +37,13 @@
             <span class="nav-item__icon">📂</span>
             <span>Danh mục</span>
           </a>
+<<<<<<< HEAD
+=======
+          <a href="pages/gallery.html" class="nav-item">
+            <span class="nav-item__icon">📸</span>
+            <span>Khoảnh khắc</span>
+          </a>
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
           <a href="pages/services.html" class="nav-item">
             <span class="nav-item__icon">🧴</span>
             <span>Dịch vụ spa</span>
@@ -379,11 +386,16 @@
 
     <script>
   (function(){var u=JSON.parse(localStorage.getItem('petspa_current_user')||'null');if(u){var a=document.getElementById('adminUserAvatar');var n=document.getElementById('adminUserName');if(a)a.textContent=(u.name||'A').charAt(0).toUpperCase();if(n)n.textContent=u.name||'Admin';}})();
+<<<<<<< HEAD
   (async function(){var sel=document.getElementById('quick-product-category');if(sel&&window.AdminData){var cats=(await AdminData.getCategories()).sort(function(a,b){return(a.order||0)-(b.order||0);});sel.innerHTML=cats.map(function(c){return'<option value="'+c.id+'">'+(c.name||c.id)+'</option>';}).join('');}})();
+=======
+  (function(){var sel=document.getElementById('quick-product-category');if(sel&&window.AdminData){var cats=AdminData.getCategories().sort(function(a,b){return(a.order||0)-(b.order||0);});sel.innerHTML=cats.map(function(c){return'<option value="'+c.id+'">'+(c.name||c.id)+'</option>';}).join('');}})();
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
 </script>
     <script src="scripts.js"></script>
     <script>
     document.getElementById('global-search')&&document.getElementById('global-search').addEventListener('keydown',function(e){
+<<<<<<< HEAD
       if(e.key==='Enter'){var t=this.value.trim().toLowerCase();if(!t)return;if(t.indexOf('đơn')>=0||t.indexOf('order')>=0){location.href='pages/orders.html';}else if(t.indexOf('sản phẩm')>=0||t.indexOf('product')>=0){location.href='pages/products.html';}else if(t.indexOf('danh mục')>=0||t.indexOf('category')>=0||t.indexOf('categor')>=0){location.href='pages/categories.html';}else if(t.indexOf('lịch')>=0||t.indexOf('booking')>=0){location.href='pages/appointments.html';}else if(t.indexOf('khách')>=0||t.indexOf('customer')>=0){location.href='pages/customers.html';}else if(t.indexOf('dịch vụ')>=0||t.indexOf('service')>=0){location.href='pages/services.html';}else{location.href='pages/products.html?q='+encodeURIComponent(this.value);}}
     });
     </script>
@@ -400,11 +412,26 @@
       var categories = await AdminData.getCategories();
       
       var today=new Date().toISOString().split('T')[0];
+=======
+      if(e.key==='Enter'){var t=this.value.trim().toLowerCase();if(!t)return;if(t.indexOf('đơn')>=0||t.indexOf('order')>=0){location.href='pages/orders.html';}else if(t.indexOf('sản phẩm')>=0||t.indexOf('product')>=0){location.href='pages/products.html';}else if(t.indexOf('danh mục')>=0||t.indexOf('category')>=0||t.indexOf('categor')>=0){location.href='pages/categories.html';}else if(t.indexOf('khoảnh khắc')>=0||t.indexOf('gallery')>=0){location.href='pages/gallery.html';}else if(t.indexOf('lịch')>=0||t.indexOf('booking')>=0){location.href='pages/appointments.html';}else if(t.indexOf('khách')>=0||t.indexOf('customer')>=0){location.href='pages/customers.html';}else if(t.indexOf('dịch vụ')>=0||t.indexOf('service')>=0){location.href='pages/services.html';}else{location.href='pages/products.html?q='+encodeURIComponent(this.value);}}
+    });
+    </script>
+    <script>
+    (function(){
+      if(!window.AdminData)return;
+      var fmt=AdminData.formatPrice,getP=AdminData.getProducts,getO=AdminData.getOrders,getB=AdminData.getBookings,getU=AdminData.getUsers;
+      var today=new Date().toISOString().split('T')[0];
+      var orders=getO(),bookings=getB(),products=getP(),users=getU();
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       var ordersToday=orders.filter(function(o){return o.createdAt&&o.createdAt.indexOf(today)===0;});
       var rev=ordersToday.reduce(function(s,o){return s+(o.total||0);},0);
       var bookingsToday=bookings.filter(function(b){return b.date===today;});
       var confirmed=bookingsToday.filter(function(b){return b.status==='confirmed';}).length;
+<<<<<<< HEAD
       var getCatLabel=function(){var m={};(categories||[]).forEach(function(c){m[c.id]=c.name;});return m;};
+=======
+      var getCatLabel=function(){var m={};(AdminData.getCategories()||[]).forEach(function(c){m[c.id]=c.name;});return m;};
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       var catLbl=getCatLabel();
       var defaultImg='https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=100';
       var thumbHtml=function(p){var src=(p.image||'').trim()||defaultImg;return'<div class="table-product__thumb"><img src="'+src+'" alt="" onerror="this.src=\''+defaultImg+'\'" /></div>';};

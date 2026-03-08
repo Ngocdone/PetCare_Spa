@@ -36,6 +36,13 @@
             <span class="nav-item__icon">📂</span>
             <span>Danh mục</span>
           </a>
+<<<<<<< HEAD
+=======
+          <a href="gallery.html" class="nav-item">
+            <span class="nav-item__icon">📸</span>
+            <span>Khoảnh khắc</span>
+          </a>
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
           <a href="services.html" class="nav-item">
             <span class="nav-item__icon">🧴</span>
             <span>Dịch vụ spa</span>
@@ -115,6 +122,10 @@
                   </tr>
                 </thead>
                 <tbody id="categories-tbody">
+<<<<<<< HEAD
+=======
+                  <!-- Render từ localStorage -->
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
                 </tbody>
               </table>
             </div>
@@ -161,6 +172,7 @@
 
     <script src="../scripts.js"></script>
     <script>
+<<<<<<< HEAD
     // Fallback data functions - check localStorage first, then DATA
     function getCategoriesFromStorage() {
       try {
@@ -190,6 +202,11 @@
     }
     
     (function(){
+=======
+    (function(){
+      if(!window.AdminData) return;
+
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       var searchTerm = '';
 
       function slugify(str) {
@@ -208,12 +225,20 @@
       }
 
       function getProductCountByCategory(catId) {
+<<<<<<< HEAD
         var products = getProductsFromStorage();
+=======
+        var products = AdminData.getProducts();
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         return products.filter(function(p){ return p.category === catId; }).length;
       }
 
       function renderCategories(){
+<<<<<<< HEAD
         var categories = getCategoriesFromStorage();
+=======
+        var categories = AdminData.getCategories();
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         var filtered = categories.filter(function(c){
           if(!searchTerm) return true;
           var t = (c.name||'') + (c.slug||'') + (c.id||'');
@@ -233,8 +258,13 @@
             var count = getProductCountByCategory(id);
             if(count > 0 && !confirm('Danh mục này đang có '+count+' sản phẩm. Bạn có chắc muốn xóa? Sản phẩm sẽ mất danh mục.')) return;
             if(!id || !confirm('Xóa danh mục này?')) return;
+<<<<<<< HEAD
             var list = getCategoriesFromStorage().filter(function(x){ return x.id !== id; });
             saveCategoriesToStorage(list);
+=======
+            var list = AdminData.getCategories().filter(function(x){ return x.id !== id; });
+            AdminData.setCategories(list);
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
             renderCategories();
           };
         });
@@ -244,7 +274,11 @@
       }
 
       function openEditModal(id){
+<<<<<<< HEAD
         var c = getCategoriesFromStorage().find(function(x){ return x.id === id; });
+=======
+        var c = AdminData.getCategories().find(function(x){ return x.id === id; });
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         if(!c) return;
         document.getElementById('category-id').value = c.id||'';
         document.getElementById('category-name').value = c.name||'';
@@ -254,6 +288,10 @@
         document.getElementById('category-submit-btn').textContent = 'Cập nhật';
         document.getElementById('category-modal').style.display = 'flex';
         document.getElementById('modal-backdrop').style.display = 'block';
+<<<<<<< HEAD
+=======
+        document.getElementById('category-modal').setAttribute('data-open', 'true');
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       }
 
       function closeModal(){
@@ -286,7 +324,11 @@
         if(!name){ alert('Vui lòng nhập tên danh mục.'); return; }
         if(!/^[a-z0-9\-]+$/.test(slug)){ alert('Slug chỉ được chứa chữ thường, số và dấu gạch ngang.'); return; }
 
+<<<<<<< HEAD
         var list = getCategoriesFromStorage();
+=======
+        var list = AdminData.getCategories();
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         var editId = idEl.value;
 
         if(editId){
@@ -295,6 +337,7 @@
             var oldId = list[idx].id;
             var newId = slug;
             if(oldId !== newId){
+<<<<<<< HEAD
               var products = getProductsFromStorage();
               products.forEach(function(p){
                 if(p.category === oldId) p.category = newId;
@@ -303,6 +346,16 @@
             }
             list[idx] = { id: newId, name: name, slug: slug, order: order };
             saveCategoriesToStorage(list);
+=======
+              var products = AdminData.getProducts();
+              products.forEach(function(p){
+                if(p.category === oldId) p.category = newId;
+              });
+              AdminData.setProducts(products);
+            }
+            list[idx] = { id: newId, name: name, slug: slug, order: order };
+            AdminData.setCategories(list);
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
           }
         } else {
           if(list.some(function(x){ return x.id === slug; })){
@@ -311,7 +364,11 @@
           }
           list.push({ id: slug, name: name, slug: slug, order: order });
           list.sort(function(a,b){ return (a.order||0) - (b.order||0); });
+<<<<<<< HEAD
           saveCategoriesToStorage(list);
+=======
+          AdminData.setCategories(list);
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         }
 
         idEl.value = '';
@@ -338,4 +395,7 @@
     </script>
   </body>
 </html>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b

@@ -78,6 +78,7 @@
     container.innerHTML = html;
     container.querySelectorAll('.user-logout-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
+<<<<<<< HEAD
         // Clear user session
         localStorage.removeItem(CURRENT_USER_KEY);
         localStorage.removeItem('petspa_current_user');
@@ -91,6 +92,9 @@
           el.textContent = '0';
           el.style.display = 'none';
         });
+=======
+        localStorage.removeItem(CURRENT_USER_KEY);
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         container.innerHTML = '<a href="login.html"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>';
         window.location.href = 'index.html';
       });
@@ -186,6 +190,7 @@
 
   // ---------- Init on DOM ready ----------
   function init() {
+<<<<<<< HEAD
     // Check if user is logged in, if not clear cart
     const currentUser = getCurrentUser();
     if (!currentUser) {
@@ -196,6 +201,8 @@
         console.error(e);
       }
     }
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
     initHeader();
     initMobileMenu();
     initUserDropdown();

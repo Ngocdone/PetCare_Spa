@@ -150,6 +150,7 @@
   }
 
   function addToCart(item, product) {
+<<<<<<< HEAD
     // Check if user is logged in
     const currentUser = window.getCurrentUser ? window.getCurrentUser() : null;
     if (!currentUser) {
@@ -157,6 +158,8 @@
       window.location.href = 'login.html?return=' + encodeURIComponent(window.location.href);
       return;
     }
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
     if (product && isOutOfStock(product)) {
       alert('Sản phẩm đã hết hàng.');
       return;
@@ -194,6 +197,7 @@
     grid.innerHTML = best.map(p => {
       const discount = p.oldPrice && p.oldPrice > p.price ? Math.round((1 - p.price / p.oldPrice) * 100) : 0;
       const outOfStock = isOutOfStock(p);
+<<<<<<< HEAD
       const imgSrc = window.getProductImageSrc ? window.getProductImageSrc(p.image) : (p.image || '');
       const btnHtml = outOfStock
         ? '<span class="btn btn--sm btn--out-of-stock" disabled><i class="fas fa-times-circle"></i> Hết hàng</span>'
@@ -202,6 +206,15 @@
       <div class="card card--product" ${discount ? `data-discount="${discount}"` : ''}>
         <a href="product-detail.html?id=${p.id}">
           <img class="card__image" src="${imgSrc}" alt="${p.name}">
+=======
+      const btnHtml = outOfStock
+        ? '<span class="btn btn--sm btn--out-of-stock" disabled><i class="fas fa-times-circle"></i> Hết hàng</span>'
+        : '<button type="button" class="btn btn--primary btn--sm add-to-cart" data-id="' + p.id + '" data-name="' + p.name + '" data-price="' + p.price + '" data-image="' + (p.image || '') + '"><i class="fas fa-cart-plus"></i></button>';
+      return `
+      <div class="card card--product" ${discount ? `data-discount="${discount}"` : ''}>
+        <a href="product-detail.html?id=${p.id}">
+          <img class="card__image" src="${p.image}" alt="${p.name}">
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         </a>
         <div class="card__body">
           <h3 class="card__title"><a href="product-detail.html?id=${p.id}">${p.name}</a></h3>

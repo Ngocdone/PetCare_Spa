@@ -1,5 +1,6 @@
 /**
  * Pet Spa & Shop - User Dashboard
+<<<<<<< HEAD
  * Tabs, Modals, Forms - Connected to MySQL database via API
  * Pets are stored per user in database
  */
@@ -101,6 +102,12 @@ async function deletePetAPI(id) {
   }
 }
 
+=======
+ * Tabs, Modals, Forms, localStorage (pets, addresses, favorites)
+ * Dễ mở rộng cho backend API sau này
+ */
+
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
 (function () {
   'use strict';
 
@@ -120,12 +127,23 @@ async function deletePetAPI(id) {
   }
 
   function getPets() {
+<<<<<<< HEAD
     // Return from cache (loaded from API)
     return petsCache.length > 0 ? petsCache : [];
   }
 
   function savePets(pets) {
     // Keep localStorage in sync but not the primary source
+=======
+    try {
+      return JSON.parse(localStorage.getItem(PETS_KEY)) || [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function savePets(pets) {
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
     localStorage.setItem(PETS_KEY, JSON.stringify(pets));
   }
 
@@ -203,7 +221,11 @@ async function deletePetAPI(id) {
   }
 
   // ---------- Render Overview ----------
+<<<<<<< HEAD
   async function renderOverview() {
+=======
+  function renderOverview() {
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
     const user = getCurrentUser();
     const pets = getPets();
     const orders = getOrders();
@@ -242,9 +264,13 @@ async function deletePetAPI(id) {
   }
 
   // ---------- Render Pets ----------
+<<<<<<< HEAD
   async function renderPets() {
     // First load pets from API
     await fetchPetsFromAPI();
+=======
+  function renderPets() {
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
     const pets = getPets();
     const grid = document.getElementById('petsGrid');
     if (!grid) return;
@@ -259,7 +285,11 @@ async function deletePetAPI(id) {
       <div class="user-pet-card" data-id="${p.id}">
         <div class="user-pet-card__media">
           <img class="user-pet-card__image" src="${p.image || defaultImg}" alt="${p.name}">
+<<<<<<< HEAD
           <span class="user-pet-card__badge">${p.type === 'cho' ? 'Chó' : p.type === 'meo' ? 'Mèo' : 'Khác'}</span>
+=======
+          <span class="user-pet-card__badge">${p.type === 'dog' ? 'Chó' : 'Mèo'}</span>
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         </div>
         <div class="user-pet-card__body">
           <h3 class="user-pet-card__name">${p.name}</h3>
@@ -277,6 +307,10 @@ async function deletePetAPI(id) {
               <span>Xóa</span>
             </button>
           </div>
+<<<<<<< HEAD
+=======
+        </div>
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       </div>
     `).join('');
 
@@ -354,12 +388,20 @@ async function deletePetAPI(id) {
               <span class="user-order-card__date"><i class="fas fa-calendar-alt"></i> ${o.createdAt ? new Date(o.createdAt).toLocaleDateString('vi-VN') : '-'}</span>
               <span class="user-order-card__items">${itemCount} sản phẩm</span>
             </div>
+<<<<<<< HEAD
+=======
+          </div>
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
           <div class="user-order-card__right">
             <span class="user-order-card__total">${formatPrice(o.total)}</span>
             <span class="user-badge user-badge--${o.status || 'pending'}">${statusLabel}</span>
             <button type="button" class="btn btn--secondary btn--sm btn-order-detail" data-id="${o.id}"><i class="fas fa-eye"></i> Chi tiết</button>
             ${o.status === 'cancelled' ? `<button type="button" class="btn btn--danger btn--sm btn-order-delete" data-id="${o.id}"><i class="fas fa-trash"></i> Xóa</button>` : ''}
           </div>
+<<<<<<< HEAD
+=======
+        </div>
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       `;
     }).join('');
 
@@ -461,10 +503,16 @@ async function deletePetAPI(id) {
       return;
     }
 
+<<<<<<< HEAD
     const getImgSrc = window.getProductImageSrc || (s => s || '');
     grid.innerHTML = favProducts.map(p => `
       <div class="user-product-card">
         <img class="user-product-card__image" src="${getImgSrc(p.image)}" alt="${p.name}">
+=======
+    grid.innerHTML = favProducts.map(p => `
+      <div class="user-product-card">
+        <img class="user-product-card__image" src="${p.image}" alt="${p.name}">
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         <div class="user-product-card__body">
           <h3 class="user-product-card__name">${p.name}</h3>
           <p class="user-product-card__price">${formatPrice(p.price)}</p>
@@ -472,6 +520,10 @@ async function deletePetAPI(id) {
             <button type="button" class="btn btn--primary btn--sm btn-buy-fav" data-id="${p.id}">Mua ngay</button>
             <button type="button" class="btn btn--secondary btn--sm btn-remove-fav" data-id="${p.id}"><i class="fas fa-heart-broken"></i></button>
           </div>
+<<<<<<< HEAD
+=======
+        </div>
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       </div>
     `).join('');
 
@@ -502,6 +554,10 @@ async function deletePetAPI(id) {
           <button type="button" class="btn btn--secondary btn--sm btn-edit-addr" data-id="${a.id}">Sửa</button>
           <button type="button" class="btn btn--secondary btn--sm btn-delete-addr" data-id="${a.id}">Xóa</button>
         </div>
+<<<<<<< HEAD
+=======
+      </div>
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
     `).join('');
 
     list.querySelectorAll('.btn-edit-addr').forEach(btn => { btn.addEventListener('click', () => openAddressModal(btn.dataset.id)); });
@@ -510,7 +566,11 @@ async function deletePetAPI(id) {
   }
 
   // ---------- Pet Modal ----------
+<<<<<<< HEAD
   async function openPetModal(id) {
+=======
+  function openPetModal(id) {
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
     const modal = document.getElementById('modalPet');
     const title = document.getElementById('modalPetTitle');
     title.innerHTML = '<i class="fas fa-paw"></i> ' + (id ? 'Sửa thú cưng' : 'Thêm thú cưng');
@@ -518,12 +578,20 @@ async function deletePetAPI(id) {
     document.getElementById('formPet').reset();
 
     if (id) {
+<<<<<<< HEAD
       await fetchPetsFromAPI();
       const pets = getPets();
       const p = pets.find(x => x.id == id);
       if (p) {
         document.getElementById('petName').value = p.name || '';
         document.getElementById('petType').value = p.type || 'cho';
+=======
+      const pets = getPets();
+      const p = pets.find(x => x.id === id);
+      if (p) {
+        document.getElementById('petName').value = p.name;
+        document.getElementById('petType').value = p.type || '';
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
         document.getElementById('petAge').value = p.age || '';
         document.getElementById('petWeight').value = p.weight || '';
         document.getElementById('petImage').value = p.image || '';
@@ -532,6 +600,7 @@ async function deletePetAPI(id) {
     openModal('modalPet');
   }
 
+<<<<<<< HEAD
   async function deletePet(id) {
     if (!confirm('Bạn có chắc muốn xóa thú cưng này?')) return;
     // Try to delete from API first
@@ -548,6 +617,14 @@ async function deletePetAPI(id) {
       await renderPets();
       await renderOverview();
     }
+=======
+  function deletePet(id) {
+    if (!confirm('Bạn có chắc muốn xóa thú cưng này?')) return;
+    const pets = getPets().filter(p => p.id !== id);
+    savePets(pets);
+    renderPets();
+    renderOverview();
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
   }
 
   function cancelBooking(id) {
@@ -642,6 +719,7 @@ async function deletePetAPI(id) {
       alert('Đã lưu thông tin!');
     });
 
+<<<<<<< HEAD
     // Pet form - Now uses API
     document.getElementById('formPet')?.addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -666,6 +744,31 @@ async function deletePetAPI(id) {
       closeModal('modalPet');
       await renderPets();
       await renderOverview();
+=======
+    // Pet form
+    document.getElementById('formPet')?.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const id = document.getElementById('petId').value;
+      const pets = getPets();
+      const pet = {
+        id: id || 'pet' + Date.now(),
+        name: document.getElementById('petName').value.trim(),
+        type: document.getElementById('petType').value,
+        age: document.getElementById('petAge').value || null,
+        weight: document.getElementById('petWeight').value,
+        image: document.getElementById('petImage').value || null
+      };
+      if (id) {
+        const idx = pets.findIndex(p => p.id === id);
+        if (idx >= 0) pets[idx] = { ...pets[idx], ...pet };
+      } else {
+        pets.push(pet);
+      }
+      savePets(pets);
+      closeModal('modalPet');
+      renderPets();
+      renderOverview();
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       alert(id ? 'Đã cập nhật!' : 'Đã thêm thú cưng!');
     });
 
@@ -774,6 +877,7 @@ async function deletePetAPI(id) {
     // Logout
     document.getElementById('btnLogout')?.addEventListener('click', function (e) {
       e.preventDefault();
+<<<<<<< HEAD
       // Clear user session
       localStorage.removeItem('petspa_current_user');
       localStorage.removeItem(CURRENT_USER_KEY);
@@ -787,11 +891,17 @@ async function deletePetAPI(id) {
         el.textContent = '0';
         el.style.display = 'none';
       });
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
       if (window.logout) window.logout();
       window.location.href = 'index.html';
     });
 
+<<<<<<< HEAD
     // Initial render - pets loaded from API
+=======
+    // Initial render
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
     renderOverview();
     renderProfile();
     renderPets();

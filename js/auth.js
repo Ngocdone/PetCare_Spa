@@ -32,6 +32,7 @@
       createdAt: new Date().toISOString()
     });
     localStorage.setItem(USERS_KEY, JSON.stringify(list));
+<<<<<<< HEAD
     
     // Gửi dữ liệu đăng ký lên server API
     fetch('http://localhost:3000/api/auth/register', {
@@ -54,6 +55,8 @@
       console.error('Error registering user on server:', err);
     });
     
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
     return true;
   }
 
@@ -77,6 +80,7 @@
   function logout() {
     try {
       localStorage.removeItem(CURRENT_USER_KEY);
+<<<<<<< HEAD
       localStorage.removeItem('petspa_current_user');
       // Clear cart when logout - use direct key to ensure it works
       localStorage.removeItem('petspa_cart');
@@ -89,6 +93,8 @@
         el.style.display = 'none';
       });
       if (window.updateCartBadge) window.updateCartBadge();
+=======
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
     } catch (e) {
       console.error(e);
     }
@@ -182,6 +188,7 @@
       return;
     }
 
+<<<<<<< HEAD
     // Gửi request đăng nhập lên server
     fetch('http://localhost:3000/api/auth/login', {
       method: 'POST',
@@ -234,6 +241,25 @@
         setLoginCredentialError();
       }
     });
+=======
+    if (email === adminUser.email && password === adminUser.password) {
+      setCurrentUser({ id: 'admin', name: 'Admin', email: adminUser.email, role: 'admin' });
+      window.location.href = 'admin/index.html';
+      return;
+    }
+
+    const users = getUsers();
+    const user = users.find(u => u.email === email && u.password === password);
+    if (user) {
+      setCurrentUser({ id: user.id, name: user.name, email: user.email, role: user.role || 'user' });
+      alert('Đăng nhập thành công!');
+      const returnUrl = new URLSearchParams(window.location.search).get('return') || 'index.html';
+      window.location.href = returnUrl;
+      return;
+    }
+
+    setLoginCredentialError();
+>>>>>>> 26d0d335f2384c512cbd970085b7db18a1505b8b
   });
 
   function clearRegisterErrors() {
