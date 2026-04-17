@@ -1,0 +1,4 @@
+# Thư mục ảnh sản phẩm/dịch vụ. Thêm file ảnh theo tên trong DB, ví dụ:
+# thuc-an-hat-premium-cho.jpg, day-dat-da-cao-cap.jpg, do-choi-gam-xuong.jpg,
+# ban-chai-long-mem.jpg, thuc-an-hat-cho-meo.jpg, sua-tam-organic.jpg, ...
+# Nếu không có ảnh, trang sẽ hiển thị ảnh mặc định.

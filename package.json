@@ -1,0 +1,10 @@
+{
+  "name": "petcare-spa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tiện chạy từ thư mục gốc: backend API (npm run start:api). SPA: cd frontend && npm run dev",
+  "scripts": {
+    "start:api": "node backend/index.js",
+    "dev:api": "node --watch backend/index.js"
+  }
+}
